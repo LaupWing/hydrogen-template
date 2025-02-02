@@ -32,10 +32,16 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-    const [{ collections }] = await Promise.all([
+    const [{ collections }, { blog }] = await Promise.all([
         context.storefront.query(FEATURED_COLLECTION_QUERY),
         // Add other queries here, so that they are loaded in parallel
+        context.storefront.query(BLOGS_QUERY, {
+            variables: {
+                startCursor: null,
+            },
+        }),
     ])
+    console.log(blog!.articles.nodes)
 
     return {
         featuredCollection: collections.nodes[0],
@@ -278,5 +284,52 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
                     ...RecommendedProduct
                 }
             }
+    }
+` as const
+
+// NOTE: https://shopify.dev/docs/api/storefront/latest/objects/blog
+const BLOGS_QUERY = `#graphql
+    query BlogIndex(
+        $language: LanguageCode
+        $startCursor: String
+    ) @inContext(language: $language) {
+        blog(handle: "all") {
+            title
+            seo {
+                title
+                description
+            }
+            articles(
+                first: 3
+                after: $startCursor
+            ) {
+                nodes {
+                    author: authorV2 {
+                        name
+                    }
+                    contentHtml
+                    handle
+                    id
+                    image {
+                        id
+                        altText
+                        url
+                        width
+                        height
+                    }
+                    publishedAt
+                    title
+                    blog {
+                        handle
+                    }
+                }
+                pageInfo {
+                    hasPreviousPage
+                    hasNextPage
+                    endCursor
+                    startCursor
+                }
+            }
+        }
     }
 ` as const
