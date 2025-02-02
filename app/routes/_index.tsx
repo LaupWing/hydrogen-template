@@ -1,6 +1,6 @@
 import { defer, type LoaderFunctionArgs } from "@netlify/remix-runtime"
 import { Await, useLoaderData, Link, type MetaFunction } from "@remix-run/react"
-import { Suspense, useRef } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { Image, Money } from "@shopify/hydrogen"
 import type {
     FeaturedCollectionFragment,
@@ -8,7 +8,7 @@ import type {
 } from "storefrontapi.generated"
 import Slider from "react-slick"
 // import  from "react-slick"
-import SliderType from "react-slick/index"
+// import SliderType from "react-slick/index"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
@@ -77,7 +77,9 @@ function FeaturedCollection({
 }) {
     if (!collection) return null
     const image = collection?.image
-    let sliderRef = useRef<SliderType>(null)
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => setIsClient(true), [])
+    let sliderRef = useRef<Slider>(null)
     const settings = {
         dots: false,
         infinite: true,
@@ -99,16 +101,19 @@ function FeaturedCollection({
         <div className="bg-white pb-4 flex">
             <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
                 <div className="h-[50%] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
-                <Slider
-                    ref={sliderRef}
-                    {...settings}
-                    className="w-full h-full flex items-center justify-center"
-                ></Slider>
-                <img
-                    className="object-cover w-full h-full"
-                    src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/avatar-placeholder-generator-500x500.jpg?v=1738395482"
-                    alt=""
-                />
+                {isClient && (
+                    <Slider
+                        ref={sliderRef}
+                        {...settings}
+                        className="w-full h-full flex items-center justify-center"
+                    >
+                        <img
+                            className="object-cover w-full h-full"
+                            src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/avatar-placeholder-generator-500x500.jpg?v=1738395482"
+                            alt=""
+                        />
+                    </Slider>
+                )}
             </div>
         </div>
     )
