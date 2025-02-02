@@ -126,16 +126,9 @@ function FeaturedCollection({
                                 <span className="text-sm text-neutral-50 font-bold">
                                     10/10/2025
                                 </span>
-                                <motion.h2
-                                    initial={{
-                                        transform: "translateX(-100px)",
-                                    }}
-                                    animate={{ transform: "translateX(0px)" }}
-                                    transition={{ type: "spring" }}
-                                    className="text-neutral-50 text-6xl font-bold"
-                                >
+                                <h2 className="text-neutral-50 text-6xl font-bold">
                                     {collection.title}
-                                </motion.h2>
+                                </h2>
                                 <p className="text-neutral-100">
                                     Lorem ipsum, dolor sit amet consectetur
                                     adipisicing elit. Qui quidem laboriosam
