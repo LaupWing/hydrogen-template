@@ -99,6 +99,11 @@ function FeaturedCollection({
         <div className="bg-white pb-4 flex">
             <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
                 <div className="h-[50%] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
+                <Slider
+                    ref={sliderRef}
+                    {...settings}
+                    className="w-full h-full flex items-center justify-center"
+                ></Slider>
                 <img
                     className="object-cover w-full h-full"
                     src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/avatar-placeholder-generator-500x500.jpg?v=1738395482"
