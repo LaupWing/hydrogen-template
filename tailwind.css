@@ -1,0 +1,10 @@
+/**
+ * Configure Tailwind v4 in this file using CSS variables and directives:
+ * https://tailwindcss.com/docs/v4-beta#css-first-configuration
+ */
+
+@import "tailwindcss";
+
+.custom-container {
+    @apply mx-auto w-full max-w-6xl;
+}
