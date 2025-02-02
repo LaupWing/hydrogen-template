@@ -86,7 +86,7 @@ function FeaturedCollection({
     blogs,
 }: {
     collection: FeaturedCollectionFragment
-    blogs: ArticleItemFragment
+    blogs: ArticleItemFragment[]
 }) {
     if (!collection) return null
     const image = collection?.image
@@ -115,8 +115,6 @@ function FeaturedCollection({
         }
     }
 
-    console.log(blogs)
-
     return (
         <div className="bg-white pb-4 flex">
             <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
@@ -127,16 +125,13 @@ function FeaturedCollection({
                         {...settings}
                         className="w-full h-full flex items-center justify-center"
                     >
-                        <img
-                            className="object-cover w-full h-full"
-                            src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/avatar-placeholder-generator-500x500.jpg?v=1738395482"
-                            alt=""
-                        />
-                        <img
-                            className="object-cover w-full h-full"
-                            src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/Screenshot_2024-09-16_at_09.10.03.png?v=1738344793"
-                            alt=""
-                        />
+                        {blogs.map((blog) => (
+                            <Image
+                                data={blog.image!}
+                                className="object-cover w-full h-full"
+                                sizes="(min-width: 45em) 20vw, 50vw"
+                            />
+                        ))}
                     </Slider>
                 )}
                 <div className="absolute z-20 px-10 pb-16 bottom-0 left-0 right-0">
