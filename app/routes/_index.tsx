@@ -11,6 +11,7 @@ import { motion } from "motion/react"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { MoveLeft, MoveRight } from "lucide-react"
+import { cn } from "~/lib/utils"
 
 export const meta: MetaFunction = () => {
     return [{ title: "Hydrogen | Home" }]
@@ -80,12 +81,16 @@ function FeaturedCollection({
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
     let sliderRef = useRef<Slider>(null)
+    const [currentSlide, setCurrentSlide] = useState(0)
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        beforeChange: (currentSlide: number, nextSlide: number) => {
+            setCurrentSlide(nextSlide)
+        },
     }
     const next = () => {
         if (sliderRef.current) {
@@ -148,11 +153,18 @@ function FeaturedCollection({
                                 <MoveLeft />
                             </button>
                             <div className="flex gap-5 items-center">
-                                <button className="border p-1 border-white rounded-full">
-                                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                                </button>
-                                <button className="w-1.5 h-1.5 bg-white rounded-full"></button>
-                                <button className="w-1.5 h-1.5 bg-white rounded-full"></button>
+                                {[1, 2].map((_, index) => (
+                                    <button
+                                        className={cn(
+                                            "border p-1 rounded-full",
+                                            index === currentSlide
+                                                ? "border-white"
+                                                : "border-transparent"
+                                        )}
+                                    >
+                                        <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                                    </button>
+                                ))}
                             </div>
                             <button
                                 className="cursor-pointer hover:text-yellow-400"
