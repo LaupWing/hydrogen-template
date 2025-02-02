@@ -3,7 +3,15 @@ import { Await, NavLink } from "@remix-run/react"
 import { type CartViewPayload, useAnalytics } from "@shopify/hydrogen"
 import type { HeaderQuery, CartApiQueryFragment } from "storefrontapi.generated"
 import { useAside } from "~/components/Aside"
-import { ArrowLeft, ArrowRight, Facebook, Twitter, Youtube } from "lucide-react"
+import {
+    ArrowLeft,
+    ArrowRight,
+    Facebook,
+    ShoppingCart,
+    Twitter,
+    User,
+    Youtube,
+} from "lucide-react"
 
 interface HeaderProps {
     header: HeaderQuery
@@ -51,7 +59,48 @@ export function Header({
                     </div>
                 </div>
             </div>
-            <header className="header">
+            <header className="bg-white rounded-t-3xl">
+                <div className="custom-container grid items-center py-8 grid-cols-4">
+                    <h1 className="text-2xl">{shop.name}</h1>
+                    <nav className="col-span-2">
+                        <ul className="flex max-w-lg mx-auto justify-between uppercase">
+                            {(menu || FALLBACK_HEADER_MENU).items.map(
+                                (item) => {
+                                    if (!item.url) return null
+
+                                    // if the url is internal, we strip the domain
+                                    const url =
+                                        item.url.includes("myshopify.com") ||
+                                        item.url.includes(publicStoreDomain) ||
+                                        item.url.includes(
+                                            header.shop.primaryDomain.url
+                                        )
+                                            ? new URL(item.url).pathname
+                                            : item.url
+                                    return (
+                                        <NavLink
+                                            className="header-menu-item"
+                                            end
+                                            key={item.id}
+                                            // onClick={close}
+                                            prefetch="intent"
+                                            style={activeLinkStyle}
+                                            to={url}
+                                        >
+                                            {item.title}
+                                        </NavLink>
+                                    )
+                                }
+                            )}
+                        </ul>
+                    </nav>
+                    <div className="flex gap-6 justify-end">
+                        <User />
+                        <ShoppingCart />
+                    </div>
+                </div>
+            </header>
+            {/* <header className="header">
                 <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
                     <strong>{shop.name}</strong>
                 </NavLink>
@@ -62,7 +111,7 @@ export function Header({
                     publicStoreDomain={publicStoreDomain}
                 />
                 <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-            </header>
+            </header> */}
         </div>
     )
 }
