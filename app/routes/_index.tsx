@@ -118,7 +118,7 @@ function FeaturedCollection({
     return (
         <div className="bg-white pb-4 flex">
             <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
-                <div className="h-[80%] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
+                <div className="h-[80%] pointer-events-none absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
                 {isClient && (
                     <Slider
                         ref={sliderRef}
@@ -137,7 +137,7 @@ function FeaturedCollection({
                 <div className="absolute z-20 px-10 pb-16 bottom-0 left-0 right-0">
                     <div className="flex flex-col">
                         <div className="flex justify-between pb-8 border-b border-neutral-400 items-end">
-                            <div className="flex gap-2 flex-col max-w-lg">
+                            <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
                                 <span className="text-sm text-neutral-50 font-bold">
                                     10/10/2025
                                 </span>
