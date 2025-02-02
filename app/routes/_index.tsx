@@ -11,6 +11,7 @@ import Slider from "react-slick"
 // import SliderType from "react-slick/index"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { MoveLeft, MoveRight } from "lucide-react"
 
 export const meta: MetaFunction = () => {
     return [{ title: "Hydrogen | Home" }]
@@ -112,8 +113,57 @@ function FeaturedCollection({
                             src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/avatar-placeholder-generator-500x500.jpg?v=1738395482"
                             alt=""
                         />
+                        <img
+                            className="object-cover w-full h-full"
+                            src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/Screenshot_2024-09-16_at_09.10.03.png?v=1738344793"
+                            alt=""
+                        />
                     </Slider>
                 )}
+                <div className="absolute z-20 px-10 pb-16 bottom-0 left-0 right-0">
+                    <div className="flex flex-col">
+                        <div className="flex justify-between pb-8 border-b border-neutral-400 items-end">
+                            <div className="flex gap-2 flex-col max-w-lg">
+                                <span className="text-sm text-neutral-50 font-bold">
+                                    10/10/2025
+                                </span>
+                                <h2 className="text-neutral-50 text-6xl font-bold">
+                                    {collection.title}
+                                </h2>
+                                <p className="text-neutral-100">
+                                    Lorem ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Qui quidem laboriosam
+                                    molestiae quos atque rerum aliquam,
+                                    aliquid..
+                                </p>
+                            </div>
+                            <button className="w-48 text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                                Read More
+                            </button>
+                        </div>
+                        <div className="text-white flex justify-between items-center pt-4">
+                            <button
+                                className="cursor-pointer hover:text-yellow-400"
+                                onClick={previous}
+                            >
+                                <MoveLeft />
+                            </button>
+                            <div className="flex gap-5 items-center">
+                                <button className="border p-1 border-white rounded-full">
+                                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                                </button>
+                                <button className="w-1.5 h-1.5 bg-white rounded-full"></button>
+                                <button className="w-1.5 h-1.5 bg-white rounded-full"></button>
+                            </div>
+                            <button
+                                className="cursor-pointer hover:text-yellow-400"
+                                onClick={next}
+                            >
+                                <MoveRight />
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
