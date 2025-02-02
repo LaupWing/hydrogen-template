@@ -3,6 +3,7 @@ import { Await, useLoaderData, Link, type MetaFunction } from "@remix-run/react"
 import { Suspense, useEffect, useRef, useState } from "react"
 import { Image, Money } from "@shopify/hydrogen"
 import type {
+    ArticleItemFragment,
     FeaturedCollectionFragment,
     RecommendedProductsQuery,
 } from "storefrontapi.generated"
@@ -41,10 +42,10 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
             },
         }),
     ])
-    console.log(blog!.articles.nodes)
 
     return {
         featuredCollection: collections.nodes[0],
+        blogs: blog!.articles.nodes,
     }
 }
 
@@ -71,7 +72,10 @@ export default function Homepage() {
     const data = useLoaderData<typeof loader>()
     return (
         <div className="home">
-            <FeaturedCollection collection={data.featuredCollection} />
+            <FeaturedCollection
+                blogs={data.blogs}
+                collection={data.featuredCollection}
+            />
             <RecommendedProducts products={data.recommendedProducts} />
         </div>
     )
@@ -79,8 +83,10 @@ export default function Homepage() {
 
 function FeaturedCollection({
     collection,
+    blogs,
 }: {
     collection: FeaturedCollectionFragment
+    blogs: ArticleItemFragment
 }) {
     if (!collection) return null
     const image = collection?.image
@@ -108,6 +114,9 @@ function FeaturedCollection({
             sliderRef.current.slickPrev()
         }
     }
+
+    console.log(blogs)
+
     return (
         <div className="bg-white pb-4 flex">
             <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
