@@ -99,6 +99,7 @@ function FeaturedCollection({
         infinite: true,
         speed: 500,
         slidesToShow: 1,
+        centerPadding: "10px",
         slidesToScroll: 1,
         beforeChange: (currentSlide: number, nextSlide: number) => {
             setCurrentSlide(nextSlide)
