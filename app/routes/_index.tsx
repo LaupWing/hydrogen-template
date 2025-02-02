@@ -144,12 +144,12 @@ function FeaturedCollection({
                                 <h2 className="text-neutral-50 text-6xl font-bold">
                                     {blogs[currentSlide].title}
                                 </h2>
-                                <p className="text-neutral-100">
-                                    Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. Qui quidem laboriosam
-                                    molestiae quos atque rerum aliquam,
-                                    aliquid..
-                                </p>
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: blogs[currentSlide].contentHtml,
+                                    }}
+                                    className="text-neutral-100 line-clamp-2"
+                                ></div>
                             </div>
                             <button className="w-48 text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                                 Read More
