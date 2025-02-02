@@ -6,6 +6,11 @@ import type {
     FeaturedCollectionFragment,
     RecommendedProductsQuery,
 } from "storefrontapi.generated"
+import Slider from "react-slick"
+// import  from "react-slick"
+import SliderType from "react-slick/index"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 export const meta: MetaFunction = () => {
     return [{ title: "Hydrogen | Home" }]
@@ -73,17 +78,19 @@ function FeaturedCollection({
     if (!collection) return null
     const image = collection?.image
     return (
-        <Link
-            className="featured-collection"
-            to={`/collections/${collection.handle}`}
-        >
-            {image && (
-                <div className="featured-collection-image">
-                    <Image data={image} sizes="100vw" />
-                </div>
-            )}
-            <h1>{collection.title}</h1>
-        </Link>
+        <div className="bg-white">
+            <Link
+                className="featured-collection"
+                to={`/collections/${collection.handle}`}
+            >
+                {image && (
+                    <div className="featured-collection-image">
+                        <Image data={image} sizes="100vw" />
+                    </div>
+                )}
+                <h1>{collection.title}</h1>
+            </Link>
+        </div>
     )
 }
 
