@@ -319,7 +319,7 @@ const BLOGS_QUERY = `#graphql
                     image {
                         id
                         altText
-                        url
+                        url(transform: { maxWidth: 2000, maxHeight: 2000, crop: CENTER })
                         width
                         height
                     }

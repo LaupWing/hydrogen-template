@@ -444,6 +444,53 @@ export type RecommendedProductsQuery = {
     }
 }
 
+export type BlogIndexQueryVariables = StorefrontAPI.Exact<{
+    language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>
+    startCursor?: StorefrontAPI.InputMaybe<
+        StorefrontAPI.Scalars["String"]["input"]
+    >
+}>
+
+export type BlogIndexQuery = {
+    blog?: StorefrontAPI.Maybe<
+        Pick<StorefrontAPI.Blog, "title"> & {
+            seo?: StorefrontAPI.Maybe<
+                Pick<StorefrontAPI.Seo, "title" | "description">
+            >
+            articles: {
+                nodes: Array<
+                    Pick<
+                        StorefrontAPI.Article,
+                        | "contentHtml"
+                        | "handle"
+                        | "id"
+                        | "publishedAt"
+                        | "title"
+                    > & {
+                        author?: StorefrontAPI.Maybe<
+                            Pick<StorefrontAPI.ArticleAuthor, "name">
+                        >
+                        image?: StorefrontAPI.Maybe<
+                            Pick<
+                                StorefrontAPI.Image,
+                                "id" | "altText" | "url" | "width" | "height"
+                            >
+                        >
+                        blog: Pick<StorefrontAPI.Blog, "handle">
+                    }
+                >
+                pageInfo: Pick<
+                    StorefrontAPI.PageInfo,
+                    | "hasPreviousPage"
+                    | "hasNextPage"
+                    | "endCursor"
+                    | "startCursor"
+                >
+            }
+        }
+    >
+}
+
 export type ArticleQueryVariables = StorefrontAPI.Exact<{
     articleHandle: StorefrontAPI.Scalars["String"]["input"]
     blogHandle: StorefrontAPI.Scalars["String"]["input"]
@@ -1347,13 +1394,17 @@ interface GeneratedQueryTypes {
         return: SitemapQuery
         variables: SitemapQueryVariables
     }
-    "#graphql\n  fragment FeaturedCollection on Collection {\n    id\n    title\n    image {\n      id\n      url\n      altText\n      width\n      height\n    }\n    handle\n  }\n  query FeaturedCollection($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    collections(first: 1, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...FeaturedCollection\n      }\n    }\n  }\n": {
+    "#graphql\n    fragment FeaturedCollection on Collection {\n        id\n        title\n        image {\n            id\n            url\n            altText\n            width\n            height\n        }\n        handle\n    }\n    query FeaturedCollection($country: CountryCode, $language: LanguageCode)\n        @inContext(country: $country, language: $language) {\n        collections(first: 1, sortKey: UPDATED_AT, reverse: true) {\n            nodes {\n                ...FeaturedCollection\n            }\n        }\n    }\n": {
         return: FeaturedCollectionQuery
         variables: FeaturedCollectionQueryVariables
     }
-    "#graphql\n  fragment RecommendedProduct on Product {\n    id\n    title\n    handle\n    priceRange {\n      minVariantPrice {\n        amount\n        currencyCode\n      }\n    }\n    images(first: 1) {\n      nodes {\n        id\n        url\n        altText\n        width\n        height\n      }\n    }\n  }\n  query RecommendedProducts ($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    products(first: 4, sortKey: UPDATED_AT, reverse: true) {\n      nodes {\n        ...RecommendedProduct\n      }\n    }\n  }\n": {
+    "#graphql\n    fragment RecommendedProduct on Product {\n        id\n        title\n        handle\n        priceRange {\n        minVariantPrice {\n            amount\n            currencyCode\n        }\n        }\n        images(first: 1) {\n        nodes {\n            id\n            url\n            altText\n            width\n            height\n        }\n        }\n    }\n    query RecommendedProducts ($country: CountryCode, $language: LanguageCode)\n        @inContext(country: $country, language: $language) {\n            products(first: 4, sortKey: UPDATED_AT, reverse: true) {\n                nodes {\n                    ...RecommendedProduct\n                }\n            }\n    }\n": {
         return: RecommendedProductsQuery
         variables: RecommendedProductsQueryVariables
+    }
+    '#graphql\n    query BlogIndex(\n        $language: LanguageCode\n        $startCursor: String\n    ) @inContext(language: $language) {\n        blog(handle: "all") {\n            title\n            seo {\n                title\n                description\n            }\n            articles(\n                first: 3\n                after: $startCursor\n            ) {\n                nodes {\n                    author: authorV2 {\n                        name\n                    }\n                    contentHtml\n                    handle\n                    id\n                    image {\n                        id\n                        altText\n                        url\n                        width\n                        height\n                    }\n                    publishedAt\n                    title\n                    blog {\n                        handle\n                    }\n                }\n                pageInfo {\n                    hasPreviousPage\n                    hasNextPage\n                    endCursor\n                    startCursor\n                }\n            }\n        }\n    }\n': {
+        return: BlogIndexQuery
+        variables: BlogIndexQueryVariables
     }
     "#graphql\n  query Article(\n    $articleHandle: String!\n    $blogHandle: String!\n    $country: CountryCode\n    $language: LanguageCode\n  ) @inContext(language: $language, country: $country) {\n    blog(handle: $blogHandle) {\n      articleByHandle(handle: $articleHandle) {\n        title\n        contentHtml\n        publishedAt\n        author: authorV2 {\n          name\n        }\n        image {\n          id\n          altText\n          url\n          width\n          height\n        }\n        seo {\n          description\n          title\n        }\n      }\n    }\n  }\n": {
         return: ArticleQuery
