@@ -170,6 +170,7 @@ function FeaturedCollection({
                             <div className="flex gap-5 items-center">
                                 {[1, 2].map((_, index) => (
                                     <button
+                                        key={index}
                                         className={cn(
                                             "border p-1 rounded-full",
                                             index === currentSlide
