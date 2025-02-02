@@ -118,7 +118,7 @@ function FeaturedCollection({
     return (
         <div className="bg-white pb-4 flex">
             <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
-                <div className="h-[50%] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
+                <div className="h-[80%] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
                 {isClient && (
                     <Slider
                         ref={sliderRef}
