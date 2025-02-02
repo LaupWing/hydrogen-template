@@ -142,7 +142,7 @@ function FeaturedCollection({
                                     10/10/2025
                                 </span>
                                 <h2 className="text-neutral-50 text-6xl font-bold">
-                                    {collection.title}
+                                    {blogs[currentSlide].title}
                                 </h2>
                                 <p className="text-neutral-100">
                                     Lorem ipsum, dolor sit amet consectetur
