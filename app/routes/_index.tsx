@@ -1,6 +1,6 @@
 import { defer, type LoaderFunctionArgs } from "@netlify/remix-runtime"
 import { Await, useLoaderData, Link, type MetaFunction } from "@remix-run/react"
-import { Suspense } from "react"
+import { Suspense, useRef } from "react"
 import { Image, Money } from "@shopify/hydrogen"
 import type {
     FeaturedCollectionFragment,
@@ -77,19 +77,34 @@ function FeaturedCollection({
 }) {
     if (!collection) return null
     const image = collection?.image
+    let sliderRef = useRef<SliderType>(null)
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    }
+    const next = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slickNext()
+        }
+    }
+    const previous = () => {
+        if (sliderRef.current) {
+            sliderRef.current.slickPrev()
+        }
+    }
     return (
-        <div className="bg-white">
-            <Link
-                className="featured-collection"
-                to={`/collections/${collection.handle}`}
-            >
-                {image && (
-                    <div className="featured-collection-image">
-                        <Image data={image} sizes="100vw" />
-                    </div>
-                )}
-                <h1>{collection.title}</h1>
-            </Link>
+        <div className="bg-white pb-4 flex">
+            <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
+                <div className="h-[50%] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
+                <img
+                    className="object-cover w-full h-full"
+                    src="https://cdn.shopify.com/s/files/1/0904/9817/1267/files/avatar-placeholder-generator-500x500.jpg?v=1738395482"
+                    alt=""
+                />
+            </div>
         </div>
     )
 }
