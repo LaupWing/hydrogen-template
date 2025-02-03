@@ -152,7 +152,7 @@ function FeaturedCollection({
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -20 }}
                                             transition={{
-                                                duration: 0.5,
+                                                duration: 0.3,
                                                 ease: "easeOut",
                                             }}
                                             className="text-sm text-neutral-50 font-bold"
@@ -169,7 +169,8 @@ function FeaturedCollection({
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -20 }}
                                             transition={{
-                                                duration: 0.5,
+                                                duration: 0.3,
+                                                delay: 0.1,
                                                 ease: "easeOut",
                                             }}
                                             className="text-neutral-50 text-6xl font-bold"
@@ -186,7 +187,8 @@ function FeaturedCollection({
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -20 }}
                                             transition={{
-                                                duration: 0.5,
+                                                duration: 0.3,
+                                                delay: 0.2,
                                                 ease: "easeOut",
                                             }}
                                             className="text-neutral-100 line-clamp-2"
