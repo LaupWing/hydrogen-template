@@ -144,10 +144,10 @@ function FeaturedCollection({
                                 </span>
                                 <AnimatePresence mode="wait">
                                     <motion.h2
-                                        key={blogs[currentSlide].title} // Unique key to trigger re-mount
-                                        initial={{ opacity: 0, y: 20 }} // Fade in and move up
+                                        key={blogs[currentSlide].title}
+                                        initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -20 }} // Fade out and move up
+                                        exit={{ opacity: 0, y: -20 }}
                                         transition={{
                                             duration: 0.5,
                                             ease: "easeOut",
