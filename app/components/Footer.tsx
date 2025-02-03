@@ -79,7 +79,7 @@ export function Footer({
                 </div>
                 <Await resolve={footerPromise}>
                     {(footer) => (
-                        <footer className="footer">
+                        <footer className="bg-neutral-950">
                             {footer?.menu && header.shop.primaryDomain?.url && (
                                 <FooterMenu
                                     menu={footer.menu}
