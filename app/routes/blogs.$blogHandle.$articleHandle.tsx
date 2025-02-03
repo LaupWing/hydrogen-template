@@ -63,18 +63,17 @@ export default function Article() {
     }).format(new Date(article.publishedAt))
 
     return (
-        <div className="bg-white">
-            <h1>
-                {title}
-                <div>
-                    {publishedDate} &middot; {author?.name}
-                </div>
-            </h1>
+        <div className="bg-white items-center flex flex-col">
+            <small className="mt-8">
+                {publishedDate} &middot; {author?.name}
+            </small>
+            <h1 className="mx-auto text-5xl font-bold pt-2 pb-6">{title}</h1>
 
             {image && (
                 <Image
-                    className="custom-container rounded-2xl"
+                    className="custom-container mt-4 object-cover rounded-2xl"
                     data={image}
+                    aspectRatio="16/9"
                     sizes="90vw"
                     loading="eager"
                 />
