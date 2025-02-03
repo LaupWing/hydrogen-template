@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import { Await, NavLink } from "@remix-run/react"
 import type { FooterQuery, HeaderQuery } from "storefrontapi.generated"
-import { BicepsFlexed } from "lucide-react"
+import { BicepsFlexed, ShieldCheck } from "lucide-react"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -21,7 +21,7 @@ export function Footer({
                     <div className="my-16 divide-x custom-container grid grid-cols-4">
                         <div className="flex gap-4 px-4">
                             <BicepsFlexed className="flex-shrink-0" />
-                            <div className="grid gap-0.5">
+                            <div className="flex flex-col gap-0.5">
                                 <h3 className="text-lg text-neutral-800 font-bold">
                                     Best version of yourself
                                 </h3>
@@ -34,7 +34,7 @@ export function Footer({
                         </div>
                         <div className="flex gap-4 px-4">
                             <BicepsFlexed className="flex-shrink-0" />
-                            <div className="grid gap-0.5">
+                            <div className="flex flex-col gap-0.5">
                                 <h3 className="text-lg text-neutral-800 font-bold">
                                     Best version of yourself
                                 </h3>
@@ -47,7 +47,7 @@ export function Footer({
                         </div>
                         <div className="flex gap-4 px-4">
                             <BicepsFlexed className="flex-shrink-0" />
-                            <div className="grid gap-0.5">
+                            <div className="flex flex-col gap-0.5">
                                 <h3 className="text-lg text-neutral-800 font-bold">
                                     Best version of yourself
                                 </h3>
@@ -59,15 +59,14 @@ export function Footer({
                             </div>
                         </div>
                         <div className="flex gap-4 px-4">
-                            <BicepsFlexed className="flex-shrink-0" />
-                            <div className="grid gap-0.5">
+                            <ShieldCheck className="flex-shrink-0" />
+                            <div className="flex flex-col gap-0.5">
                                 <h3 className="text-lg text-neutral-800 font-bold">
-                                    Best version of yourself
+                                    Pay Safe
                                 </h3>
                                 <p className="text-sm text-neutral-600">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Voluptatibus mollitia
-                                    harum quidem doloremque
+                                    Pay with the world's most popular and secure
+                                    payment methods
                                 </p>
                             </div>
                         </div>
