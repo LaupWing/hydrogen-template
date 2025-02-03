@@ -144,13 +144,27 @@ function FeaturedCollection({
                     <div className="flex flex-col">
                         <div className="flex justify-between pb-8 border-b border-neutral-400 items-end">
                             <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
-                                <span className="text-sm text-neutral-50 font-bold">
-                                    {publishedAt}
-                                </span>
+                                {isClient && (
+                                    <AnimatePresence mode="wait">
+                                        <motion.span
+                                            key={blogs[currentSlide].id}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{
+                                                duration: 0.5,
+                                                ease: "easeOut",
+                                            }}
+                                            className="text-sm text-neutral-50 font-bold"
+                                        >
+                                            {publishedAt}
+                                        </motion.span>
+                                    </AnimatePresence>
+                                )}
                                 {isClient && (
                                     <AnimatePresence mode="wait">
                                         <motion.h2
-                                            key={blogs[currentSlide].title}
+                                            key={blogs[currentSlide].id}
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -20 }}
@@ -164,12 +178,25 @@ function FeaturedCollection({
                                         </motion.h2>
                                     </AnimatePresence>
                                 )}
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: blogs[currentSlide].contentHtml,
-                                    }}
-                                    className="text-neutral-100 line-clamp-2"
-                                ></div>
+                                {isClient && (
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={blogs[currentSlide].id}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{
+                                                duration: 0.5,
+                                                ease: "easeOut",
+                                            }}
+                                            className="text-neutral-100 line-clamp-2"
+                                            dangerouslySetInnerHTML={{
+                                                __html: blogs[currentSlide]
+                                                    .contentHtml,
+                                            }}
+                                        ></motion.div>
+                                    </AnimatePresence>
+                                )}
                             </div>
                             <button className="w-48 text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                                 Read More
