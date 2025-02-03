@@ -81,7 +81,7 @@ export default function Article() {
             )}
             <div
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
-                className="article"
+                className="py-10 w-full max-w-5xl mx-auto"
             />
         </div>
     )
