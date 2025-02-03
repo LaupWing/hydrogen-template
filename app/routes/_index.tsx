@@ -105,13 +105,10 @@ function FeaturedCollection({
             setCurrentSlide(nextSlide)
         },
     }
-    console.log(new Date(blogs[currentSlide].publishedAt))
-    // const publishedAt = new Intl.DateTimeFormat("en-US", {
-    //     year: "numeric",
-    //     month: "long",
-    //     day: "numeric",
-    //     // @ts-expect-error
-    // }).format(blogs[currentSlide]!.publishedAt)
+    const publishedAt = new Date(
+        blogs[currentSlide].publishedAt
+    ).toLocaleDateString("en-GB")
+
     const next = () => {
         if (sliderRef.current) {
             sliderRef.current.slickNext()
@@ -148,7 +145,7 @@ function FeaturedCollection({
                         <div className="flex justify-between pb-8 border-b border-neutral-400 items-end">
                             <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
                                 <span className="text-sm text-neutral-50 font-bold">
-                                    10/10/2025
+                                    {publishedAt}
                                 </span>
                                 {isClient && (
                                     <AnimatePresence mode="wait">
