@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import { Await, NavLink } from "@remix-run/react"
 import type { FooterQuery, HeaderQuery } from "storefrontapi.generated"
 import {
@@ -8,6 +8,7 @@ import {
     ShieldCheck,
     Smartphone,
 } from "lucide-react"
+import { cn } from "~/lib/utils"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -21,11 +22,34 @@ export function Footer({
     publicStoreDomain,
 }: FooterProps) {
     const NewsLetterInput = () => {
+        const [focused, setFocused] = useState(false)
+        const [email, setEmail] = useState("")
+
         return (
-            <div className="p-2 px-4 items-center flex rounded-full bg-neutral-700">
+            <div
+                className={cn(
+                    "p-2 px-4 relative items-center flex rounded-full bg-neutral-700",
+                    focused && "ring-2 ring-yellow-400"
+                )}
+            >
+                <label
+                    htmlFor="email"
+                    className={cn(
+                        focused || email
+                            ? "top-0 text-yellow-400 text-sm"
+                            : "top-1/2 transform -translate-y-1/2 text-base text-neutral-400",
+                        "absolute pointer-events-none duration-300  left-6"
+                    )}
+                >
+                    Fill in your email here
+                </label>
                 <input
+                    id="email"
                     type="email"
-                    placeholder="Fill in your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(false)}
                     className="p-1 focus:outline-none text-lg bg-neutral-700 w-72"
                 />
                 <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700">
