@@ -16,7 +16,7 @@ export function Footer({
 }: FooterProps) {
     return (
         <Suspense>
-            <div className="flex flex-col">
+            <div className="flex flex-col bg-neutral-900">
                 <div className="border-t rounded-b-3xl overflow-hidden bg-white">
                     <div className="my-16 divide-x custom-container grid grid-cols-4">
                         <div className="flex gap-4 px-4">
@@ -68,6 +68,13 @@ export function Footer({
                                 </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className="bg-neutral-900 text-white py-8 text-sm text-center">
+                    <div className="custom-container">
+                        <p>
+                            © {new Date().getFullYear()} {header.shop.name}
+                        </p>
                     </div>
                 </div>
                 <Await resolve={footerPromise}>
