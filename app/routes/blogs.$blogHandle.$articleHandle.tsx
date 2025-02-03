@@ -73,7 +73,7 @@ export default function Article() {
 
             {image && (
                 <Image
-                    className="custom-container"
+                    className="custom-container rounded-2xl"
                     data={image}
                     sizes="90vw"
                     loading="eager"
