@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import { Await, NavLink } from "@remix-run/react"
 import type { FooterQuery, HeaderQuery } from "storefrontapi.generated"
-import { BicepsFlexed, ShieldCheck } from "lucide-react"
+import { Banknote, BicepsFlexed, ShieldCheck } from "lucide-react"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -33,15 +33,14 @@ export function Footer({
                             </div>
                         </div>
                         <div className="flex gap-4 px-4">
-                            <BicepsFlexed className="flex-shrink-0" />
+                            <Banknote className="flex-shrink-0" />
                             <div className="flex flex-col gap-0.5">
                                 <h3 className="text-lg text-neutral-800 font-bold">
-                                    Best version of yourself
+                                    Money Back
                                 </h3>
                                 <p className="text-sm text-neutral-600">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Voluptatibus mollitia
-                                    harum quidem doloremque
+                                    100% Money Back Guarantee. If you're not
+                                    satisfied, we're not satisfied
                                 </p>
                             </div>
                         </div>
