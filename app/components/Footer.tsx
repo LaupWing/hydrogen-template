@@ -20,6 +20,21 @@ export function Footer({
     header,
     publicStoreDomain,
 }: FooterProps) {
+    const NewsLetterInput = () => {
+        return (
+            <div className="p-2 px-4 items-center flex rounded-full bg-neutral-700">
+                <input
+                    type="email"
+                    placeholder="Fill in your email"
+                    className="p-1 focus:outline-none text-lg bg-neutral-700 w-72"
+                />
+                <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700">
+                    <ArrowRight />
+                </button>
+            </div>
+        )
+    }
+
     return (
         <Suspense>
             <div className="flex flex-col bg-neutral-900">
@@ -81,16 +96,7 @@ export function Footer({
                         <p>
                             © {new Date().getFullYear()} {header.shop.name}
                         </p>
-                        <div className="p-2 px-4 items-center flex rounded-full bg-neutral-700">
-                            <input
-                                type="email"
-                                placeholder="Fill in your email"
-                                className="p-1 focus:outline-none text-lg bg-neutral-700 w-72"
-                            />
-                            <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700">
-                                <ArrowRight />
-                            </button>
-                        </div>
+                        <NewsLetterInput />
                     </div>
                 </div>
                 <Await resolve={footerPromise}>
