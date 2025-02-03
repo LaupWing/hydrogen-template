@@ -8,7 +8,7 @@ import type {
     RecommendedProductsQuery,
 } from "storefrontapi.generated"
 import Slider from "react-slick"
-import { motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { MoveLeft, MoveRight } from "lucide-react"
@@ -142,9 +142,21 @@ function FeaturedCollection({
                                 <span className="text-sm text-neutral-50 font-bold">
                                     10/10/2025
                                 </span>
-                                <h2 className="text-neutral-50 text-6xl font-bold">
-                                    {blogs[currentSlide].title}
-                                </h2>
+                                <AnimatePresence mode="wait">
+                                    <motion.h2
+                                        key={blogs[currentSlide].title} // Unique key to trigger re-mount
+                                        initial={{ opacity: 0, y: 20 }} // Fade in and move up
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }} // Fade out and move up
+                                        transition={{
+                                            duration: 0.5,
+                                            ease: "easeOut",
+                                        }}
+                                        className="text-neutral-50 text-6xl font-bold"
+                                    >
+                                        {blogs[currentSlide].title}
+                                    </motion.h2>
+                                </AnimatePresence>
                                 <div
                                     dangerouslySetInnerHTML={{
                                         __html: blogs[currentSlide].contentHtml,
