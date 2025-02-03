@@ -71,7 +71,14 @@ export default function Article() {
                 </div>
             </h1>
 
-            {image && <Image data={image} sizes="90vw" loading="eager" />}
+            {image && (
+                <Image
+                    className="custom-container"
+                    data={image}
+                    sizes="90vw"
+                    loading="eager"
+                />
+            )}
             <div
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
                 className="article"
