@@ -150,21 +150,23 @@ function FeaturedCollection({
                                 <span className="text-sm text-neutral-50 font-bold">
                                     10/10/2025
                                 </span>
-                                {/* <AnimatePresence mode="wait">
-                                    <motion.h2
-                                        key={blogs[currentSlide].title}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -20 }}
-                                        transition={{
-                                            duration: 0.5,
-                                            ease: "easeOut",
-                                        }}
-                                        className="text-neutral-50 text-6xl font-bold"
-                                    >
-                                        {blogs[currentSlide].title}
-                                    </motion.h2>
-                                </AnimatePresence> */}
+                                {isClient && (
+                                    <AnimatePresence mode="wait">
+                                        <motion.h2
+                                            key={blogs[currentSlide].title}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -20 }}
+                                            transition={{
+                                                duration: 0.5,
+                                                ease: "easeOut",
+                                            }}
+                                            className="text-neutral-50 text-6xl font-bold"
+                                        >
+                                            {blogs[currentSlide].title}
+                                        </motion.h2>
+                                    </AnimatePresence>
+                                )}
                                 <div
                                     dangerouslySetInnerHTML={{
                                         __html: blogs[currentSlide].contentHtml,
