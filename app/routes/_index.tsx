@@ -105,12 +105,13 @@ function FeaturedCollection({
             setCurrentSlide(nextSlide)
         },
     }
-    console.log(blogs[currentSlide])
+    console.log(new Date(blogs[currentSlide].publishedAt))
     // const publishedAt = new Intl.DateTimeFormat("en-US", {
     //     year: "numeric",
     //     month: "long",
     //     day: "numeric",
-    // }).format(blogs[currentSlide]!.publishedAt!)
+    //     // @ts-expect-error
+    // }).format(blogs[currentSlide]!.publishedAt)
     const next = () => {
         if (sliderRef.current) {
             sliderRef.current.slickNext()
@@ -149,7 +150,7 @@ function FeaturedCollection({
                                 <span className="text-sm text-neutral-50 font-bold">
                                     10/10/2025
                                 </span>
-                                <AnimatePresence mode="wait">
+                                {/* <AnimatePresence mode="wait">
                                     <motion.h2
                                         key={blogs[currentSlide].title}
                                         initial={{ opacity: 0, y: 20 }}
@@ -163,7 +164,7 @@ function FeaturedCollection({
                                     >
                                         {blogs[currentSlide].title}
                                     </motion.h2>
-                                </AnimatePresence>
+                                </AnimatePresence> */}
                                 <div
                                     dangerouslySetInnerHTML={{
                                         __html: blogs[currentSlide].contentHtml,
