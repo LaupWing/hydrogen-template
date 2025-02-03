@@ -1,7 +1,13 @@
 import { Suspense } from "react"
 import { Await, NavLink } from "@remix-run/react"
 import type { FooterQuery, HeaderQuery } from "storefrontapi.generated"
-import { Banknote, BicepsFlexed, ShieldCheck, Smartphone } from "lucide-react"
+import {
+    ArrowRight,
+    Banknote,
+    BicepsFlexed,
+    ShieldCheck,
+    Smartphone,
+} from "lucide-react"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -71,10 +77,20 @@ export function Footer({
                     </div>
                 </div>
                 <div className="bg-neutral-900 text-white py-8 text-sm text-center">
-                    <div className="custom-container">
+                    <div className="custom-container flex">
                         <p>
                             © {new Date().getFullYear()} {header.shop.name}
                         </p>
+                        <div className="p-2 px-4 items-center flex rounded-full bg-neutral-700">
+                            <input
+                                type="email"
+                                placeholder="Fill in your email"
+                                className="p-1 focus:outline-none text-lg bg-neutral-700 w-72"
+                            />
+                            <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700">
+                                <ArrowRight />
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <Await resolve={footerPromise}>
