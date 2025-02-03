@@ -105,6 +105,12 @@ function FeaturedCollection({
             setCurrentSlide(nextSlide)
         },
     }
+    console.log(blogs[currentSlide])
+    // const publishedAt = new Intl.DateTimeFormat("en-US", {
+    //     year: "numeric",
+    //     month: "long",
+    //     day: "numeric",
+    // }).format(blogs[currentSlide]!.publishedAt!)
     const next = () => {
         if (sliderRef.current) {
             sliderRef.current.slickNext()
@@ -128,6 +134,7 @@ function FeaturedCollection({
                     >
                         {blogs.map((blog) => (
                             <Image
+                                key={blog.id}
                                 data={blog.image!}
                                 className="object-cover w-full h-full"
                                 sizes="(min-width: 45em) 20vw, 50vw"
