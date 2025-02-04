@@ -165,7 +165,7 @@ function FeaturedCollection({
                     )}
                     <div className="absolute z-20 px-10 pb-16 bottom-0 left-0 right-0">
                         <div className="flex flex-col">
-                            <div className="flex md:flex-row flex-col justify-between pb-8 border-b border-neutral-400 items-end">
+                            <div className="flex md:flex-row flex-col justify-between pb-8 border-b border-neutral-400 md:items-end">
                                 <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
                                     {isClient && (
                                         <AnimatePresence mode="wait">
