@@ -77,10 +77,12 @@ export default function Homepage() {
                 collection={data.featuredCollection}
             />
             <div className="flex items-start bg-white">
-                <div className="custom-container flex items-start justify-between py-8">
+                <div className="custom-container flex flex-col md:flex-row items-start justify-between py-8">
                     <div className="grid leading-8 text-4xl uppercase font-bold tracking-tighter gap-1">
-                        <h3>Build, Rise</h3>
-                        <div className="w-24 h-1 bg-yellow-400 rounded-full" />
+                        <div className="grid gap-1">
+                            <h3>Build, Rise</h3>
+                            <div className="w-24 h-1 bg-yellow-400 rounded-full" />
+                        </div>
                         <h3>Improve</h3>
                     </div>
                     <div className="text-neutral-700 grid gap-4 text-base max-w-xl">
