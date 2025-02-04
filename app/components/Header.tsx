@@ -62,10 +62,10 @@ export function Header({
             </div>
             <header className="bg-white rounded-t-3xl">
                 <div className="custom-container grid items-center py-8 grid-cols-4">
-                    <h1 className="text-2xl">
+                    <h1 className="text-2xl col-span-2 md:col-span-1 flex items-center justify-center">
                         <Logo className="w-24" />
                     </h1>
-                    <nav className="col-span-2">
+                    <nav className="col-span-2 hidden md:block">
                         <ul className="flex max-w-lg mx-auto justify-between uppercase">
                             {(menu || FALLBACK_HEADER_MENU).items.map(
                                 (item) => {
@@ -98,7 +98,7 @@ export function Header({
                         </ul>
                     </nav>
                     <div className="flex gap-6 justify-end">
-                        <User />
+                        <User className="hidden md:block" />
                         <ShoppingCart />
                     </div>
                 </div>
