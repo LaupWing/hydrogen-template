@@ -146,6 +146,12 @@ export function Footer({
                                             />
                                         )}
                                 </div>
+                                {/* <div className="flex gap-2">
+                                    <img
+                                        src="https://cdn.shopify.com/s/files/1/0560/2903/8506/files/paypal.svg"
+                                        alt="PayPal"
+                                    />
+                                </div> */}
                             </div>
                         </footer>
                     )}
