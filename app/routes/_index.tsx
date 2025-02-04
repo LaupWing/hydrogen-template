@@ -165,7 +165,7 @@ function FeaturedCollection({
                     )}
                     <div className="absolute z-20 px-10 pb-16 bottom-0 left-0 right-0">
                         <div className="flex flex-col">
-                            <div className="flex justify-between pb-8 border-b border-neutral-400 items-end">
+                            <div className="flex md:flex-row flex-col justify-between pb-8 border-b border-neutral-400 items-end">
                                 <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
                                     {isClient && (
                                         <AnimatePresence mode="wait">
@@ -196,7 +196,7 @@ function FeaturedCollection({
                                                     delay: 0.1,
                                                     ease: "easeOut",
                                                 }}
-                                                className="text-neutral-50 text-6xl font-bold"
+                                                className="text-neutral-50 text-4xl md:text-6xl font-bold"
                                             >
                                                 {blogs[currentSlide].title}
                                             </motion.h2>
@@ -214,7 +214,7 @@ function FeaturedCollection({
                                                     delay: 0.2,
                                                     ease: "easeOut",
                                                 }}
-                                                className="text-neutral-100 line-clamp-2"
+                                                className="text-neutral-100 text-sm md:text-base line-clamp-2"
                                                 dangerouslySetInnerHTML={{
                                                     __html: blogs[currentSlide]
                                                         .contentHtml,
