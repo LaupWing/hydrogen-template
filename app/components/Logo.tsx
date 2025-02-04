@@ -1,10 +1,12 @@
 import { FC } from "react"
+import { cn } from "~/lib/utils"
 
 const Logo: FC<{
     className?: string
 }> = ({ className = "" }) => {
     return (
         <svg
+            className={cn("fill-current", className)}
             xmlns="http://www.w3.org/2000/svg"
             zoomAndPan="magnify"
             viewBox="0 0 375 149.999998"
