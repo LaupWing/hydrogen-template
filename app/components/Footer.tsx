@@ -11,6 +11,7 @@ import {
 import { cn } from "~/lib/utils"
 import Logo from "./Logo"
 import Threads from "./logos/Threads"
+import X from "./logos/X"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -130,8 +131,9 @@ export function Footer({
                                     strongest version mentally and physically
                                 </h2>
                                 <NewsLetterInput />
-                                <div className="flex mt-6">
+                                <div className="flex gap-4 mt-6">
                                     <Threads className="fill-current text-white w-6" />
+                                    <X className="fill-current text-white w-6" />
                                 </div>
                             </div>
                         </div>
