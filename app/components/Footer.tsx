@@ -117,7 +117,7 @@ export function Footer({
                             </div>
                         </div>
                     </div>
-                    <div className="bg-neutral-900 overflow-hidden text-white py-8 text-sm text-center">
+                    <div className="bg-neutral-900 overflow-hidden text-white py-16 text-sm text-center">
                         <div className="custom-container flex">
                             <NewsLetterInput />
                         </div>
