@@ -54,7 +54,7 @@ export function Footer({
                     onChange={(e) => setEmail(e.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
-                    className="p-1 focus:outline-none text-lg bg-neutral-700 w-72"
+                    className="p-1 focus:outline-none text-lg bg-neutral-700 w-96"
                 />
                 <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700">
                     <ArrowRight />
@@ -127,10 +127,13 @@ export function Footer({
                                 <Logo className="text-white w-40" />
                             </div>
                             <div className="flex flex-col items-start gap-3">
-                                <h2 className="text-lg max-w-sm text-left font-bold">
+                                <h2 className="text-xl font-bold">
+                                    Get the most out of your life
+                                </h2>
+                                <p className="text-base max-w-sm text-left mb-3">
                                     Join 7000+ other subscribers to become the
                                     strongest version mentally and physically
-                                </h2>
+                                </p>
                                 <NewsLetterInput />
                                 <div className="flex gap-4 mt-6">
                                     <Threads className="fill-current text-white w-6" />
