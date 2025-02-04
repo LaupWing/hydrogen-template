@@ -145,7 +145,7 @@ function FeaturedCollection({
     return (
         <div className="bg-white pb-4 flex">
             <div className="custom-container">
-                <div className=" w-full flex-shrink-0 rounded-2xl relative aspect-[8/10] md:aspect-[16/8] overflow-hidden flex">
+                <div className=" w-full flex-shrink-0 rounded-2xl relative aspect-[8/12] md:aspect-[16/8] overflow-hidden flex">
                     <div className="h-[80%] pointer-events-none absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-black z-10"></div>
                     {isClient && (
                         <Slider
@@ -157,15 +157,15 @@ function FeaturedCollection({
                                 <Image
                                     key={blog.id}
                                     data={blog.image!}
-                                    className="object-cover w-full h-full"
+                                    className="object-cover object-center w-full h-full"
                                     sizes="(min-width: 45em) 20vw, 50vw"
                                 />
                             ))}
                         </Slider>
                     )}
-                    <div className="absolute z-20 px-10 pb-16 bottom-0 left-0 right-0">
+                    <div className="absolute z-20 px-10 md:pb-16 pb-8 bottom-0 left-0 right-0">
                         <div className="flex flex-col">
-                            <div className="flex md:flex-row flex-col justify-between pb-8 border-b border-neutral-400 md:items-end">
+                            <div className="flex md:flex-row flex-col justify-between pb-4 md:pb-8 border-b border-neutral-400 md:items-end">
                                 <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
                                     {isClient && (
                                         <AnimatePresence mode="wait">
@@ -223,7 +223,7 @@ function FeaturedCollection({
                                         </AnimatePresence>
                                     )}
                                 </div>
-                                <button className="w-48 text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                                <button className="w-48 text-center mt-4 md:mt-0 bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                                     Read More
                                 </button>
                             </div>
