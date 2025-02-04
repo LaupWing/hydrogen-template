@@ -77,12 +77,17 @@ export default function Homepage() {
                 collection={data.featuredCollection}
             />
             <div className="flex items-start bg-white">
-                <div className="custom-container py-8">
+                <div className="custom-container flex justify-between py-8">
                     <div className="grid leading-8 text-4xl uppercase font-bold tracking-tighter gap-1">
                         <h3>Build, Rise</h3>
                         <div className="w-24 h-1 bg-yellow-400 rounded-full" />
                         <h3>Improve</h3>
                     </div>
+                    <p className="text-neutral-700 text-lg max-w-xl">
+                        We are a team of passionate people whose goal is to
+                        improve everyone's life through disruptive products. We
+                        build great products to solve your business problems.
+                    </p>
                 </div>
             </div>
             <RecommendedProducts products={data.recommendedProducts} />
