@@ -130,6 +130,7 @@ export function Footer({
                                 </h2>
                                 <NewsLetterInput />
                             </div>
+                            <div className="flex"></div>
                         </div>
                     </div>
                 </div>
