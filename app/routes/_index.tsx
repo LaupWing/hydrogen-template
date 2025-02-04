@@ -76,6 +76,15 @@ export default function Homepage() {
                 blogs={data.blogs}
                 collection={data.featuredCollection}
             />
+            <div className="flex items-start bg-white">
+                <div className="custom-container py-8">
+                    <div className="grid leading-8 text-4xl uppercase font-bold tracking-tighter gap-1">
+                        <h3>Build, Rise</h3>
+
+                        <h3>Improve</h3>
+                    </div>
+                </div>
+            </div>
             <RecommendedProducts products={data.recommendedProducts} />
         </div>
     )
