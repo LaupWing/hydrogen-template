@@ -122,9 +122,14 @@ export function Footer({
                         </div>
                     </div>
                     <div className="bg-neutral-900 overflow-hidden text-white py-16 text-sm text-center">
-                        <div className="custom-container flex justify-between">
-                            <div>
+                        <div className="custom-container items-start flex justify-between">
+                            <div className="grid gap-2">
                                 <Logo className="text-white w-40" />
+                                <div className="flex gap-4 mt-4">
+                                    <Threads className="fill-current text-white w-6" />
+                                    <X className="fill-current text-white w-6" />
+                                    <Instagram className="fill-current text-white w-6" />
+                                </div>
                             </div>
                             <div className="flex flex-col items-start gap-3">
                                 <h2 className="text-xl font-bold">
@@ -135,11 +140,6 @@ export function Footer({
                                     strongest version mentally and physically
                                 </p>
                                 <NewsLetterInput />
-                                <div className="flex gap-4 mt-6">
-                                    <Threads className="fill-current text-white w-6" />
-                                    <X className="fill-current text-white w-6" />
-                                    <Instagram className="fill-current text-white w-6" />
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,7 +192,7 @@ function FooterMenu({
     publicStoreDomain: string
 }) {
     return (
-        <nav className="flex text-xs" role="navigation">
+        <nav className="flex text-xs gap-4" role="navigation">
             {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
                 if (!item.url) return null
                 // if the url is internal, we strip the domain
