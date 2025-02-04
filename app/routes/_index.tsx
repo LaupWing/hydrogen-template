@@ -83,7 +83,7 @@ export default function Homepage() {
                         <div className="w-24 h-1 bg-yellow-400 rounded-full" />
                         <h3>Improve</h3>
                     </div>
-                    <div className="text-neutral-700 grid gap-4 text-lg max-w-xl">
+                    <div className="text-neutral-700 grid gap-4 text-base max-w-xl">
                         <p>
                             Build your body, build your confidence. By improving
                             your body you will improve much more than what meets
