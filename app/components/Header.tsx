@@ -33,8 +33,8 @@ export function Header({
     return (
         <div className="flex flex-col">
             <div className="py-4">
-                <div className="custom-container items-center text-white grid grid-cols-4">
-                    <div className="flex items-center gap-4">
+                <div className="custom-container items-center text-white grid grid-cols-1 md:grid-cols-4">
+                    <div className="hidden md:flex items-center gap-4">
                         <Twitter />
                         <Facebook />
                         <Youtube />
@@ -48,7 +48,7 @@ export function Header({
                             <ArrowRight size={18} />
                         </div>
                     </div>
-                    <div className="flex justify-end gap-4 text-xs">
+                    <div className="hidden md:flex justify-end gap-4 text-xs">
                         <p>Chat With Me!</p>
                         <svg
                             className="w-4 text-white fill-current"
