@@ -40,7 +40,7 @@ export function Header({
                         <Facebook />
                         <Youtube />
                     </div>
-                    <div className="col-span-2  px-4 md:px-0">
+                    <div className="col-span-2">
                         <div className="flex items-center max-w-lg mx-auto justify-between gap-4 uppercase">
                             <ArrowLeft size={18} />
                             <p className="text-xs">
@@ -62,7 +62,7 @@ export function Header({
                 </div>
             </div>
             <header className="bg-white rounded-t-3xl">
-                <div className="custom-container px-4 md:px-0 grid items-center py-8 grid-cols-4">
+                <div className="custom-container grid items-center py-8 grid-cols-4">
                     <Menu className="md:hidden" />
                     <h1 className="text-2xl col-span-2 md:col-span-1 flex items-center justify-center">
                         <Logo className="w-24" />
