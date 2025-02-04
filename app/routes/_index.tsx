@@ -144,7 +144,7 @@ function FeaturedCollection({
 
     return (
         <div className="bg-white pb-4 flex">
-            <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[16/8] overflow-hidden flex">
+            <div className="custom-container w-full flex-shrink-0 rounded-2xl relative aspect-[8/10] px-4 md:aspect-[16/8] overflow-hidden flex">
                 <div className="h-[80%] pointer-events-none absolute bottom-0 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
                 {isClient && (
                     <Slider
