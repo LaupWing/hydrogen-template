@@ -80,7 +80,7 @@ export default function Homepage() {
                 <div className="custom-container py-8">
                     <div className="grid leading-8 text-4xl uppercase font-bold tracking-tighter gap-1">
                         <h3>Build, Rise</h3>
-
+                        <div className="w-24 h-1 bg-yellow-400 rounded-full" />
                         <h3>Improve</h3>
                     </div>
                 </div>
