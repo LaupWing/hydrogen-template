@@ -12,6 +12,7 @@ import {
     User,
     Youtube,
 } from "lucide-react"
+import Logo from "./Logo"
 
 interface HeaderProps {
     header: HeaderQuery
@@ -61,7 +62,9 @@ export function Header({
             </div>
             <header className="bg-white rounded-t-3xl">
                 <div className="custom-container grid items-center py-8 grid-cols-4">
-                    <h1 className="text-2xl">{shop.name}</h1>
+                    <h1 className="text-2xl">
+                        <Logo className="w-24" />
+                    </h1>
                     <nav className="col-span-2">
                         <ul className="flex max-w-lg mx-auto justify-between uppercase">
                             {(menu || FALLBACK_HEADER_MENU).items.map(
