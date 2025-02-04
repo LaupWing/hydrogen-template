@@ -39,7 +39,7 @@ export function Header({
                         <Facebook />
                         <Youtube />
                     </div>
-                    <div className="col-span-2">
+                    <div className="col-span-2  px-4 md:px-0">
                         <div className="flex items-center max-w-lg mx-auto justify-between gap-4 uppercase">
                             <ArrowLeft size={18} />
                             <p className="text-xs">
