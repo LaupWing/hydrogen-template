@@ -12,6 +12,7 @@ import { cn } from "~/lib/utils"
 import Logo from "./Logo"
 import Threads from "./logos/Threads"
 import X from "./logos/X"
+import Instagram from "./logos/Instagram"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -134,6 +135,7 @@ export function Footer({
                                 <div className="flex gap-4 mt-6">
                                     <Threads className="fill-current text-white w-6" />
                                     <X className="fill-current text-white w-6" />
+                                    <Instagram className="fill-current text-white w-6" />
                                 </div>
                             </div>
                         </div>
