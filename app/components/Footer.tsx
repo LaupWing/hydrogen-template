@@ -61,80 +61,92 @@ export function Footer({
 
     return (
         <Suspense>
-            <div className="flex flex-col bg-neutral-900">
-                <div className="border-t rounded-b-3xl overflow-hidden bg-white">
-                    <div className="my-16 divide-x custom-container grid grid-cols-4">
-                        <div className="flex gap-4 px-4">
-                            <BicepsFlexed className="flex-shrink-0" />
-                            <div className="flex flex-col gap-0.5">
-                                <h3 className="text-lg text-neutral-800 font-bold">
-                                    Best version of yourself
-                                </h3>
-                                <p className="text-sm text-neutral-600">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Voluptatibus mollitia
-                                    harum quidem doloremque
-                                </p>
+            <div className="flex flex-col bg-neutral-950">
+                <div className="flex flex-col bg-neutral-900 rounded-b-2xl overflow-hidden">
+                    <div className="border-t rounded-b-3xl overflow-hidden bg-white">
+                        <div className="my-16 divide-x custom-container grid grid-cols-4">
+                            <div className="flex gap-4 px-4">
+                                <BicepsFlexed className="flex-shrink-0" />
+                                <div className="flex flex-col gap-0.5">
+                                    <h3 className="text-lg text-neutral-800 font-bold">
+                                        Best version of yourself
+                                    </h3>
+                                    <p className="text-sm text-neutral-600">
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing elit. Voluptatibus mollitia
+                                        harum quidem doloremque
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex gap-4 px-4">
-                            <Banknote className="flex-shrink-0" />
-                            <div className="flex flex-col gap-0.5">
-                                <h3 className="text-lg text-neutral-800 font-bold">
-                                    Money Back
-                                </h3>
-                                <p className="text-sm text-neutral-600">
-                                    100% Money Back Guarantee. If you're not
-                                    satisfied, we're not satisfied
-                                </p>
+                            <div className="flex gap-4 px-4">
+                                <Banknote className="flex-shrink-0" />
+                                <div className="flex flex-col gap-0.5">
+                                    <h3 className="text-lg text-neutral-800 font-bold">
+                                        Money Back
+                                    </h3>
+                                    <p className="text-sm text-neutral-600">
+                                        100% Money Back Guarantee. If you're not
+                                        satisfied, we're not satisfied
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex gap-4 px-4">
-                            <Smartphone className="flex-shrink-0" />
-                            <div className="flex flex-col gap-0.5">
-                                <h3 className="text-lg text-neutral-800 font-bold">
-                                    Customer Service
-                                </h3>
-                                <p className="text-sm text-neutral-600">
-                                    I'm always here to help you. If you have any
-                                    questions, please feel free to contact me!
-                                </p>
+                            <div className="flex gap-4 px-4">
+                                <Smartphone className="flex-shrink-0" />
+                                <div className="flex flex-col gap-0.5">
+                                    <h3 className="text-lg text-neutral-800 font-bold">
+                                        Customer Service
+                                    </h3>
+                                    <p className="text-sm text-neutral-600">
+                                        I'm always here to help you. If you have
+                                        any questions, please feel free to
+                                        contact me!
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex gap-4 px-4">
-                            <ShieldCheck className="flex-shrink-0" />
-                            <div className="flex flex-col gap-0.5">
-                                <h3 className="text-lg text-neutral-800 font-bold">
-                                    Pay Safe
-                                </h3>
-                                <p className="text-sm text-neutral-600">
-                                    Pay with the world's most popular and secure
-                                    payment methods
-                                </p>
+                            <div className="flex gap-4 px-4">
+                                <ShieldCheck className="flex-shrink-0" />
+                                <div className="flex flex-col gap-0.5">
+                                    <h3 className="text-lg text-neutral-800 font-bold">
+                                        Pay Safe
+                                    </h3>
+                                    <p className="text-sm text-neutral-600">
+                                        Pay with the world's most popular and
+                                        secure payment methods
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="bg-neutral-900 text-white py-8 text-sm text-center">
-                    <div className="custom-container flex">
-                        <p>
-                            © {new Date().getFullYear()} {header.shop.name}
-                        </p>
-                        <NewsLetterInput />
+                    <div className="bg-neutral-900 overflow-hidden text-white py-8 text-sm text-center">
+                        <div className="custom-container flex">
+                            <NewsLetterInput />
+                        </div>
                     </div>
                 </div>
                 <Await resolve={footerPromise}>
                     {(footer) => (
-                        <footer className="bg-neutral-950">
-                            {footer?.menu && header.shop.primaryDomain?.url && (
-                                <FooterMenu
-                                    menu={footer.menu}
-                                    primaryDomainUrl={
-                                        header.shop.primaryDomain.url
-                                    }
-                                    publicStoreDomain={publicStoreDomain}
-                                />
-                            )}
+                        <footer className="bg-neutral-950 text-neutral-100 flex">
+                            <div className="flex custom-container py-5">
+                                <div className="flex flex-col gap-2">
+                                    <p>
+                                        © {new Date().getFullYear()}{" "}
+                                        {header.shop.name}
+                                    </p>
+                                    {footer?.menu &&
+                                        header.shop.primaryDomain?.url && (
+                                            <FooterMenu
+                                                menu={footer.menu}
+                                                primaryDomainUrl={
+                                                    header.shop.primaryDomain
+                                                        .url
+                                                }
+                                                publicStoreDomain={
+                                                    publicStoreDomain
+                                                }
+                                            />
+                                        )}
+                                </div>
+                            </div>
                         </footer>
                     )}
                 </Await>
@@ -153,7 +165,7 @@ function FooterMenu({
     publicStoreDomain: string
 }) {
     return (
-        <nav className="footer-menu" role="navigation">
+        <nav className="flex text-xs" role="navigation">
             {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
                 if (!item.url) return null
                 // if the url is internal, we strip the domain
