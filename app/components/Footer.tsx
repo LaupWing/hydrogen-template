@@ -118,8 +118,15 @@ export function Footer({
                         </div>
                     </div>
                     <div className="bg-neutral-900 overflow-hidden text-white py-16 text-sm text-center">
-                        <div className="custom-container flex">
-                            <NewsLetterInput />
+                        <div className="custom-container flex justify-between">
+                            <div></div>
+                            <div className="flex flex-col items-start gap-3">
+                                <h2 className="text-lg max-w-sm text-left font-bold">
+                                    Join 7000+ other subscribers to become the
+                                    strongest version mentally and physically
+                                </h2>
+                                <NewsLetterInput />
+                            </div>
                         </div>
                     </div>
                 </div>
