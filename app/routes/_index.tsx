@@ -221,8 +221,10 @@ function FeaturedBlogs({ blogs }: { blogs: ArticleItemFragment[] }) {
     if (!blogs) return null
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
+
     let sliderRef = useRef<Slider>(null)
     const [currentSlide, setCurrentSlide] = useState(0)
+
     const settings = {
         dots: false,
         infinite: true,
