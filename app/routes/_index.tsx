@@ -118,27 +118,32 @@ export default function Homepage() {
                         </small> */}
                     </div>
                     <div className="col-span-3 grid gap-4">
-                        <div className="flex">
-                            <Star
-                                className="fill-current text-yellow-400"
-                                size={18}
-                            />
-                            <Star
-                                className="fill-current text-yellow-400"
-                                size={18}
-                            />
-                            <Star
-                                className="fill-current text-yellow-400"
-                                size={18}
-                            />
-                            <Star
-                                className="fill-current text-yellow-400"
-                                size={18}
-                            />
-                            <Star
-                                className="fill-current text-yellow-400"
-                                size={18}
-                            />
+                        <div className="flex gap-2 items-center">
+                            <div className="flex">
+                                <Star
+                                    className="fill-current text-yellow-400"
+                                    size={18}
+                                />
+                                <Star
+                                    className="fill-current text-yellow-400"
+                                    size={18}
+                                />
+                                <Star
+                                    className="fill-current text-yellow-400"
+                                    size={18}
+                                />
+                                <Star
+                                    className="fill-current text-yellow-400"
+                                    size={18}
+                                />
+                                <Star
+                                    className="fill-current text-yellow-400"
+                                    size={18}
+                                />
+                            </div>
+                            <p className="text-sm">
+                                <b>4.8</b> | 176 Reviews
+                            </p>
                         </div>
                         <h4 className="uppercase font-bold text-3xl">
                             {data.specificProduct.title}
