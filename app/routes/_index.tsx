@@ -115,6 +115,17 @@ export default function Homepage() {
 }
 
 function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
+    const settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        centerPadding: "10px",
+        slidesToScroll: 1,
+        beforeChange: (_: number, nextSlide: number) => {
+            // setCurrentSlide(nextSlide)
+        },
+    }
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
