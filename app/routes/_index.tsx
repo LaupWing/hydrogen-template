@@ -6,6 +6,7 @@ import type {
     ArticleItemFragment,
     FeaturedCollectionFragment,
     ProductItemFragment,
+    RecommendedProductFragment,
     RecommendedProductsQuery,
 } from "storefrontapi.generated"
 import Slider from "react-slick"
@@ -105,103 +106,104 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
-            <div className="bg-white">
-                <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
-                    <div className="col-span-4 gap-2 items-start flex">
-                        <div className="grid w-20 flex-shrink-0 gap-2">
-                            <div className="border-2 rounded-lg border-black">
-                                <Image
-                                    className="rounded-lg"
-                                    data={data.specificProduct!.images.nodes[0]}
-                                    aspectRatio="1/1"
-                                    sizes="(min-width: 45em) 20vw, 50vw"
-                                />
-                            </div>
-                            <div className="border-2 rounded-lg border-transparent">
-                                <Image
-                                    className="rounded-lg"
-                                    data={data.specificProduct!.images.nodes[0]}
-                                    aspectRatio="1/1"
-                                    sizes="(min-width: 45em) 20vw, 50vw"
-                                />
-                            </div>
-                        </div>
-                        <div>
+            <FeaturedProduct product={data.specificProduct as any} />
+            <RecommendedProducts products={data.recommendedProducts} />
+        </div>
+    )
+}
+
+function FeaturedProduct({ product }: { product: RecommendedProductFragment }) {
+    return (
+        <div className="bg-white">
+            <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
+                <div className="col-span-4 gap-2 items-start flex">
+                    <div className="grid w-20 flex-shrink-0 gap-2">
+                        <div className="border-2 rounded-lg border-black">
                             <Image
-                                className="rounded-2xl flex-1"
-                                data={data.specificProduct!.images.nodes[0]}
+                                className="rounded-lg"
+                                data={product!.images.nodes[0]}
                                 aspectRatio="1/1"
                                 sizes="(min-width: 45em) 20vw, 50vw"
                             />
                         </div>
-                        {/* <h4>{data.specificProduct.title}</h4>
+                        <div className="border-2 rounded-lg border-transparent">
+                            <Image
+                                className="rounded-lg"
+                                data={product!.images.nodes[0]}
+                                aspectRatio="1/1"
+                                sizes="(min-width: 45em) 20vw, 50vw"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <Image
+                            className="rounded-2xl flex-1"
+                            data={product!.images.nodes[0]}
+                            aspectRatio="1/1"
+                            sizes="(min-width: 45em) 20vw, 50vw"
+                        />
+                    </div>
+                    {/* <h4>{product.title}</h4>
                         <small>
                             
                         </small> */}
-                    </div>
-                    <div className="col-span-3 grid gap-4">
-                        <div className="flex gap-2 items-center">
-                            <div className="flex">
-                                <Star
-                                    className="fill-current text-yellow-400"
-                                    size={18}
-                                />
-                                <Star
-                                    className="fill-current text-yellow-400"
-                                    size={18}
-                                />
-                                <Star
-                                    className="fill-current text-yellow-400"
-                                    size={18}
-                                />
-                                <Star
-                                    className="fill-current text-yellow-400"
-                                    size={18}
-                                />
-                                <Star
-                                    className="fill-current text-yellow-400"
-                                    size={18}
-                                />
-                            </div>
-                            <p className="text-sm">
-                                <b>4.8</b> | 176 Reviews
-                            </p>
-                        </div>
-                        <h4 className="uppercase font-bold text-3xl">
-                            {data.specificProduct!.title}
-                        </h4>
-                        <p className="text-xl">
-                            <Money
-                                data={
-                                    data.specificProduct!.priceRange
-                                        .minVariantPrice
-                                }
+                </div>
+                <div className="col-span-3 grid gap-4">
+                    <div className="flex gap-2 items-center">
+                        <div className="flex">
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
                             />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                        </div>
+                        <p className="text-sm">
+                            <b>4.8</b> | 176 Reviews
                         </p>
-                        <div
-                            className="text-neutral-700 text-base"
-                            dangerouslySetInnerHTML={{
-                                __html: data.specificProduct!.descriptionHtml,
-                            }}
-                        ></div>
-                        <div className="flex my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
-                            <div className="w-3.5 h-3.5 border-2 border-emerald-200 bg-emerald-400 rounded-full animate-pulse" />
-                            <p className="text-xs text-emerald-600 font-semibold ml-2">
-                                Your world changes if you change.
-                            </p>
-                        </div>
-                        <div className="flex max-w-md mx-auto w-full flex-col gap-4">
-                            <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
-                                Buy Now
-                            </button>
-                            <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
-                                Add to Cart
-                            </button>
-                        </div>
+                    </div>
+                    <h4 className="uppercase font-bold text-3xl">
+                        {product!.title}
+                    </h4>
+                    <p className="text-xl">
+                        <Money data={product!.priceRange.minVariantPrice} />
+                    </p>
+                    <div
+                        className="text-neutral-700 text-base"
+                        dangerouslySetInnerHTML={{
+                            __html: product!.descriptionHtml,
+                        }}
+                    ></div>
+                    <div className="flex my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
+                        <div className="w-3.5 h-3.5 border-2 border-emerald-200 bg-emerald-400 rounded-full animate-pulse" />
+                        <p className="text-xs text-emerald-600 font-semibold ml-2">
+                            Your world changes if you change.
+                        </p>
+                    </div>
+                    <div className="flex max-w-md mx-auto w-full flex-col gap-4">
+                        <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                            Buy Now
+                        </button>
+                        <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
-            <RecommendedProducts products={data.recommendedProducts} />
         </div>
     )
 }
