@@ -42,7 +42,7 @@ export function ProductForm({
                               {
                                   merchandiseId: selectedVariant.id,
                                   quantity: 1,
-                                  selectedVariant,
+                                  //   selectedVariant,
                               },
                           ]
                         : []
