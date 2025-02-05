@@ -163,8 +163,8 @@ export default function Product() {
     useEffect(() => setIsClient(true), [])
 
     return (
-        <div className="bg-white py-16">
-            <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
+        <div className="bg-white">
+            <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 pb-8">
                 <div className="col-span-4 gap-2 items-start flex">
                     <div className="grid w-20 flex-shrink-0 gap-2">
                         {product!.images.nodes.map(
