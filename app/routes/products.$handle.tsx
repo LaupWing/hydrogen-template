@@ -454,11 +454,11 @@ const PRODUCT_QUERY = `#graphql
 
 const PRODUCT_VARIANTS_FRAGMENT = `#graphql
     fragment ProductVariants on Product {
-    variants(first: 250) {
-        nodes {
-        ...ProductVariant
+        variants(first: 250) {
+            nodes {
+            ...ProductVariant
+            }
         }
-    }
     }
     ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
@@ -466,12 +466,12 @@ const PRODUCT_VARIANTS_FRAGMENT = `#graphql
 const VARIANTS_QUERY = `#graphql
     ${PRODUCT_VARIANTS_FRAGMENT}
     query ProductVariants(
-    $country: CountryCode
-    $language: LanguageCode
-    $handle: String!
+        $country: CountryCode
+        $language: LanguageCode
+        $handle: String!
     ) @inContext(country: $country, language: $language) {
-    product(handle: $handle) {
-        ...ProductVariants
-    }
+        product(handle: $handle) {
+            ...ProductVariants
+        }
     }
 ` as const
