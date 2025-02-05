@@ -367,7 +367,37 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     }
 ` as const
 
-// NOTE: https://shopify.dev/docs/api/storefront/latest/objects/blog
+const SPECIFIC_PRODUCT_QUERY = `#graphql
+    fragment ProductDetails on Product {
+        id
+        title
+        handle
+        descriptionHtml
+        priceRange {
+            minVariantPrice {
+                amount
+                currencyCode
+            }
+        }
+        images(first: 3) {
+            nodes {
+                id
+                url
+                altText
+                width
+                height
+            }
+        }
+    }
+
+    query SpecificProduct($country: CountryCode, $language: LanguageCode)
+        @inContext(country: $country, language: $language) {
+        product(handle: "red-sneakers") {
+            ...ProductDetails
+        }
+    }
+` as const
+
 const BLOGS_QUERY = `#graphql
     query BlogIndex(
         $language: LanguageCode
