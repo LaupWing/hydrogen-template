@@ -203,40 +203,40 @@ export default function Product() {
 }
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
-  fragment ProductVariant on ProductVariant {
-    availableForSale
-    compareAtPrice {
-      amount
-      currencyCode
-    }
-    id
-    image {
-      __typename
+    fragment ProductVariant on ProductVariant {
+      availableForSale
+      compareAtPrice {
+        amount
+        currencyCode
+      }
       id
-      url
-      altText
-      width
-      height
-    }
-    price {
-      amount
-      currencyCode
-    }
-    product {
+      image {
+        __typename
+        id
+        url
+        altText
+        width
+        height
+      }
+      price {
+        amount
+        currencyCode
+      }
+      product {
+        title
+        handle
+      }
+      selectedOptions {
+        name
+        value
+      }
+      sku
       title
-      handle
+      unitPrice {
+        amount
+        currencyCode
+      }
     }
-    selectedOptions {
-      name
-      value
-    }
-    sku
-    title
-    unitPrice {
-      amount
-      currencyCode
-    }
-  }
 ` as const
 
 const PRODUCT_FRAGMENT = `#graphql
