@@ -144,6 +144,7 @@ export default function Product() {
         product.selectedVariant,
         variants
     )
+    console.log(selectedVariant)
 
     const { title, descriptionHtml } = product
     const [currentSlide, setCurrentSlide] = useState(0)
