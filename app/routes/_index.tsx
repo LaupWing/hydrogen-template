@@ -240,11 +240,11 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         </p>
                     </div>
                     <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
-                        <button className="p-1.5 px-2 text-neutral-600">
+                        <button className="p-1.5 px-2 text-neutral-400">
                             <ChevronLeft />
                         </button>
                         <div className="text-lg">1</div>
-                        <button className="p-1.5 px-2 text-neutral-600">
+                        <button className="p-1.5 px-2 text-neutral-400">
                             <ChevronRight />
                         </button>
                     </div>
