@@ -1,7 +1,7 @@
 import { defer, type LoaderFunctionArgs } from "@netlify/remix-runtime"
 import { Await, useLoaderData, Link, type MetaFunction } from "@remix-run/react"
 import { Suspense, useEffect, useRef, useState } from "react"
-import { Image, Money } from "@shopify/hydrogen"
+import { getSelectedProductOptions, Image, Money } from "@shopify/hydrogen"
 import type {
     ArticleItemFragment,
     ProductDetailsFragment,
@@ -40,7 +40,7 @@ export async function loader(args: LoaderFunctionArgs) {
  * Load data necessary for rendering content above the fold. This is the critical data
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
-async function loadCriticalData({ context }: LoaderFunctionArgs) {
+async function loadCriticalData({ context, request }: LoaderFunctionArgs) {
     const [
         // { collections },
         { blog },
@@ -53,7 +53,11 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
                 startCursor: null,
             },
         }),
-        context.storefront.query(SPECIFIC_PRODUCT_QUERY),
+        context.storefront.query(SPECIFIC_PRODUCT_QUERY, {
+            variables: {
+                selectedOptions: getSelectedProductOptions(request),
+            },
+        }),
     ])
 
     return {
@@ -135,6 +139,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
             setCurrentSlide(nextSlide)
         },
     }
+    console.log(product)
 
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
@@ -528,6 +533,43 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     }
 ` as const
 
+const PRODUCT_VARIANT_FRAGMENT = `#graphql
+        fragment ProductVariant on ProductVariant {
+            availableForSale
+            compareAtPrice {
+                amount
+                currencyCode
+            }
+            id
+            image {
+                __typename
+                id
+                url
+                altText
+                width
+                height
+            }
+            price {
+                amount
+                currencyCode
+            }
+            product {
+                title
+                handle
+            }
+            selectedOptions {
+                name
+                value
+            }
+            sku
+            title
+            unitPrice {
+                amount
+                currencyCode
+            }
+        }
+` as const
+
 const SPECIFIC_PRODUCT_QUERY = `#graphql
     fragment ProductDetails on Product {
         id
@@ -549,14 +591,26 @@ const SPECIFIC_PRODUCT_QUERY = `#graphql
                 height
             }
         }
+        selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
+            ...ProductVariant
+        }
+        variants(first: 1) {
+            nodes {
+            ...ProductVariant
+            }
+        }
     }
 
-    query SpecificProduct($country: CountryCode, $language: LanguageCode)
-        @inContext(country: $country, language: $language) {
+    query SpecificProduct(
+        $country: CountryCode, 
+        $language: LanguageCode
+        $selectedOptions: [SelectedOptionInput!]!
+    ) @inContext(country: $country, language: $language) {
         product(handle: "body-crafting-system") {
             ...ProductDetails
         }
     }
+    ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
 
 const BLOGS_QUERY = `#graphql

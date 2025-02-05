@@ -366,53 +366,53 @@ export default function Product() {
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
         fragment ProductVariant on ProductVariant {
-        availableForSale
-        compareAtPrice {
-            amount
-            currencyCode
-        }
-        id
-        image {
-            __typename
+            availableForSale
+            compareAtPrice {
+                amount
+                currencyCode
+            }
             id
-            url
-            altText
-            width
-            height
-        }
-        price {
-            amount
-            currencyCode
-        }
-        product {
+            image {
+                __typename
+                id
+                url
+                altText
+                width
+                height
+            }
+            price {
+                amount
+                currencyCode
+            }
+            product {
+                title
+                handle
+            }
+            selectedOptions {
+                name
+                value
+            }
+            sku
             title
-            handle
-        }
-        selectedOptions {
-            name
-            value
-        }
-        sku
-        title
-        unitPrice {
-            amount
-            currencyCode
-        }
+            unitPrice {
+                amount
+                currencyCode
+            }
         }
 ` as const
 
 const PRODUCT_FRAGMENT = `#graphql
         fragment Product on Product {
-        id
-        title
-        vendor
-        handle
-        descriptionHtml
-        description
-        options {
-            name
-            values
-        }
+            id
+            title
+            vendor
+            handle
+            descriptionHtml
+            description
+            options {
+                name
+                values
+            }
             images(first: 3) {
                 nodes {
                     url(transform: { maxWidth: 2000, maxHeight: 2000, crop: CENTER })
@@ -422,18 +422,18 @@ const PRODUCT_FRAGMENT = `#graphql
                     height
                 }
             }
-        selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
-            ...ProductVariant
-        }
-        variants(first: 1) {
-            nodes {
-            ...ProductVariant
+            selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
+                ...ProductVariant
             }
-        }
-        seo {
-            description
-            title
-        }
+            variants(first: 1) {
+                nodes {
+                ...ProductVariant
+                }
+            }
+            seo {
+                description
+                title
+            }
         }
     ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
@@ -446,7 +446,7 @@ const PRODUCT_QUERY = `#graphql
         $selectedOptions: [SelectedOptionInput!]!
     ) @inContext(country: $country, language: $language) {
         product(handle: $handle) {
-        ...Product
+            ...Product
         }
     }
     ${PRODUCT_FRAGMENT}
