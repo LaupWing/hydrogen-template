@@ -15,16 +15,6 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { MoveLeft, MoveRight, Star } from "lucide-react"
 import { cn } from "~/lib/utils"
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "~/components/ui/drawer"
 
 export const meta: MetaFunction = () => {
     return [{ title: "Hydrogen | Home" }]
