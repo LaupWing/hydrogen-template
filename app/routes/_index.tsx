@@ -34,8 +34,12 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-    const [{ collections }, { blog }, { product }] = await Promise.all([
-        context.storefront.query(FEATURED_COLLECTION_QUERY),
+    const [
+        // { collections },
+        { blog },
+        { product },
+    ] = await Promise.all([
+        // context.storefront.query(FEATURED_COLLECTION_QUERY),
         // Add other queries here, so that they are loaded in parallel
         context.storefront.query(BLOGS_QUERY, {
             variables: {
@@ -46,7 +50,7 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
     ])
 
     return {
-        featuredCollection: collections.nodes[0],
+        // featuredCollection: collections.nodes[0],
         blogs: blog!.articles.nodes,
         specificProduct: product,
     }
@@ -73,14 +77,10 @@ function loadDeferredData({ context }: LoaderFunctionArgs) {
 
 export default function Homepage() {
     const data = useLoaderData<typeof loader>()
-    const [isClient, setIsClient] = useState(false)
-    useEffect(() => setIsClient(true), [])
+
     return (
         <div className="home">
-            <FeaturedCollection
-                blogs={data.blogs}
-                collection={data.featuredCollection}
-            />
+            <FeaturedBlogs blogs={data.blogs} />
             <div className="flex items-start bg-white">
                 <div className="custom-container flex flex-col md:flex-row items-start justify-between py-8">
                     <div className="grid leading-8 text-4xl uppercase font-bold tracking-tighter gap-1">
@@ -206,15 +206,8 @@ export default function Homepage() {
     )
 }
 
-function FeaturedCollection({
-    collection,
-    blogs,
-}: {
-    collection: FeaturedCollectionFragment
-    blogs: ArticleItemFragment[]
-}) {
-    if (!collection) return null
-    const image = collection?.image
+function FeaturedBlogs({ blogs }: { blogs: ArticleItemFragment[] }) {
+    if (!blogs) return null
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
     let sliderRef = useRef<Slider>(null)
@@ -414,28 +407,28 @@ function RecommendedProducts({
     )
 }
 
-const FEATURED_COLLECTION_QUERY = `#graphql
-    fragment FeaturedCollection on Collection {
-        id
-        title
-        image {
-            id
-            url
-            altText
-            width
-            height
-        }
-        handle
-    }
-    query FeaturedCollection($country: CountryCode, $language: LanguageCode)
-        @inContext(country: $country, language: $language) {
-        collections(first: 1, sortKey: UPDATED_AT, reverse: true) {
-            nodes {
-                ...FeaturedCollection
-            }
-        }
-    }
-` as const
+// const FEATURED_COLLECTION_QUERY = `#graphql
+//     fragment FeaturedCollection on Collection {
+//         id
+//         title
+//         image {
+//             id
+//             url
+//             altText
+//             width
+//             height
+//         }
+//         handle
+//     }
+//     query FeaturedCollection($country: CountryCode, $language: LanguageCode)
+//         @inContext(country: $country, language: $language) {
+//         collections(first: 1, sortKey: UPDATED_AT, reverse: true) {
+//             nodes {
+//                 ...FeaturedCollection
+//             }
+//         }
+//     }
+// ` as const
 
 const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     fragment RecommendedProduct on Product {
