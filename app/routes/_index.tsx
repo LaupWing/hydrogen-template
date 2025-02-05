@@ -168,7 +168,7 @@ export default function Homepage() {
                                 Your world changes if you change.
                             </p>
                         </div>
-                        <div className="flex max-w-md mx-auto w-full flex-col mt-4 gap-4">
+                        <div className="flex max-w-md mx-auto w-full flex-col gap-4">
                             <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                                 Buy Now
                             </button>
