@@ -460,8 +460,8 @@ const SPECIFIC_PRODUCT_QUERY = `#graphql
         }
         images(first: 3) {
             nodes {
+                url(transform: { maxWidth: 2000, maxHeight: 2000, crop: CENTER })
                 id
-                url
                 altText
                 width
                 height
