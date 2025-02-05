@@ -103,6 +103,35 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            <div className="bg-white">
+                <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-4 py-8">
+                    <div className="col-span-4 bg-red-50 border">
+                        <Image
+                            className=""
+                            data={data.specificProduct.images.nodes[0]}
+                            aspectRatio="1/1"
+                            sizes="(min-width: 45em) 20vw, 50vw"
+                        />
+                        {/* <h4>{data.specificProduct.title}</h4>
+                        <small>
+                            
+                        </small> */}
+                    </div>
+                    <div className="col-span-3 grid gap-4">
+                        <h4 className="uppercase font-bold text-3xl">
+                            {data.specificProduct.title}
+                        </h4>
+                        <p className="text-xl">
+                            <Money
+                                data={
+                                    data.specificProduct.priceRange
+                                        .minVariantPrice
+                                }
+                            />
+                        </p>
+                    </div>
+                </div>
+            </div>
             <RecommendedProducts products={data.recommendedProducts} />
         </div>
     )
