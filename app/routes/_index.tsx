@@ -83,7 +83,7 @@ export default function Homepage() {
         <div className="home">
             <FeaturedBlogs blogs={data.blogs} />
             <div className="flex items-start bg-white">
-                <div className="custom-container flex flex-col md:flex-row items-start justify-between py-8">
+                <div className="custom-container flex flex-col md:flex-row items-start justify-between py-12">
                     <div className="grid leading-8 text-4xl uppercase font-bold tracking-tighter gap-1">
                         <div className="grid gap-1">
                             <h3>Build, Rise</h3>
