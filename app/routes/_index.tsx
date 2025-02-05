@@ -342,19 +342,19 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
         title
         handle
         priceRange {
-        minVariantPrice {
-            amount
-            currencyCode
-        }
+            minVariantPrice {
+                amount
+                currencyCode
+            }
         }
         images(first: 1) {
-        nodes {
-            id
-            url
-            altText
-            width
-            height
-        }
+            nodes {
+                id
+                url
+                altText
+                width
+                height
+            }
         }
     }
     query RecommendedProducts ($country: CountryCode, $language: LanguageCode)
@@ -392,7 +392,7 @@ const SPECIFIC_PRODUCT_QUERY = `#graphql
 
     query SpecificProduct($country: CountryCode, $language: LanguageCode)
         @inContext(country: $country, language: $language) {
-        product(handle: "red-sneakers") {
+        product(handle: "body-crafting-system") {
             ...ProductDetails
         }
     }
