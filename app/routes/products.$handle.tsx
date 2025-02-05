@@ -210,100 +210,100 @@ export default function Product() {
 }
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
-    fragment ProductVariant on ProductVariant {
-      availableForSale
-      compareAtPrice {
-        amount
-        currencyCode
-      }
-      id
-      image {
-        __typename
+        fragment ProductVariant on ProductVariant {
+        availableForSale
+        compareAtPrice {
+            amount
+            currencyCode
+        }
         id
-        url
-        altText
-        width
-        height
-      }
-      price {
-        amount
-        currencyCode
-      }
-      product {
+        image {
+            __typename
+            id
+            url
+            altText
+            width
+            height
+        }
+        price {
+            amount
+            currencyCode
+        }
+        product {
+            title
+            handle
+        }
+        selectedOptions {
+            name
+            value
+        }
+        sku
         title
-        handle
-      }
-      selectedOptions {
-        name
-        value
-      }
-      sku
-      title
-      unitPrice {
-        amount
-        currencyCode
-      }
-    }
+        unitPrice {
+            amount
+            currencyCode
+        }
+        }
 ` as const
 
 const PRODUCT_FRAGMENT = `#graphql
-    fragment Product on Product {
-      id
-      title
-      vendor
-      handle
-      descriptionHtml
-      description
-      options {
-        name
-        values
-      }
-        images(first: 3) {
+        fragment Product on Product {
+        id
+        title
+        vendor
+        handle
+        descriptionHtml
+        description
+        options {
+            name
+            values
+        }
+            images(first: 3) {
+                nodes {
+                    url(transform: { maxWidth: 2000, maxHeight: 2000, crop: CENTER })
+                    id
+                    altText
+                    width
+                    height
+                }
+            }
+        selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
+            ...ProductVariant
+        }
+        variants(first: 1) {
             nodes {
-                url(transform: { maxWidth: 2000, maxHeight: 2000, crop: CENTER })
-                id
-                altText
-                width
-                height
+            ...ProductVariant
             }
         }
-      selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
-        ...ProductVariant
-      }
-      variants(first: 1) {
-        nodes {
-          ...ProductVariant
+        seo {
+            description
+            title
         }
-      }
-      seo {
-        description
-        title
-      }
-    }
-  ${PRODUCT_VARIANT_FRAGMENT}
+        }
+    ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
 
 const PRODUCT_QUERY = `#graphql
-  query Product(
-    $country: CountryCode
-    $handle: String!
-    $language: LanguageCode
-    $selectedOptions: [SelectedOptionInput!]!
-  ) @inContext(country: $country, language: $language) {
-    product(handle: $handle) {
-      ...Product
+    query Product(
+        $country: CountryCode
+        $handle: String!
+        $language: LanguageCode
+        $selectedOptions: [SelectedOptionInput!]!
+    ) @inContext(country: $country, language: $language) {
+        product(handle: $handle) {
+        ...Product
+        }
     }
-  }
-  ${PRODUCT_FRAGMENT}
+    ${PRODUCT_FRAGMENT}
 ` as const
 
 const PRODUCT_VARIANTS_FRAGMENT = `#graphql
     fragment ProductVariants on Product {
-      variants(first: 250) {
+    variants(first: 250) {
         nodes {
-          ...ProductVariant
+        ...ProductVariant
         }
-      }
+    }
     }
     ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
@@ -311,12 +311,12 @@ const PRODUCT_VARIANTS_FRAGMENT = `#graphql
 const VARIANTS_QUERY = `#graphql
     ${PRODUCT_VARIANTS_FRAGMENT}
     query ProductVariants(
-      $country: CountryCode
-      $language: LanguageCode
-      $handle: String!
+    $country: CountryCode
+    $language: LanguageCode
+    $handle: String!
     ) @inContext(country: $country, language: $language) {
-      product(handle: $handle) {
+    product(handle: $handle) {
         ...ProductVariants
-      }
+    }
     }
 ` as const
