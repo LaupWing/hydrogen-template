@@ -15,6 +15,16 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { MoveLeft, MoveRight, Star } from "lucide-react"
 import { cn } from "~/lib/utils"
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "~/components/ui/drawer"
 
 export const meta: MetaFunction = () => {
     return [{ title: "Hydrogen | Home" }]
@@ -240,6 +250,22 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
                             Add to Cart
                         </button>
+                        <Drawer>
+                            <DrawerTrigger>Open</DrawerTrigger>
+                            <DrawerContent>
+                                <DrawerHeader>
+                                    <DrawerTitle>
+                                        Are you absolutely sure?
+                                    </DrawerTitle>
+                                    <DrawerDescription>
+                                        This action cannot be undone.
+                                    </DrawerDescription>
+                                </DrawerHeader>
+                                <DrawerFooter>
+                                    <DrawerClose></DrawerClose>
+                                </DrawerFooter>
+                            </DrawerContent>
+                        </Drawer>
                     </div>
                 </div>
             </div>
