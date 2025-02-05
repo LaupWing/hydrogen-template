@@ -136,7 +136,17 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
                 <div className="col-span-4 gap-2 items-start flex">
                     <div className="grid w-20 flex-shrink-0 gap-2">
-                        <div className="border-2 rounded-lg border-black">
+                        {product!.images.nodes.map((image) => (
+                            <div className="border-2 rounded-lg border-transparent">
+                                <Image
+                                    className="rounded-lg"
+                                    data={image}
+                                    aspectRatio="1/1"
+                                    sizes="(min-width: 45em) 20vw, 50vw"
+                                />
+                            </div>
+                        ))}
+                        {/* <div className="border-2 rounded-lg border-black">
                             <Image
                                 className="rounded-lg"
                                 data={product!.images.nodes[0]}
@@ -151,7 +161,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                                 aspectRatio="1/1"
                                 sizes="(min-width: 45em) 20vw, 50vw"
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="overflow-hidden w-full h-full flex">
                         {isClient && (
@@ -160,14 +170,19 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                                 {...settings}
                                 className="w-full h-full flex items-center justify-center"
                             >
-                                <div>
-                                    <Image
-                                        className="rounded-2xl flex-1"
-                                        data={product!.images.nodes[0]}
-                                        aspectRatio="1/1"
-                                        sizes="(min-width: 45em) 20vw, 50vw"
-                                    />
-                                </div>
+                                {product!.images.nodes.map((image) => (
+                                    <div
+                                        key={image.id}
+                                        className="w-full h-full"
+                                    >
+                                        <Image
+                                            className="rounded-2xl flex-1"
+                                            data={image}
+                                            aspectRatio="1/1"
+                                            sizes="(min-width: 45em) 20vw, 50vw"
+                                        />
+                                    </div>
+                                ))}
                             </Slider>
                         )}
                     </div>
