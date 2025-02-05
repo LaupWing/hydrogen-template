@@ -247,30 +247,39 @@ const PRODUCT_VARIANT_FRAGMENT = `#graphql
 ` as const
 
 const PRODUCT_FRAGMENT = `#graphql
-  fragment Product on Product {
-    id
-    title
-    vendor
-    handle
-    descriptionHtml
-    description
-    options {
-      name
-      values
-    }
-    selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
-      ...ProductVariant
-    }
-    variants(first: 1) {
-      nodes {
+    fragment Product on Product {
+      id
+      title
+      vendor
+      handle
+      descriptionHtml
+      description
+      options {
+        name
+        values
+      }
+        images(first: 3) {
+            nodes {
+                url(transform: { maxWidth: 2000, maxHeight: 2000, crop: CENTER })
+                id
+                altText
+                width
+                height
+            }
+        }
+      selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions, ignoreUnknownOptions: true, caseInsensitiveMatch: true) {
         ...ProductVariant
       }
+      variants(first: 1) {
+        nodes {
+          ...ProductVariant
+        }
+      }
+      seo {
+        description
+        title
+      }
     }
-    seo {
-      description
-      title
-    }
-  }
   ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
 
@@ -289,25 +298,25 @@ const PRODUCT_QUERY = `#graphql
 ` as const
 
 const PRODUCT_VARIANTS_FRAGMENT = `#graphql
-  fragment ProductVariants on Product {
-    variants(first: 250) {
-      nodes {
-        ...ProductVariant
+    fragment ProductVariants on Product {
+      variants(first: 250) {
+        nodes {
+          ...ProductVariant
+        }
       }
     }
-  }
-  ${PRODUCT_VARIANT_FRAGMENT}
+    ${PRODUCT_VARIANT_FRAGMENT}
 ` as const
 
 const VARIANTS_QUERY = `#graphql
-  ${PRODUCT_VARIANTS_FRAGMENT}
-  query ProductVariants(
-    $country: CountryCode
-    $language: LanguageCode
-    $handle: String!
-  ) @inContext(country: $country, language: $language) {
-    product(handle: $handle) {
-      ...ProductVariants
+    ${PRODUCT_VARIANTS_FRAGMENT}
+    query ProductVariants(
+      $country: CountryCode
+      $language: LanguageCode
+      $handle: String!
+    ) @inContext(country: $country, language: $language) {
+      product(handle: $handle) {
+        ...ProductVariants
+      }
     }
-  }
 ` as const
