@@ -104,14 +104,34 @@ export default function Homepage() {
                 </div>
             </div>
             <div className="bg-white">
-                <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-4 py-8">
-                    <div className="col-span-4 bg-red-50 border">
-                        <Image
-                            className=""
-                            data={data.specificProduct.images.nodes[0]}
-                            aspectRatio="1/1"
-                            sizes="(min-width: 45em) 20vw, 50vw"
-                        />
+                <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
+                    <div className="col-span-4 gap-2 items-start flex">
+                        <div className="grid w-20 flex-shrink-0 gap-2">
+                            <div className="border-2 rounded-lg border-black">
+                                <Image
+                                    className="rounded-lg"
+                                    data={data.specificProduct.images.nodes[0]}
+                                    aspectRatio="1/1"
+                                    sizes="(min-width: 45em) 20vw, 50vw"
+                                />
+                            </div>
+                            <div className="border-2 rounded-lg border-transparent">
+                                <Image
+                                    className="rounded-lg"
+                                    data={data.specificProduct.images.nodes[0]}
+                                    aspectRatio="1/1"
+                                    sizes="(min-width: 45em) 20vw, 50vw"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <Image
+                                className="rounded-2xl flex-1"
+                                data={data.specificProduct.images.nodes[0]}
+                                aspectRatio="1/1"
+                                sizes="(min-width: 45em) 20vw, 50vw"
+                            />
+                        </div>
                         {/* <h4>{data.specificProduct.title}</h4>
                         <small>
                             
