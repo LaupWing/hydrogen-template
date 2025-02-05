@@ -137,7 +137,10 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                 <div className="col-span-4 gap-2 items-start flex">
                     <div className="grid w-20 flex-shrink-0 gap-2">
                         {product!.images.nodes.map((image) => (
-                            <div className="border-2 rounded-lg border-transparent">
+                            <div
+                                key={image.id}
+                                className="border-2 rounded-lg border-transparent"
+                            >
                                 <Image
                                     className="rounded-lg"
                                     data={image}
@@ -218,9 +221,9 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                     <h4 className="uppercase font-bold text-3xl">
                         {product!.title}
                     </h4>
-                    <p className="text-xl">
+                    <div className="text-xl">
                         <Money data={product!.priceRange.minVariantPrice} />
-                    </p>
+                    </div>
                     <div
                         className="text-neutral-700 text-base"
                         dangerouslySetInnerHTML={{
