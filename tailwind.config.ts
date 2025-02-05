@@ -5,6 +5,9 @@ export default {
     content: ["./app/**/*.{js,jsx,ts,tsx}"],
 
     theme: {
+        fontFamily: {
+            sans: ["Open Sans", "serif"],
+        },
         extend: {
             borderRadius: {
                 lg: "var(--radius)",
