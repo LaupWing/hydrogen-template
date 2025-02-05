@@ -154,7 +154,7 @@ export default function Product() {
         arrows: false,
         speed: 500,
         slidesToShow: 1,
-        centerPadding: "10px",
+        // centerPadding: "10px",
         slidesToScroll: 1,
         beforeChange: (_: number, nextSlide: number) => {
             setCurrentSlide(nextSlide)
@@ -196,7 +196,7 @@ export default function Product() {
                             )
                         )}
                     </div>
-                    <div className="overflow-hidden w-full h-full flex">
+                    <div className="overflow-hidden relative w-full h-full flex">
                         {isClient && (
                             <Slider
                                 ref={sliderRef}

@@ -252,7 +252,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                             Buy Now
                         </button>
-                        <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
+                        <button className=" text-center border-2 text-neutral-800 border-neutral-800 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 hover:text-white rounded-full">
                             Add to Cart
                         </button>
                         {/* <Drawer>
