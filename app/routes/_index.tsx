@@ -125,7 +125,7 @@ function FeaturedCollection({
         slidesToShow: 1,
         centerPadding: "10px",
         slidesToScroll: 1,
-        beforeChange: (currentSlide: number, nextSlide: number) => {
+        beforeChange: (_: number, nextSlide: number) => {
             setCurrentSlide(nextSlide)
         },
     }
