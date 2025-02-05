@@ -1,7 +1,13 @@
 import { defer, type LoaderFunctionArgs } from "@netlify/remix-runtime"
-import { Await, useLoaderData, Link, type MetaFunction } from "@remix-run/react"
+import {
+    Await,
+    useLoaderData,
+    Link,
+    type MetaFunction,
+    FetcherWithComponents,
+} from "@remix-run/react"
 import { Suspense, useEffect, useRef, useState } from "react"
-import { Image, Money } from "@shopify/hydrogen"
+import { CartForm, Image, Money } from "@shopify/hydrogen"
 import type {
     ArticleItemFragment,
     ProductDetailsFragment,
@@ -156,9 +162,27 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                     <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                         Buy Now
                     </button>
-                    <button className=" text-center border-2 text-neutral-800 border-neutral-800 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 hover:text-white rounded-full">
-                        Add to Cart
-                    </button>
+                    <CartForm
+                        route="/cart"
+                        inputs={{
+                            lines: [
+                                {
+                                    // @ts-ignore
+                                    merchandiseId: product.variants.nodes[0].id,
+                                    quantity: 1,
+                                    // @ts-ignore
+                                    selectedVariant: product.variants.nodes[0],
+                                },
+                            ],
+                        }}
+                        action={CartForm.ACTIONS.LinesAdd}
+                    >
+                        {(fetcher: FetcherWithComponents<any>) => (
+                            <button className=" text-center border-2 text-neutral-800 border-neutral-800 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 hover:text-white rounded-full">
+                                Add to Cart
+                            </button>
+                        )}
+                    </CartForm>
                 </div>
             </>
         )
