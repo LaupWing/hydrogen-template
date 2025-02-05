@@ -13,7 +13,13 @@ import Slider from "react-slick"
 import { AnimatePresence, motion } from "motion/react"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { MoveLeft, MoveRight, Star } from "lucide-react"
+import {
+    ChevronLeft,
+    ChevronRight,
+    MoveLeft,
+    MoveRight,
+    Star,
+} from "lucide-react"
 import { cn } from "~/lib/utils"
 
 export const meta: MetaFunction = () => {
@@ -232,6 +238,15 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         <p className="text-xs text-emerald-600 font-semibold ml-2">
                             Your world changes if you change.
                         </p>
+                    </div>
+                    <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
+                        <button className="p-1.5 px-2 text-neutral-600">
+                            <ChevronLeft />
+                        </button>
+                        <div className="text-lg">1</div>
+                        <button className="p-1.5 px-2 text-neutral-600">
+                            <ChevronRight />
+                        </button>
                     </div>
                     <div className="flex max-w-md mx-auto w-full flex-col gap-4">
                         <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
