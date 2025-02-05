@@ -162,6 +162,14 @@ export default function Homepage() {
                                 __html: data.specificProduct.descriptionHtml,
                             }}
                         ></div>
+                        <div className="flex max-w-md mx-auto w-full flex-col gap-4">
+                            <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                                Buy Now
+                            </button>
+                            <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
+                                Add to Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
