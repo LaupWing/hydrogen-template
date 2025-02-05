@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from "react"
+import { FC, Suspense, useEffect, useRef, useState } from "react"
 import {
     defer,
     redirect,
@@ -11,6 +11,7 @@ import {
     Analytics,
     useOptimisticVariant,
     Image,
+    Money,
 } from "@shopify/hydrogen"
 import type { SelectedOption } from "@shopify/hydrogen/storefront-api-types"
 import { getVariantUrl } from "~/lib/variants"
@@ -19,6 +20,7 @@ import { ProductImage } from "~/components/ProductImage"
 import { ProductForm } from "~/components/ProductForm"
 import { cn } from "~/lib/utils"
 import Slider from "react-slick"
+import { ChevronLeft, ChevronRight, Star } from "lucide-react"
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return [{ title: `Hydrogen | ${data?.product.title ?? ""}` }]
@@ -146,21 +148,6 @@ export default function Product() {
     const { title, descriptionHtml } = product
     const [currentSlide, setCurrentSlide] = useState(0)
     let sliderRef = useRef<Slider>(null)
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows: false,
-        speed: 500,
-        slidesToShow: 1,
-        centerPadding: "10px",
-        slidesToScroll: 1,
-        beforeChange: (_: number, nextSlide: number) => {
-            setCurrentSlide(nextSlide)
-        },
-    }
-
-    const [isClient, setIsClient] = useState(false)
-    useEffect(() => setIsClient(true), [])
 
     return (
         <div className="bg-white">
@@ -195,27 +182,91 @@ export default function Product() {
                         )}
                     </div>
                     <div className="overflow-hidden w-full h-full flex">
-                        {isClient && (
-                            <Slider
-                                ref={sliderRef}
-                                {...settings}
-                                className="w-full h-full flex items-center justify-center"
-                            >
-                                {product!.images.nodes.map((image: any) => (
-                                    <div
-                                        key={image.id}
-                                        className="w-full h-full"
-                                    >
-                                        <Image
-                                            className="rounded-2xl flex-1"
-                                            data={image}
-                                            aspectRatio="1/1"
-                                            sizes="(min-width: 45em) 20vw, 50vw"
-                                        />
-                                    </div>
-                                ))}
-                            </Slider>
-                        )}
+                        <SliderPanel
+                            product={product}
+                            sliderRef={sliderRef}
+                            setCurrentSlide={setCurrentSlide}
+                        />
+                    </div>
+                </div>
+                <div className="col-span-3 grid gap-4">
+                    <div className="flex gap-2 items-center">
+                        <div className="flex">
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                        </div>
+                        <p className="text-sm">
+                            <b>4.8</b> | 176 Reviews
+                        </p>
+                    </div>
+                    <h4 className="uppercase font-display font-bold text-3xl">
+                        {product!.title}
+                    </h4>
+                    <div className="text-xl">
+                        {/* <Money data={product!.price.amount} /> */}
+                    </div>
+                    <div
+                        className="text-neutral-700 text-base"
+                        dangerouslySetInnerHTML={{
+                            __html: product!.descriptionHtml,
+                        }}
+                    ></div>
+                    <div className="flex my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
+                        <div className="w-3.5 h-3.5 border-2 border-emerald-200 bg-emerald-400 rounded-full animate-pulse" />
+                        <p className="text-xs text-emerald-600 font-semibold ml-2">
+                            Your world changes if you change.
+                        </p>
+                    </div>
+                    <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
+                        <button className="p-1.5 px-2 text-neutral-400">
+                            <ChevronLeft />
+                        </button>
+                        <div className="text-lg">1</div>
+                        <button className="p-1.5 px-2 text-neutral-400">
+                            <ChevronRight />
+                        </button>
+                    </div>
+                    <div className="flex max-w-md mx-auto w-full flex-col gap-4">
+                        <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                            Buy Now
+                        </button>
+                        <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
+                            Add to Cart
+                        </button>
+                        {/* <Drawer>
+                            <DrawerTrigger>Open</DrawerTrigger>
+                            <DrawerContent>
+                                <DrawerHeader>
+                                    <DrawerTitle>
+                                        Are you absolutely sure?
+                                    </DrawerTitle>
+                                    <DrawerDescription>
+                                        This action cannot be undone.
+                                    </DrawerDescription>
+                                </DrawerHeader>
+                                <DrawerFooter>
+                                    <DrawerClose></DrawerClose>
+                                </DrawerFooter>
+                            </DrawerContent>
+                        </Drawer> */}
                     </div>
                 </div>
                 {/* <ProductImage image={selectedVariant?.image} />
@@ -279,6 +330,46 @@ export default function Product() {
             />
         </div>
     )
+}
+
+const SliderPanel: FC<{
+    product: any
+    sliderRef: any
+    setCurrentSlide: any
+}> = ({ product, sliderRef, setCurrentSlide }) => {
+    const settings = {
+        dots: false,
+        infinite: true,
+        arrows: false,
+        speed: 500,
+        slidesToShow: 1,
+        centerPadding: "10px",
+        slidesToScroll: 1,
+        beforeChange: (_: number, nextSlide: number) => {
+            setCurrentSlide(nextSlide)
+        },
+    }
+
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => setIsClient(true), [])
+    return isClient ? (
+        <Slider
+            ref={sliderRef}
+            {...settings}
+            className="w-full h-full flex items-center justify-center"
+        >
+            {product!.images.nodes.map((image: any) => (
+                <div key={image.id} className="w-full h-full">
+                    <Image
+                        className="rounded-2xl flex-1"
+                        data={image}
+                        // aspectRatio="1/1"
+                        // sizes="(min-width: 45em) 20vw, 50vw"
+                    />
+                </div>
+            ))}
+        </Slider>
+    ) : null
 }
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
