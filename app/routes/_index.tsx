@@ -162,7 +162,13 @@ export default function Homepage() {
                                 __html: data.specificProduct.descriptionHtml,
                             }}
                         ></div>
-                        <div className="flex max-w-md mx-auto w-full flex-col mt-6 gap-4">
+                        <div className="flex my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
+                            <div className="w-3.5 h-3.5 border-2 border-emerald-200 bg-emerald-400 rounded-full animate-pulse" />
+                            <p className="text-xs text-emerald-600 font-semibold ml-2">
+                                Your world changes if you change.
+                            </p>
+                        </div>
+                        <div className="flex max-w-md mx-auto w-full flex-col mt-4 gap-4">
                             <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                                 Buy Now
                             </button>
