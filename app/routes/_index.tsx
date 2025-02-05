@@ -126,6 +126,10 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
             // setCurrentSlide(nextSlide)
         },
     }
+
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => setIsClient(true), [])
+
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
@@ -148,13 +152,23 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                             />
                         </div>
                     </div>
-                    <div>
-                        <Image
-                            className="rounded-2xl flex-1"
-                            data={product!.images.nodes[0]}
-                            aspectRatio="1/1"
-                            sizes="(min-width: 45em) 20vw, 50vw"
-                        />
+                    <div className="overflow-hidden w-full h-full flex">
+                        {isClient && (
+                            <Slider
+                                // ref={sliderRef}
+                                {...settings}
+                                className="w-full h-full flex items-center justify-center"
+                            >
+                                <div>
+                                    <Image
+                                        className="rounded-2xl flex-1"
+                                        data={product!.images.nodes[0]}
+                                        aspectRatio="1/1"
+                                        sizes="(min-width: 45em) 20vw, 50vw"
+                                    />
+                                </div>
+                            </Slider>
+                        )}
                     </div>
                 </div>
                 <div className="col-span-3 grid gap-4">
