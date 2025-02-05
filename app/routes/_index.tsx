@@ -12,7 +12,7 @@ import Slider from "react-slick"
 import { AnimatePresence, motion } from "motion/react"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { MoveLeft, MoveRight } from "lucide-react"
+import { MoveLeft, MoveRight, Star } from "lucide-react"
 import { cn } from "~/lib/utils"
 
 export const meta: MetaFunction = () => {
@@ -118,6 +118,28 @@ export default function Homepage() {
                         </small> */}
                     </div>
                     <div className="col-span-3 grid gap-4">
+                        <div className="flex">
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                            <Star
+                                className="fill-current text-yellow-400"
+                                size={18}
+                            />
+                        </div>
                         <h4 className="uppercase font-bold text-3xl">
                             {data.specificProduct.title}
                         </h4>
