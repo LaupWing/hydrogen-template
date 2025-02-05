@@ -144,7 +144,6 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
 
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
-    console.log(product)
 
     const ProductForm = () => {
         return (
@@ -178,7 +177,10 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         action={CartForm.ACTIONS.LinesAdd}
                     >
                         {(fetcher: FetcherWithComponents<any>) => (
-                            <button className=" text-center border-2 text-neutral-800 border-neutral-800 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 hover:text-white rounded-full">
+                            <button
+                                type="submit"
+                                className=" text-center border-2 text-neutral-800 border-neutral-800 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 hover:text-white rounded-full"
+                            >
                                 Add to Cart
                             </button>
                         )}
