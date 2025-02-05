@@ -215,7 +215,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                             <b>4.8</b> | 176 Reviews
                         </p>
                     </div>
-                    <h4 className="uppercase font-bold text-3xl">
+                    <h4 className="uppercase font-display font-bold text-3xl">
                         {product!.title}
                     </h4>
                     <div className="text-xl">
@@ -336,7 +336,7 @@ function FeaturedBlogs({ blogs }: { blogs: ArticleItemFragment[] }) {
                                                     delay: 0.1,
                                                     ease: "easeOut",
                                                 }}
-                                                className="text-neutral-50 text-4xl md:text-6xl font-bold"
+                                                className="text-neutral-50 text-4xl md:text-6xl font-bold font-display"
                                             >
                                                 {blogs[currentSlide].title}
                                             </motion.h2>

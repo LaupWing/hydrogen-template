@@ -7,6 +7,7 @@ export default {
     theme: {
         fontFamily: {
             sans: ["Open Sans", "serif"],
+            display: ["Noto Sans", "serif"],
         },
         extend: {
             borderRadius: {
