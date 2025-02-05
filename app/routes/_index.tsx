@@ -112,7 +112,7 @@ export default function Homepage() {
                             <div className="border-2 rounded-lg border-black">
                                 <Image
                                     className="rounded-lg"
-                                    data={data.specificProduct.images.nodes[0]}
+                                    data={data.specificProduct!.images.nodes[0]}
                                     aspectRatio="1/1"
                                     sizes="(min-width: 45em) 20vw, 50vw"
                                 />
@@ -120,7 +120,7 @@ export default function Homepage() {
                             <div className="border-2 rounded-lg border-transparent">
                                 <Image
                                     className="rounded-lg"
-                                    data={data.specificProduct.images.nodes[0]}
+                                    data={data.specificProduct!.images.nodes[0]}
                                     aspectRatio="1/1"
                                     sizes="(min-width: 45em) 20vw, 50vw"
                                 />
@@ -129,7 +129,7 @@ export default function Homepage() {
                         <div>
                             <Image
                                 className="rounded-2xl flex-1"
-                                data={data.specificProduct.images.nodes[0]}
+                                data={data.specificProduct!.images.nodes[0]}
                                 aspectRatio="1/1"
                                 sizes="(min-width: 45em) 20vw, 50vw"
                             />
@@ -168,12 +168,12 @@ export default function Homepage() {
                             </p>
                         </div>
                         <h4 className="uppercase font-bold text-3xl">
-                            {data.specificProduct.title}
+                            {data.specificProduct!.title}
                         </h4>
                         <p className="text-xl">
                             <Money
                                 data={
-                                    data.specificProduct.priceRange
+                                    data.specificProduct!.priceRange
                                         .minVariantPrice
                                 }
                             />
@@ -181,7 +181,7 @@ export default function Homepage() {
                         <div
                             className="text-neutral-700 text-base"
                             dangerouslySetInnerHTML={{
-                                __html: data.specificProduct.descriptionHtml,
+                                __html: data.specificProduct!.descriptionHtml,
                             }}
                         ></div>
                         <div className="flex my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
