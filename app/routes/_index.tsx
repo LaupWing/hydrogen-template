@@ -115,6 +115,8 @@ export default function Homepage() {
 }
 
 function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
+    const [currentSlide, setCurrentSlide] = useState(0)
+    let sliderRef = useRef<Slider>(null)
     const settings = {
         dots: false,
         infinite: true,
@@ -124,7 +126,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
         centerPadding: "10px",
         slidesToScroll: 1,
         beforeChange: (_: number, nextSlide: number) => {
-            // setCurrentSlide(nextSlide)
+            setCurrentSlide(nextSlide)
         },
     }
 
@@ -136,10 +138,21 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
                 <div className="col-span-4 gap-2 items-start flex">
                     <div className="grid w-20 flex-shrink-0 gap-2">
-                        {product!.images.nodes.map((image) => (
+                        {product!.images.nodes.map((image, index) => (
                             <div
                                 key={image.id}
-                                className="border-2 rounded-lg border-transparent"
+                                className={cn(
+                                    "border-2 rounded-lg cursor-pointer",
+                                    index === currentSlide
+                                        ? "border-black"
+                                        : "border-transparent hover:border-neutral-300"
+                                )}
+                                onClick={() => {
+                                    if (sliderRef.current) {
+                                        sliderRef.current.slickGoTo(index)
+                                    }
+                                    setCurrentSlide(index)
+                                }}
                             >
                                 <Image
                                     className="rounded-lg"
@@ -149,27 +162,11 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                                 />
                             </div>
                         ))}
-                        {/* <div className="border-2 rounded-lg border-black">
-                            <Image
-                                className="rounded-lg"
-                                data={product!.images.nodes[0]}
-                                aspectRatio="1/1"
-                                sizes="(min-width: 45em) 20vw, 50vw"
-                            />
-                        </div>
-                        <div className="border-2 rounded-lg border-transparent">
-                            <Image
-                                className="rounded-lg"
-                                data={product!.images.nodes[0]}
-                                aspectRatio="1/1"
-                                sizes="(min-width: 45em) 20vw, 50vw"
-                            />
-                        </div> */}
                     </div>
                     <div className="overflow-hidden w-full h-full flex">
                         {isClient && (
                             <Slider
-                                // ref={sliderRef}
+                                ref={sliderRef}
                                 {...settings}
                                 className="w-full h-full flex items-center justify-center"
                             >
