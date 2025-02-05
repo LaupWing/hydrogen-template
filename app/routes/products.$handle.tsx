@@ -1,4 +1,4 @@
-import { FC, Suspense, useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import {
     defer,
     redirect,
@@ -148,6 +148,21 @@ export default function Product() {
     const { title, descriptionHtml } = product
     const [currentSlide, setCurrentSlide] = useState(0)
     let sliderRef = useRef<Slider>(null)
+    const settings = {
+        dots: false,
+        infinite: true,
+        arrows: false,
+        speed: 500,
+        slidesToShow: 1,
+        centerPadding: "10px",
+        slidesToScroll: 1,
+        beforeChange: (_: number, nextSlide: number) => {
+            setCurrentSlide(nextSlide)
+        },
+    }
+
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => setIsClient(true), [])
 
     return (
         <div className="bg-white">
@@ -182,11 +197,28 @@ export default function Product() {
                         )}
                     </div>
                     <div className="overflow-hidden w-full h-full flex">
-                        <SliderPanel
-                            product={product}
-                            sliderRef={sliderRef}
-                            setCurrentSlide={setCurrentSlide}
-                        />
+                        {isClient && (
+                            <Slider
+                                ref={sliderRef}
+                                {...settings}
+                                className="w-full h-full flex items-center justify-center"
+                            >
+                                {product!.images.nodes.map((image: any) => (
+                                    <div
+                                        key={image.id}
+                                        className="w-full h-full"
+                                    >
+                                        test
+                                        {/* <Image
+                                            className="rounded-2xl flex-1"
+                                            data={image}
+                                            aspectRatio="1/1"
+                                            sizes="(min-width: 45em) 20vw, 50vw"
+                                        /> */}
+                                    </div>
+                                ))}
+                            </Slider>
+                        )}
                     </div>
                 </div>
                 <div className="col-span-3 grid gap-4">
@@ -330,46 +362,6 @@ export default function Product() {
             />
         </div>
     )
-}
-
-const SliderPanel: FC<{
-    product: any
-    sliderRef: any
-    setCurrentSlide: any
-}> = ({ product, sliderRef, setCurrentSlide }) => {
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows: false,
-        speed: 500,
-        slidesToShow: 1,
-        centerPadding: "10px",
-        slidesToScroll: 1,
-        beforeChange: (_: number, nextSlide: number) => {
-            setCurrentSlide(nextSlide)
-        },
-    }
-
-    const [isClient, setIsClient] = useState(false)
-    useEffect(() => setIsClient(true), [])
-    return isClient ? (
-        <Slider
-            ref={sliderRef}
-            {...settings}
-            className="w-full h-full flex items-center justify-center"
-        >
-            {product!.images.nodes.map((image: any) => (
-                <div key={image.id} className="w-full h-full">
-                    <Image
-                        className="rounded-2xl flex-1"
-                        data={image}
-                        // aspectRatio="1/1"
-                        // sizes="(min-width: 45em) 20vw, 50vw"
-                    />
-                </div>
-            ))}
-        </Slider>
-    ) : null
 }
 
 const PRODUCT_VARIANT_FRAGMENT = `#graphql
