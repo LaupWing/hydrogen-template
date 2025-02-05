@@ -138,6 +138,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
 
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
+    console.log(product)
 
     const ProductForm = () => {
         return (
@@ -547,6 +548,16 @@ const SPECIFIC_PRODUCT_QUERY = `#graphql
                 altText
                 width
                 height
+            }
+        }
+        variants(first: 1) {  # 👈 Fetch the only variant of this product
+            nodes {
+                id
+                availableForSale
+                price {
+                    amount
+                    currencyCode
+                }
             }
         }
     }
