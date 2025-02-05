@@ -5,6 +5,7 @@ import { Image, Money } from "@shopify/hydrogen"
 import type {
     ArticleItemFragment,
     FeaturedCollectionFragment,
+    ProductItemFragment,
     RecommendedProductsQuery,
 } from "storefrontapi.generated"
 import Slider from "react-slick"
@@ -33,7 +34,7 @@ export async function loader(args: LoaderFunctionArgs) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  */
 async function loadCriticalData({ context }: LoaderFunctionArgs) {
-    const [{ collections }, { blog }] = await Promise.all([
+    const [{ collections }, { blog }, { product }] = await Promise.all([
         context.storefront.query(FEATURED_COLLECTION_QUERY),
         // Add other queries here, so that they are loaded in parallel
         context.storefront.query(BLOGS_QUERY, {
@@ -41,11 +42,13 @@ async function loadCriticalData({ context }: LoaderFunctionArgs) {
                 startCursor: null,
             },
         }),
+        context.storefront.query(SPECIFIC_PRODUCT_QUERY),
     ])
 
     return {
         featuredCollection: collections.nodes[0],
         blogs: blog!.articles.nodes,
+        specificProduct: product,
     }
 }
 
