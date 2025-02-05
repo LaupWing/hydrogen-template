@@ -250,7 +250,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
                             Add to Cart
                         </button>
-                        <Drawer>
+                        {/* <Drawer>
                             <DrawerTrigger>Open</DrawerTrigger>
                             <DrawerContent>
                                 <DrawerHeader>
@@ -265,7 +265,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                                     <DrawerClose></DrawerClose>
                                 </DrawerFooter>
                             </DrawerContent>
-                        </Drawer>
+                        </Drawer> */}
                     </div>
                 </div>
             </div>
