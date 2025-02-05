@@ -156,6 +156,12 @@ export default function Homepage() {
                                 }
                             />
                         </p>
+                        <div
+                            className="text-neutral-700 text-base"
+                            dangerouslySetInnerHTML={{
+                                __html: data.specificProduct.descriptionHtml,
+                            }}
+                        ></div>
                     </div>
                 </div>
             </div>
