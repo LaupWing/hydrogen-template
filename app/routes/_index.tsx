@@ -118,6 +118,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
     const settings = {
         dots: false,
         infinite: true,
+        arrows: false,
         speed: 500,
         slidesToShow: 1,
         centerPadding: "10px",
@@ -241,6 +242,7 @@ function FeaturedBlogs({ blogs }: { blogs: ArticleItemFragment[] }) {
 
     const settings = {
         dots: false,
+        arrows: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
