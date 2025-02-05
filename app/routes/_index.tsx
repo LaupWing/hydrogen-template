@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react"
 import { Image, Money } from "@shopify/hydrogen"
 import type {
     ArticleItemFragment,
-    FeaturedCollectionFragment,
+    ProductDetailsFragment,
     ProductItemFragment,
     RecommendedProductFragment,
     RecommendedProductsQuery,
@@ -106,13 +106,15 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
-            <FeaturedProduct product={data.specificProduct as any} />
+            <FeaturedProduct
+                product={data.specificProduct as ProductDetailsFragment}
+            />
             <RecommendedProducts products={data.recommendedProducts} />
         </div>
     )
 }
 
-function FeaturedProduct({ product }: { product: RecommendedProductFragment }) {
+function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
@@ -143,10 +145,6 @@ function FeaturedProduct({ product }: { product: RecommendedProductFragment }) {
                             sizes="(min-width: 45em) 20vw, 50vw"
                         />
                     </div>
-                    {/* <h4>{product.title}</h4>
-                        <small>
-                            
-                        </small> */}
                 </div>
                 <div className="col-span-3 grid gap-4">
                     <div className="flex gap-2 items-center">
