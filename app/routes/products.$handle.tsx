@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import {
     defer,
     redirect,
@@ -10,12 +10,15 @@ import {
     getSelectedProductOptions,
     Analytics,
     useOptimisticVariant,
+    Image,
 } from "@shopify/hydrogen"
 import type { SelectedOption } from "@shopify/hydrogen/storefront-api-types"
 import { getVariantUrl } from "~/lib/variants"
 import { ProductPrice } from "~/components/ProductPrice"
 import { ProductImage } from "~/components/ProductImage"
 import { ProductForm } from "~/components/ProductForm"
+import { cn } from "~/lib/utils"
+import Slider from "react-slick"
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return [{ title: `Hydrogen | ${data?.product.title ?? ""}` }]
@@ -141,12 +144,81 @@ export default function Product() {
     )
 
     const { title, descriptionHtml } = product
-    console.log(product)
+    const [currentSlide, setCurrentSlide] = useState(0)
+    let sliderRef = useRef<Slider>(null)
+    const settings = {
+        dots: false,
+        infinite: true,
+        arrows: false,
+        speed: 500,
+        slidesToShow: 1,
+        centerPadding: "10px",
+        slidesToScroll: 1,
+        beforeChange: (_: number, nextSlide: number) => {
+            setCurrentSlide(nextSlide)
+        },
+    }
+
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => setIsClient(true), [])
 
     return (
         <div className="bg-white py-16">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
-                <ProductImage image={selectedVariant?.image} />
+                <div className="col-span-4 gap-2 items-start flex">
+                    <div className="grid w-20 flex-shrink-0 gap-2">
+                        {product!.images.nodes.map(
+                            (image: any, index: number) => (
+                                <div
+                                    key={image.id}
+                                    className={cn(
+                                        "border-2 rounded-lg cursor-pointer",
+                                        index === currentSlide
+                                            ? "border-black"
+                                            : "border-transparent hover:border-neutral-300"
+                                    )}
+                                    onClick={() => {
+                                        if (sliderRef.current) {
+                                            sliderRef.current.slickGoTo(index)
+                                        }
+                                        setCurrentSlide(index)
+                                    }}
+                                >
+                                    <Image
+                                        className="rounded-lg"
+                                        data={image}
+                                        aspectRatio="1/1"
+                                        sizes="(min-width: 45em) 20vw, 50vw"
+                                    />
+                                </div>
+                            )
+                        )}
+                    </div>
+                    <div className="overflow-hidden w-full h-full flex">
+                        {isClient && (
+                            <Slider
+                                ref={sliderRef}
+                                {...settings}
+                                className="w-full h-full flex items-center justify-center"
+                            >
+                                {product!.images.nodes.map((image: any) => (
+                                    <div
+                                        key={image.id}
+                                        className="w-full h-full"
+                                    >
+                                        <Image
+                                            className="rounded-2xl flex-1"
+                                            data={image}
+                                            aspectRatio="1/1"
+                                            sizes="(min-width: 45em) 20vw, 50vw"
+                                        />
+                                    </div>
+                                ))}
+                            </Slider>
+                        )}
+                    </div>
+                </div>
+                {/* <ProductImage image={selectedVariant?.image} />
                 <div className="product-main">
                     <h1>{title}</h1>
                     <ProductPrice
@@ -188,7 +260,7 @@ export default function Product() {
                         dangerouslySetInnerHTML={{ __html: descriptionHtml }}
                     />
                     <br />
-                </div>
+                </div> */}
             </div>
             <Analytics.ProductView
                 data={{
