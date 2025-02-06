@@ -31,18 +31,17 @@ export function CartMain({ layout, cart: originalCart }: CartMainProps) {
     return (
         <div className="flex flex-col gap-4">
             <CartEmpty hidden={linesCount} layout={layout} />
-            <div className="cart-details">
-                <div aria-labelledby="cart-lines">
-                    <ul>
-                        {(cart?.lines?.nodes ?? []).map((line) => (
-                            <CartLineItem
-                                key={line.id}
-                                line={line}
-                                layout={layout}
-                            />
-                        ))}
-                    </ul>
-                </div>
+            <div className="">
+                <ul className="p-8">
+                    {(cart?.lines?.nodes ?? []).map((line) => (
+                        <CartLineItem
+                            key={line.id}
+                            line={line}
+                            layout={layout}
+                        />
+                    ))}
+                </ul>
+
                 {cartHasItems && <CartSummary cart={cart} layout={layout} />}
             </div>
         </div>
