@@ -52,18 +52,15 @@ export function Aside({
         >
             {/* <DrawerTrigger>Open</DrawerTrigger> */}
             <DrawerContent className="max-w-4xl mx-auto grid">
-                <DrawerHeader>
+                <DrawerHeader className="flex py-8 px-4 border-b justify-between">
                     <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                    <DrawerDescription>
-                        This action cannot be undone.
-                    </DrawerDescription>
+                    <DrawerClose>
+                        <button>Cancel</button>
+                    </DrawerClose>
                 </DrawerHeader>
                 <main>{children}</main>
                 <DrawerFooter>
                     <button>Submit</button>
-                    <DrawerClose>
-                        <button>Cancel</button>
-                    </DrawerClose>
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>
