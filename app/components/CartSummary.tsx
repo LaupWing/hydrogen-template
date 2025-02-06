@@ -15,13 +15,15 @@ export function CartSummary({ cart, layout }: CartSummaryProps) {
     return (
         <div
             aria-labelledby="cart-summary"
-            className="bg-neutral-100/70 p-8 flex-col flex gap-4"
+            className="bg-neutral-100/70 p-6 md:p-8 flex-col flex gap-4"
         >
-            <div className="flex justify-between text-lg text-neutral-700">
-                <h4>Invest in yourself</h4>
-                <dl className="grid gap-2">
-                    <dt>Subtotal</dt>
-                    <dd className="font-bold text-2xl">
+            <div className="flex justify-between text-neutral-700">
+                <h4 className="text-base italic md:text-lg">
+                    Invest in yourself
+                </h4>
+                <dl className="grid md:gap-2">
+                    <dt className="text-sm md:text-base">Subtotal</dt>
+                    <dd className="font-bold text-xl md:text-2xl">
                         {cart.cost?.subtotalAmount?.amount ? (
                             <Money data={cart.cost?.subtotalAmount} />
                         ) : (

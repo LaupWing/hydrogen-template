@@ -30,7 +30,7 @@ export function CartLineItem({
         <li key={id} className="flex gap-4 items-center">
             {image && (
                 <Image
-                    className="rounded-lg w-24 md:w-32"
+                    className="rounded-lg w-20 md:w-32"
                     alt={title}
                     aspectRatio="1/1"
                     data={image}
@@ -50,7 +50,7 @@ export function CartLineItem({
                         }
                     }}
                 >
-                    <p className="text-lg font-semibold">{product.title}</p>
+                    <p className="md:text-lg font-semibold">{product.title}</p>
                 </Link>
                 <small className="text-sm">
                     <ProductPrice price={line?.cost?.totalAmount} />
@@ -83,7 +83,7 @@ function CartLineQuantity({ line }: { line: CartLine }) {
 
     return (
         <div className="flex flex-col items-center gap-2 ml-auto">
-            <div className="flex items-center rounded-full bg-neutral-50 border-neutral-200 border ">
+            <div className="flex items-center rounded-full bg-neutral-50 border-neutral-200 border">
                 <CartLineUpdateButton
                     lines={[{ id: lineId, quantity: prevQuantity }]}
                 >
@@ -91,7 +91,7 @@ function CartLineQuantity({ line }: { line: CartLine }) {
                         aria-label="Decrease quantity"
                         disabled={quantity <= 1 || !!isOptimistic}
                         name="decrease-quantity"
-                        className="px-2 py-2 text-neutral-400/80"
+                        className="p-1 md:p-2 text-neutral-400/80"
                         value={prevQuantity}
                     >
                         <ChevronLeft />
@@ -104,7 +104,7 @@ function CartLineQuantity({ line }: { line: CartLine }) {
                     <button
                         aria-label="Increase quantity"
                         name="increase-quantity"
-                        className="px-2 py-2 text-neutral-400/80"
+                        className="p-1 md:p-2 text-neutral-400/80"
                         value={nextQuantity}
                         disabled={!!isOptimistic}
                     >
@@ -139,7 +139,7 @@ function CartLineRemoveButton({
             inputs={{ lineIds }}
         >
             <button
-                className="text-xs text-neutral-500 uppercase underline tracking-wider"
+                className="md:text-xs text-[10px] text-neutral-500 uppercase underline tracking-wider"
                 disabled={disabled}
                 type="submit"
             >
