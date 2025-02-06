@@ -159,7 +159,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                 </div> */}
                 <div className="flex max-w-md mx-auto w-full flex-col gap-4">
                     <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
-                        Buy Now
+                        View Product
                     </button>
                     {/* <CartForm
                         route="/cart"
