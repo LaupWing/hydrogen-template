@@ -100,8 +100,8 @@ export function Header({
                         </ul>
                     </nav>
                     <div className="flex gap-6 justify-end">
-                        <User className="hidden md:block" />
-                        <ShoppingCart />
+                        {/* <User className="hidden md:block" /> */}
+                        <CartToggle cart={cart} />
                     </div>
                 </div>
             </header>
@@ -235,7 +235,8 @@ function CartBadge({ count }: { count: number | null }) {
                 } as CartViewPayload)
             }}
         >
-            Cart {count === null ? <span>&nbsp;</span> : count}
+            {/* Cart {count === null ? <span>&nbsp;</span> : count} */}
+            <ShoppingCart />
         </a>
     )
 }
