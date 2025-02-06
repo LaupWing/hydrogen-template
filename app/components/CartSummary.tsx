@@ -39,13 +39,15 @@ function CartCheckoutActions({ checkoutUrl }: { checkoutUrl?: string }) {
     if (!checkoutUrl) return null
 
     return (
-        <button className="bg-yellow-400 text-neutral-950 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 rounded-full">
-            <a href={checkoutUrl} target="_self">
-                <p className="flex items-center justify-center gap-2">
-                    Continue to Checkout <LockKeyholeOpen size={18} />{" "}
-                </p>
-            </a>
-        </button>
+        <a
+            className="bg-yellow-400 text-neutral-950 font-bold text-sm uppercase py-3 hover:bg-yellow-500 duration-200 rounded-full"
+            href={checkoutUrl}
+            target="_self"
+        >
+            <p className="flex items-center justify-center gap-2">
+                Continue to Checkout <LockKeyholeOpen size={18} />{" "}
+            </p>
+        </a>
     )
 }
 
