@@ -26,7 +26,7 @@ export function CartLineItem({
     const { close } = useAside()
 
     return (
-        <li key={id} className="flex gap-4">
+        <li key={id} className="flex gap-4 items-center">
             {image && (
                 <Image
                     alt={title}
@@ -38,7 +38,7 @@ export function CartLineItem({
                 />
             )}
 
-            <div>
+            <div className="grid gap-2">
                 <Link
                     prefetch="intent"
                     to={lineItemUrl}
@@ -48,11 +48,11 @@ export function CartLineItem({
                         }
                     }}
                 >
-                    <p>
-                        <strong>{product.title}</strong>
-                    </p>
+                    <p className="text-lg font-semibold">{product.title}</p>
                 </Link>
-                <ProductPrice price={line?.cost?.totalAmount} />
+                <small className="text-sm">
+                    <ProductPrice price={line?.cost?.totalAmount} />
+                </small>
             </div>
             <ul>
                 {selectedOptions.map((option) => (
