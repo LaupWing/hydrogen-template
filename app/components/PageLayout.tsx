@@ -1,5 +1,5 @@
 import { Await, Link } from "@remix-run/react"
-import { Suspense } from "react"
+import { Suspense, useEffect, useState } from "react"
 import type {
     CartApiQueryFragment,
     FooterQuery,
@@ -32,9 +32,13 @@ export function PageLayout({
     isLoggedIn,
     publicStoreDomain,
 }: PageLayoutProps) {
+    const [isClient, setIsClient] = useState(false)
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
     return (
         <Aside.Provider>
-            <CartAside cart={cart} />
+            {isClient && <CartAside cart={cart} />}
             {/* <SearchAside />
             <MobileMenuAside
                 header={header}
