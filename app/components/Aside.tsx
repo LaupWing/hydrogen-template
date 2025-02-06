@@ -9,6 +9,7 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "./ui/drawer"
+import { X } from "lucide-react"
 
 type AsideType = "search" | "cart" | "mobile" | "closed"
 type AsideContextValue = {
@@ -38,8 +39,6 @@ export function Aside({
 }) {
     const { type: activeType, close } = useAside()
     const expanded = type === activeType
-    console.log(type)
-    console.log(activeType)
 
     return (
         <Drawer
@@ -52,10 +51,14 @@ export function Aside({
         >
             {/* <DrawerTrigger>Open</DrawerTrigger> */}
             <DrawerContent className="max-w-4xl mx-auto grid">
-                <DrawerHeader className="flex py-8 px-4 border-b justify-between">
-                    <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                <DrawerHeader className="flex text-neutral-900 py-8 pt-4 px-6 border-b justify-between">
+                    <DrawerTitle className="text-3xl font-bold">
+                        {heading}
+                    </DrawerTitle>
                     <DrawerClose>
-                        <button>Cancel</button>
+                        <button className="w-10 h-10 border border-neutral-200 text-neutral-500 rounded-full flex items-center justify-center">
+                            <X size={18} />
+                        </button>
                     </DrawerClose>
                 </DrawerHeader>
                 <main>{children}</main>
