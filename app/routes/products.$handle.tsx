@@ -21,6 +21,11 @@ import { ProductForm } from "~/components/ProductForm"
 import { cn } from "~/lib/utils"
 import Slider from "react-slick"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react"
+
+// Import Swiper styles
+import "swiper/css"
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
     return [{ title: `Hydrogen | ${data?.product.title ?? ""}` }]
@@ -196,28 +201,26 @@ export default function Product() {
                         )}
                     </div>
                     <div className="overflow-hidden relative w-full h-full flex">
-                        {isClient && (
-                            <Slider
-                                ref={sliderRef}
-                                {...settings}
-                                className="w-full h-full flex items-center justify-center"
-                            >
-                                {product!.images.nodes.map((image: any) => (
-                                    <div
-                                        key={image.id}
-                                        className="w-full h-full"
-                                    >
-                                        test
-                                        {/* <Image
-                                            className="rounded-2xl flex-1"
-                                            data={image}
-                                            aspectRatio="1/1"
-                                            sizes="(min-width: 45em) 20vw, 50vw"
-                                        /> */}
-                                    </div>
-                                ))}
-                            </Slider>
-                        )}
+                        <Swiper
+                            spaceBetween={50}
+                            slidesPerView={1}
+                            onSlideChange={() => console.log("slide change")}
+                            onSwiper={(swiper) => console.log(swiper)}
+                        >
+                            {product!.images.nodes.map((image: any) => (
+                                <SwiperSlide
+                                    key={image.id}
+                                    className="w-full h-full"
+                                >
+                                    <Image
+                                        className="rounded-2xl flex-1"
+                                        data={image}
+                                        aspectRatio="1/1"
+                                        sizes="(min-width: 45em) 20vw, 50vw"
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
                 </div>
                 <div className="col-span-3 grid gap-4">
