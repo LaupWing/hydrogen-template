@@ -12,19 +12,24 @@ export function CartSummary({ cart, layout }: CartSummaryProps) {
         layout === "page" ? "cart-summary-page" : "cart-summary-aside"
 
     return (
-        <div aria-labelledby="cart-summary" className="">
-            <h4>Totals</h4>
-            <dl className="cart-subtotal">
-                <dt>Subtotal</dt>
-                <dd>
-                    {cart.cost?.subtotalAmount?.amount ? (
-                        <Money data={cart.cost?.subtotalAmount} />
-                    ) : (
-                        "-"
-                    )}
-                </dd>
-            </dl>
-            <CartDiscounts discountCodes={cart.discountCodes} />
+        <div
+            aria-labelledby="cart-summary"
+            className="bg-neutral-100 p-8 flex-col flex gap-4"
+        >
+            <div className="flex justify-between text-lg text-neutral-700">
+                <h4>Invest in yourself</h4>
+                <dl className="grid gap-2">
+                    <dt>Subtotal</dt>
+                    <dd className="font-bold text-2xl">
+                        {cart.cost?.subtotalAmount?.amount ? (
+                            <Money data={cart.cost?.subtotalAmount} />
+                        ) : (
+                            "-"
+                        )}
+                    </dd>
+                </dl>
+            </div>
+            {/* <CartDiscounts discountCodes={cart.discountCodes} /> */}
             <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
         </div>
     )
@@ -37,7 +42,6 @@ function CartCheckoutActions({ checkoutUrl }: { checkoutUrl?: string }) {
             <a href={checkoutUrl} target="_self">
                 <p>Continue to Checkout &rarr;</p>
             </a>
-            <br />
         </div>
     )
 }
