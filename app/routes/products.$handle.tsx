@@ -145,7 +145,6 @@ export default function Product() {
         variants
     )
 
-    const { title, descriptionHtml } = product
     const [currentSlide, setCurrentSlide] = useState(0)
     let sliderRef = useRef<Slider>(null)
     const settings = {
