@@ -161,7 +161,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                     <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                         Buy Now
                     </button>
-                    <CartForm
+                    {/* <CartForm
                         route="/cart"
                         inputs={{
                             lines: [
@@ -184,7 +184,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                                 Add to Cart
                             </button>
                         )}
-                    </CartForm>
+                    </CartForm> */}
                 </div>
             </>
         )
