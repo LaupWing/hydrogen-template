@@ -256,7 +256,7 @@ export default function Product() {
                             Your world changes if you change.
                         </p>
                     </div>
-                    <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
+                    {/* <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
                         <button className="p-1.5 px-2 text-neutral-400">
                             <ChevronLeft />
                         </button>
@@ -272,7 +272,7 @@ export default function Product() {
                         <button className=" text-center border-2 text-neutral-700 border-neutral-700 font-bold text-sm uppercase py-3 hover:bg-neutral-700 duration-200 hover:text-white rounded-full">
                             Add to Cart
                         </button>
-                    </div>
+                    </div> */}
                     <Suspense
                         fallback={
                             <ProductForm

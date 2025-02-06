@@ -5,6 +5,7 @@ import {
     type VariantOption,
     VariantSelector,
 } from "@shopify/hydrogen"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import type {
     ProductFragment,
     ProductVariantFragment,
@@ -23,7 +24,7 @@ export function ProductForm({
 }) {
     const { open } = useAside()
     return (
-        <div className="grid">
+        <div className="grid gap-4 max-w-md mx-auto w-full">
             <VariantSelector
                 handle={product.handle}
                 options={product.options.filter(
@@ -35,6 +36,18 @@ export function ProductForm({
                     <ProductOptions key={option.name} option={option} />
                 )}
             </VariantSelector>
+            <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
+                <button className="p-1.5 px-2 text-neutral-400">
+                    <ChevronLeft />
+                </button>
+                <div className="text-lg">1</div>
+                <button className="p-1.5 px-2 text-neutral-400">
+                    <ChevronRight />
+                </button>
+            </div>
+            <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                Buy Now
+            </button>
             <AddToCartButton
                 disabled={!selectedVariant || !selectedVariant.availableForSale}
                 onClick={() => {
