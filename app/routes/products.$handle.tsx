@@ -19,10 +19,10 @@ import { ProductPrice } from "~/components/ProductPrice"
 import { ProductImage } from "~/components/ProductImage"
 import { ProductForm } from "~/components/ProductForm"
 import { cn } from "~/lib/utils"
-import Slider from "react-slick"
+import { Swiper as SwiperType } from "swiper"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react"
 
 // Import Swiper styles
 import "swiper/css"
@@ -151,19 +151,7 @@ export default function Product() {
     )
 
     const [currentSlide, setCurrentSlide] = useState(0)
-    let sliderRef = useRef<Slider>(null)
-    const settings = {
-        dots: false,
-        infinite: true,
-        arrows: false,
-        speed: 500,
-        slidesToShow: 1,
-        // centerPadding: "10px",
-        slidesToScroll: 1,
-        beforeChange: (_: number, nextSlide: number) => {
-            setCurrentSlide(nextSlide)
-        },
-    }
+    let sliderRef = useRef<SwiperType>(null)
 
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
@@ -175,7 +163,7 @@ export default function Product() {
                     <div className="grid w-20 flex-shrink-0 gap-2">
                         {product!.images.nodes.map(
                             (image: any, index: number) => (
-                                <div
+                                <button
                                     key={image.id}
                                     className={cn(
                                         "border-2 rounded-lg cursor-pointer",
@@ -185,7 +173,7 @@ export default function Product() {
                                     )}
                                     onClick={() => {
                                         if (sliderRef.current) {
-                                            sliderRef.current.slickGoTo(index)
+                                            sliderRef.current.slideTo(index)
                                         }
                                         setCurrentSlide(index)
                                     }}
@@ -196,7 +184,7 @@ export default function Product() {
                                         aspectRatio="1/1"
                                         sizes="(min-width: 45em) 20vw, 50vw"
                                     />
-                                </div>
+                                </button>
                             )
                         )}
                     </div>
@@ -204,8 +192,13 @@ export default function Product() {
                         <Swiper
                             spaceBetween={50}
                             slidesPerView={1}
-                            onSlideChange={() => console.log("slide change")}
-                            onSwiper={(swiper) => console.log(swiper)}
+                            onSlideChange={(swiper) =>
+                                setCurrentSlide(swiper.activeIndex)
+                            }
+                            onSwiper={(swiper) => {
+                                // @ts-expect-error
+                                sliderRef.current = swiper
+                            }}
                         >
                             {product!.images.nodes.map((image: any) => (
                                 <SwiperSlide
