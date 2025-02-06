@@ -1,6 +1,7 @@
 import type { CartApiQueryFragment } from "storefrontapi.generated"
 import type { CartLayout } from "~/components/CartMain"
 import { CartForm, Money, type OptimisticCart } from "@shopify/hydrogen"
+import { LockKeyholeOpen } from "lucide-react"
 
 type CartSummaryProps = {
     cart: OptimisticCart<CartApiQueryFragment | null>
@@ -38,11 +39,13 @@ function CartCheckoutActions({ checkoutUrl }: { checkoutUrl?: string }) {
     if (!checkoutUrl) return null
 
     return (
-        <div>
+        <button className="bg-yellow-400 text-neutral-950 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 rounded-full">
             <a href={checkoutUrl} target="_self">
-                <p>Continue to Checkout &rarr;</p>
+                <p className="flex items-center justify-center gap-2">
+                    Continue to Checkout <LockKeyholeOpen size={18} />{" "}
+                </p>
             </a>
-        </div>
+        </button>
     )
 }
 
@@ -80,7 +83,6 @@ function CartDiscounts({
                         name="discountCode"
                         placeholder="Discount code"
                     />
-                    &nbsp;
                     <button type="submit">Apply</button>
                 </div>
             </UpdateDiscountForm>
