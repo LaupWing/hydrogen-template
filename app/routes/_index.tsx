@@ -148,7 +148,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
     const ProductForm = () => {
         return (
             <>
-                <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
+                {/* <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
                     <button className="p-1.5 px-2 text-neutral-400">
                         <ChevronLeft />
                     </button>
@@ -156,7 +156,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                     <button className="p-1.5 px-2 text-neutral-400">
                         <ChevronRight />
                     </button>
-                </div>
+                </div> */}
                 <div className="flex max-w-md mx-auto w-full flex-col gap-4">
                     <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                         Buy Now
