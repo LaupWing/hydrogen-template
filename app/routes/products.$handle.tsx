@@ -301,7 +301,7 @@ export default function Product() {
                         </Drawer> */}
                     </div>
                 </div>
-                <ProductImage image={selectedVariant?.image} />
+                {/* <ProductImage image={selectedVariant?.image} />
                 <div className="product-main">
                     <h1>{title}</h1>
                     <ProductPrice
@@ -343,7 +343,7 @@ export default function Product() {
                         dangerouslySetInnerHTML={{ __html: descriptionHtml }}
                     />
                     <br />
-                </div>
+                </div> */}
             </div>
             <Analytics.ProductView
                 data={{
