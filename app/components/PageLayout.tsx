@@ -34,8 +34,8 @@ export function PageLayout({
 }: PageLayoutProps) {
     return (
         <Aside.Provider>
-            {/* <CartAside cart={cart} />
-            <SearchAside />
+            <CartAside cart={cart} />
+            {/* <SearchAside />
             <MobileMenuAside
                 header={header}
                 publicStoreDomain={publicStoreDomain}
