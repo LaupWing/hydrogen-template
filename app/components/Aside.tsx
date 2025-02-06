@@ -50,7 +50,7 @@ export function Aside({
             open={expanded}
         >
             {/* <DrawerTrigger>Open</DrawerTrigger> */}
-            <DrawerContent className="max-w-4xl mx-auto grid">
+            <DrawerContent className="max-w-2xl mx-auto grid">
                 <DrawerHeader className="flex text-neutral-900 py-8 pt-4 px-6 border-b justify-between">
                     <DrawerTitle className="text-3xl font-bold">
                         {heading}

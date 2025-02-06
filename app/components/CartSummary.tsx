@@ -14,7 +14,7 @@ export function CartSummary({ cart, layout }: CartSummaryProps) {
     return (
         <div
             aria-labelledby="cart-summary"
-            className="bg-neutral-100 p-8 flex-col flex gap-4"
+            className="bg-neutral-100/70 p-8 flex-col flex gap-4"
         >
             <div className="flex justify-between text-lg text-neutral-700">
                 <h4>Invest in yourself</h4>
