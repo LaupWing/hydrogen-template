@@ -21,10 +21,8 @@ import { ProductForm } from "~/components/ProductForm"
 import { cn } from "~/lib/utils"
 import { Swiper as SwiperType } from "swiper"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
-// Import Swiper React components
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react"
 
-// Import Swiper styles
 import "swiper/css"
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -275,7 +273,7 @@ export default function Product() {
                         <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                             Buy Now
                         </button>
-                        <button className=" text-center border-2 text-neutral-500 border-neutral-400 font-bold text-sm uppercase py-3 hover:bg-neutral-400 duration-200 hover:text-white rounded-full">
+                        <button className=" text-center border-2 text-neutral-700 border-neutral-700 font-bold text-sm uppercase py-3 hover:bg-neutral-700 duration-200 hover:text-white rounded-full">
                             Add to Cart
                         </button>
                         {/* <Drawer>
