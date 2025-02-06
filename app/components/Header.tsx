@@ -105,7 +105,7 @@ export function Header({
                     </div>
                 </div>
             </header>
-            {/* <header className="header">
+            <header className="header">
                 <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
                     <strong>{shop.name}</strong>
                 </NavLink>
@@ -116,7 +116,7 @@ export function Header({
                     publicStoreDomain={publicStoreDomain}
                 />
                 <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-            </header> */}
+            </header>
         </div>
     )
 }
