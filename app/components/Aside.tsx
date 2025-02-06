@@ -1,4 +1,14 @@
 import { createContext, type ReactNode, useContext, useState } from "react"
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "./ui/drawer"
 
 type AsideType = "search" | "cart" | "mobile" | "closed"
 type AsideContextValue = {
@@ -28,24 +38,43 @@ export function Aside({
 }) {
     const { type: activeType, close } = useAside()
     const expanded = type === activeType
+    console.log(type)
+    console.log(activeType)
 
     return (
-        <div
-            aria-modal
-            className={`overlay ${expanded ? "expanded" : ""}`}
-            role="dialog"
-        >
-            <button className="close-outside" onClick={close} />
-            <aside>
-                <header>
-                    <h3>{heading}</h3>
-                    <button className="close reset" onClick={close}>
-                        &times;
-                    </button>
-                </header>
-                <main>{children}</main>
-            </aside>
-        </div>
+        <Drawer open={expanded}>
+            {/* <DrawerTrigger>Open</DrawerTrigger> */}
+            <DrawerContent>
+                <DrawerHeader>
+                    <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                    <DrawerDescription>
+                        This action cannot be undone.
+                    </DrawerDescription>
+                </DrawerHeader>
+                <DrawerFooter>
+                    <button>Submit</button>
+                    <DrawerClose>
+                        <button>Cancel</button>
+                    </DrawerClose>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
+        // <div
+        //     aria-modal
+        //     className={`overlay ${expanded ? "expanded" : ""}`}
+        //     role="dialog"
+        // >
+        //     <button className="close-outside" onClick={close} />
+        //     <aside>
+        //         <header>
+        //             <h3>{heading}</h3>
+        //             <button className="close reset" onClick={close}>
+        //                 &times;
+        //             </button>
+        //         </header>
+        //         <main>{children}</main>
+        //     </aside>
+        // </div>
     )
 }
 
