@@ -62,9 +62,6 @@ export function Aside({
                     </DrawerClose>
                 </DrawerHeader>
                 <main>{children}</main>
-                <DrawerFooter>
-                    <button>Submit</button>
-                </DrawerFooter>
             </DrawerContent>
         </Drawer>
         // <div
