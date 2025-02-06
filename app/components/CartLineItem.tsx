@@ -30,6 +30,7 @@ export function CartLineItem({
         <li key={id} className="flex gap-4 items-center">
             {image && (
                 <Image
+                    className="rounded-lg w-24 md:w-32"
                     alt={title}
                     aspectRatio="1/1"
                     data={image}
