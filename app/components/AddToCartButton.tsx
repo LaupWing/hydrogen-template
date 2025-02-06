@@ -14,7 +14,6 @@ export function AddToCartButton({
     lines: Array<OptimisticCartLineInput>
     onClick?: () => void
 }) {
-    console.log(lines, "lines")
     return (
         <CartForm
             route="/cart"
@@ -32,6 +31,7 @@ export function AddToCartButton({
                         type="submit"
                         onClick={onClick}
                         disabled={disabled ?? fetcher.state !== "idle"}
+                        className=" text-center border-2 text-neutral-700 border-neutral-700 font-bold text-sm uppercase py-3 hover:bg-neutral-700 duration-200 hover:text-white rounded-full"
                     >
                         {children}
                     </button>

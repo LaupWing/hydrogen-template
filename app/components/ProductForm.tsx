@@ -1,10 +1,15 @@
-import { Link } from "@remix-run/react"
-import { type VariantOption, VariantSelector } from "@shopify/hydrogen"
+import { FetcherWithComponents, Link } from "@remix-run/react"
+import {
+    CartForm,
+    OptimisticCartLineInput,
+    type VariantOption,
+    VariantSelector,
+} from "@shopify/hydrogen"
 import type {
     ProductFragment,
     ProductVariantFragment,
 } from "storefrontapi.generated"
-import { AddToCartButton } from "~/components/AddToCartButton"
+// import { AddToCartButton } from "~/components/AddToCartButton"
 import { useAside } from "~/components/Aside"
 
 export function ProductForm({
@@ -18,7 +23,7 @@ export function ProductForm({
 }) {
     const { open } = useAside()
     return (
-        <div className="product-form">
+        <div className="grid">
             <VariantSelector
                 handle={product.handle}
                 options={product.options.filter(
@@ -30,7 +35,6 @@ export function ProductForm({
                     <ProductOptions key={option.name} option={option} />
                 )}
             </VariantSelector>
-            <br />
             <AddToCartButton
                 disabled={!selectedVariant || !selectedVariant.availableForSale}
                 onClick={() => {
@@ -51,6 +55,46 @@ export function ProductForm({
                 {selectedVariant?.availableForSale ? "Add to cart" : "Sold out"}
             </AddToCartButton>
         </div>
+    )
+}
+
+function AddToCartButton({
+    analytics,
+    children,
+    disabled,
+    lines,
+    onClick,
+}: {
+    analytics?: unknown
+    children: React.ReactNode
+    disabled?: boolean
+    lines: Array<OptimisticCartLineInput>
+    onClick?: () => void
+}) {
+    return (
+        <CartForm
+            route="/cart"
+            inputs={{ lines }}
+            action={CartForm.ACTIONS.LinesAdd}
+        >
+            {(fetcher: FetcherWithComponents<any>) => (
+                <>
+                    <input
+                        name="analytics"
+                        type="hidden"
+                        value={JSON.stringify(analytics)}
+                    />
+                    <button
+                        type="submit"
+                        onClick={onClick}
+                        disabled={disabled ?? fetcher.state !== "idle"}
+                        className=" text-center border-2 text-neutral-700 border-neutral-700 font-bold text-sm uppercase py-3 hover:bg-neutral-700 duration-200 hover:text-white rounded-full w-full"
+                    >
+                        {children}
+                    </button>
+                </>
+            )}
+        </CartForm>
     )
 }
 

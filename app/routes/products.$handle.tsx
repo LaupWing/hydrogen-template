@@ -273,15 +273,6 @@ export default function Product() {
                             Add to Cart
                         </button>
                     </div>
-                </div>
-                {/* <ProductImage image={selectedVariant?.image} />
-                <div className="product-main">
-                    <h1>{title}</h1>
-                    <ProductPrice
-                        price={selectedVariant?.price}
-                        compareAtPrice={selectedVariant?.compareAtPrice}
-                    />
-                    <br />
                     <Suspense
                         fallback={
                             <ProductForm
@@ -306,6 +297,15 @@ export default function Product() {
                             )}
                         </Await>
                     </Suspense>
+                </div>
+                {/* <ProductImage image={selectedVariant?.image} />
+                <div className="product-main">
+                    <h1>{title}</h1>
+                    <ProductPrice
+                        price={selectedVariant?.price}
+                        compareAtPrice={selectedVariant?.compareAtPrice}
+                    />
+                    <br />
                     <br />
                     <br />
                     <p>
