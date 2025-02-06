@@ -6,6 +6,7 @@ import {
     VariantSelector,
 } from "@shopify/hydrogen"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 import type {
     ProductFragment,
     ProductVariantFragment,
@@ -23,6 +24,8 @@ export function ProductForm({
     variants: Array<ProductVariantFragment>
 }) {
     const { open } = useAside()
+    const [quantity, setQuantity] = useState(1)
+
     return (
         <div className="grid gap-4 max-w-md mx-auto w-full">
             <VariantSelector
@@ -37,11 +40,22 @@ export function ProductForm({
                 )}
             </VariantSelector>
             <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
-                <button className="p-1.5 px-2 text-neutral-400">
+                <button
+                    className="p-1.5 px-2 text-neutral-400"
+                    onClick={() => {
+                        if (quantity == 1) return
+                        setQuantity(quantity - 1)
+                    }}
+                >
                     <ChevronLeft />
                 </button>
-                <div className="text-lg">1</div>
-                <button className="p-1.5 px-2 text-neutral-400">
+                <div className="text-lg">{quantity}</div>
+                <button
+                    className="p-1.5 px-2 text-neutral-400"
+                    onClick={() => {
+                        setQuantity(quantity + 1)
+                    }}
+                >
                     <ChevronRight />
                 </button>
             </div>
