@@ -42,15 +42,23 @@ export function Aside({
     console.log(activeType)
 
     return (
-        <Drawer open={expanded}>
+        <Drawer
+            onOpenChange={(open) => {
+                if (!open) {
+                    close()
+                }
+            }}
+            open={expanded}
+        >
             {/* <DrawerTrigger>Open</DrawerTrigger> */}
-            <DrawerContent>
+            <DrawerContent className="max-w-4xl mx-auto grid">
                 <DrawerHeader>
                     <DrawerTitle>Are you absolutely sure?</DrawerTitle>
                     <DrawerDescription>
                         This action cannot be undone.
                     </DrawerDescription>
                 </DrawerHeader>
+                <main>{children}</main>
                 <DrawerFooter>
                     <button>Submit</button>
                     <DrawerClose>
