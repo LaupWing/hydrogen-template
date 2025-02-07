@@ -244,7 +244,7 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         )}
                     </div>
                 </div>
-                <div className="col-span-3 grid gap-4">
+                <div className="w-full md:col-span-3 grid gap-4">
                     <div className="flex gap-2 items-center">
                         <div className="flex">
                             <Star
