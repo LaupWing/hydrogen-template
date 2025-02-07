@@ -52,15 +52,15 @@ export default function Collection() {
 
     return (
         <div className="bg-white pb-16">
-            <div className="relative">
-                <div className="absolute inset-0 z-50 bg-black/20"></div>
+            <div className="relative rounded-t-3xl overflow-hidden">
+                <div className="absolute inset-0 z-10 bg-black/20"></div>
                 <img
-                    className="aspect-[16/7] rounded-t-3xl object-cover"
+                    className="md:aspect-[16/7] object-[40%_75%] md:object-center aspect-[8/10] object-cover"
                     src="/banner.png"
                     alt=""
                 />
             </div>
-            <div className="custom-container grid grid-cols-3 gap-4">
+            <div className="custom-container grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
                 {/* @ts-ignore */}
                 {products.nodes.map((product) => (
                     <ProductItem key={product.id} product={product} />
