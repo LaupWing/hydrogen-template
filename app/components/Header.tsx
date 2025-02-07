@@ -61,7 +61,7 @@ export function Header({
                     </div>
                 </div>
             </div>
-            <header className="bg-white rounded-t-3xl">
+            <header className="bg-white sticky top-0 rounded-t-3xl">
                 <div className="custom-container grid items-center py-8 grid-cols-4">
                     <Menu className="md:hidden" />
                     <NavLink
