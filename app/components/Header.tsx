@@ -32,8 +32,8 @@ export function Header({
 }: HeaderProps) {
     const { shop, menu } = header
     return (
-        <div className="flex flex-col">
-            <div className="py-4">
+        <div className="flex flex-col sticky top-0 z-50">
+            <div className="py-4  bg-black z-50">
                 <div className="custom-container items-center text-white grid grid-cols-1 md:grid-cols-4">
                     <div className="hidden md:flex items-center gap-4">
                         <Twitter />
