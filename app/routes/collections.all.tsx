@@ -51,7 +51,12 @@ export default function Collection() {
     const { products } = useLoaderData<typeof loader>()
 
     return (
-        <div className="bg-white pt-8 pb-16">
+        <div className="bg-white pb-16">
+            <img
+                className="aspect-[16/7] rounded-t-3xl object-cover"
+                src="/banner.jpeg"
+                alt=""
+            />
             <div className="custom-container grid grid-cols-3 gap-4">
                 {/* @ts-ignore */}
                 {products.nodes.map((product) => (

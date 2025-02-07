@@ -66,26 +66,26 @@ export default function Blog() {
     const { articles } = blog
 
     return (
-        <div className="bg-white py-16">
+        <div className="bg-white md:pt-4 pb-16">
             <div className="custom-container flex items-start">
-                <h2 className="text-neutral-800 mb-10 text-5xl font-bold">
+                <h2 className="text-neutral-800 mb-10 text-3xl md:text-5xl font-bold">
                     All Blogs
                     <div className="w-3/4 h-1 bg-yellow-400 mt-2 rounded-full" />
                 </h2>
             </div>
-            <div className="mx-auto mb-10 custom-container grid-cols-3 gap-10 grid">
+            <div className="mx-auto mb-10 custom-container md:grid-cols-3 gap-10 grid">
                 {articles.nodes.map((article: ArticleItemFragment) => (
                     <ArticleItem article={article} key={article.id} />
                 ))}
                 {/* <PaginatedResourceSection connection={articles}>
-              {({ node: article, index }) => (
-                  <ArticleItem
-                      article={article}
-                      key={article.id}
-                      loading={index < 2 ? "eager" : "lazy"}
-                  />
-              )}
-          </PaginatedResourceSection> */}
+                {({ node: article, index }) => (
+                    <ArticleItem
+                        article={article}
+                        key={article.id}
+                        loading={index < 2 ? "eager" : "lazy"}
+                    />
+                )}
+            </PaginatedResourceSection> */}
             </div>
         </div>
     )
