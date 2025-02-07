@@ -95,19 +95,19 @@ export function Footer({
             <div className="flex flex-col bg-neutral-950">
                 <div className="flex flex-col bg-neutral-900 rounded-b-2xl overflow-hidden">
                     <div className="border-t rounded-b-3xl overflow-hidden bg-white">
-                        <div className="my-16 divide-x custom-container grid  grid-cols-4">
+                        <div className="my-16 md:divide-x md:divide-y-0 divide-y custom-container md:grid flex flex-col md:grid-cols-4">
                             {features.map(
                                 ({ icon: Icon, title, description }, index) => (
                                     <div
                                         key={index}
-                                        className="flex px-4 gap-4"
+                                        className="flex px-4 md:py-0 py-4 gap-4"
                                     >
                                         <Icon className="flex-shrink-0" />
                                         <div className="flex flex-col gap-0.5">
-                                            <h3 className="text-lg text-neutral-800 font-bold">
+                                            <h3 className="md:text-lg text-neutral-800 font-bold">
                                                 {title}
                                             </h3>
-                                            <p className="text-sm text-neutral-600">
+                                            <p className="md:text-sm text-xs text-neutral-600">
                                                 {description}
                                             </p>
                                         </div>
