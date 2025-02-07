@@ -13,6 +13,7 @@ import Logo from "./Logo"
 import Threads from "./logos/Threads"
 import X from "./logos/X"
 import Instagram from "./logos/Instagram"
+import { SocialIcons } from "./SocialIcons"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -120,11 +121,7 @@ export function Footer({
                         <div className="custom-container items-start flex md:flex-row flex-col-reverse gap-10 justify-between">
                             <div className="grid gap-2">
                                 <Logo className="text-white w-40" />
-                                <div className="flex gap-4 mt-4">
-                                    <Threads className="fill-current text-white w-6" />
-                                    <X className="fill-current text-white w-6" />
-                                    <Instagram className="fill-current text-white w-6" />
-                                </div>
+                                <SocialIcons className="mt-4" />
                             </div>
                             <div className="flex flex-col items-start gap-3">
                                 <h2 className="text-xl font-bold">

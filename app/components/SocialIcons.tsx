@@ -8,7 +8,7 @@ export const SocialIcons: FC<{
     className?: string
 }> = ({ className = "" }) => {
     return (
-        <div className={cn("flex gap-4 mt-4", className)}>
+        <div className={cn("flex gap-4", className)}>
             <Threads className="fill-current text-white w-6" />
             <X className="fill-current text-white w-6" />
             <Instagram className="fill-current text-white w-6" />
