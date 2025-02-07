@@ -153,7 +153,7 @@ export default function Product() {
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 pb-8">
-                <div className="col-span-1 md:col-span-4 gap-2 items-start flex">
+                <div className="col-span-1 md:col-span-4 gap-2 items-start flex flex-col-reverse md:flex-row">
                     <div className="grid w-20 flex-shrink-0 gap-2">
                         {product!.images.nodes.map(
                             (image: any, index: number) => (
