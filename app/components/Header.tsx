@@ -215,6 +215,7 @@ export function HeaderMenu({
                                             end
                                             onClick={close}
                                             prefetch="intent"
+                                            style={activeLinkStyle}
                                             to={url}
                                         >
                                             {item.title}
