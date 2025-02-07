@@ -1,19 +1,14 @@
-import type { ActionFunction } from "@remix-run/node"
+import { json, type ActionFunctionArgs } from "@netlify/remix-runtime"
 
-export const action: ActionFunction = async ({ request }) => {
+export async function action({ request, context }: ActionFunctionArgs) {
     if (request.method !== "POST") {
         return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
             status: 405,
         })
     }
-    console.log("Subscribing email:", email)
-    return new Response(JSON.stringify({ error: "Not implemented yet" }), {
-        status: 501,
-    })
-    try {
-        // Parse JSON from the request
-        const { email } = await request.json()
 
+    try {
+        const { email } = (await request.json()) as any
         if (!email) {
             return new Response(
                 JSON.stringify({ error: "Email is required" }),
@@ -42,7 +37,7 @@ export const action: ActionFunction = async ({ request }) => {
             }),
         })
 
-        const shopifyData = await shopifyResponse.json()
+        const shopifyData: any = await shopifyResponse.json()
 
         if (!shopifyResponse.ok) {
             return new Response(
@@ -70,7 +65,7 @@ export const action: ActionFunction = async ({ request }) => {
             }
         )
 
-        const beehiivData = await beehiivResponse.json()
+        const beehiivData = (await beehiivResponse.json()) as any
 
         if (!beehiivResponse.ok) {
             return new Response(
@@ -86,22 +81,9 @@ export const action: ActionFunction = async ({ request }) => {
         console.log("Beehiiv subscription successful:", beehiivData)
 
         // Return success if both API calls were successful
-        return new Response(
-            JSON.stringify({
-                success: true,
-                shopify: shopifyData,
-                beehiiv: beehiivData,
-            }),
-            {
-                status: 200,
-                headers: { "Content-Type": "application/json" },
-            }
-        )
+        return json({ success: true, shopifyData, beehiivData })
     } catch (error: any) {
         console.error("Error in subscription:", error.message)
-        return new Response(
-            JSON.stringify({ error: error.message || "Internal Server Error" }),
-            { status: 500 }
-        )
+        return json({ error: error.message }, { status: 500 })
     }
 }
