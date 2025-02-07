@@ -172,7 +172,7 @@ export function HeaderMenu({
     const { close } = useAside()
 
     return (
-        <nav className="flex flex-col gap-6 mt-8" role="navigation">
+        <nav className="flex flex-col gap-6" role="navigation">
             {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
                 if (!item.url) return null
 

@@ -61,14 +61,15 @@ export function Aside({
             <SheetContent
                 onOpenAutoFocus={(e) => e.preventDefault()}
                 side={"left"}
+                className="flex flex-col h-full p-0 gap-2"
             >
                 <SheetHeader>
-                    <SheetTitle>
+                    <SheetTitle className="p-4">
                         <Logo className="w-24" />
                     </SheetTitle>
                 </SheetHeader>
-                <main>{children}</main>
-                <SocialIcons className="text-black" />
+                <main className="p-4">{children}</main>
+                <SocialIcons className="text-neutral-800 p-4 py-6 bg-neutral-100 mt-auto" />
             </SheetContent>
         </Sheet>
     ) : (
