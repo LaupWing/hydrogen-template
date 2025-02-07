@@ -16,7 +16,7 @@
         "@netlify/edge-functions": "^2.10.0",
         "@netlify/remix-edge-adapter": "^3.4.2",
         "@netlify/remix-runtime": "^2.3.1",
-        "@radix-ui/react-dialog": "^1.1.5",
+        "@radix-ui/react-dialog": "^1.1.6",
         "@remix-run/react": "^2.12.0",
         "@shopify/hydrogen": "^2024.7.4",
         "@tailwindcss/vite": "^4.0.3",
