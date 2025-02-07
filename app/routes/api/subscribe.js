@@ -25,6 +25,20 @@ export async function action({ request }) {
         })
 
         const data = await response.json()
+        const responseBeehiiv = await fetch(
+            "https://api.beehiiv.com/v2/publications/pub_933eff84-523b-4a44-8fc1-2c0166fa0fd8/subscriptions",
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${process.env.BEEHIIV_API_KEY}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: email }),
+            }
+        )
+
+        await responseBeehiiv.json()
+
         if (!response.ok) {
             throw new Error(data.errors)
         }
