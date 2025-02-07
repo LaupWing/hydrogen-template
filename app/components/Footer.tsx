@@ -5,6 +5,7 @@ import {
     ArrowRight,
     Banknote,
     BicepsFlexed,
+    Loader2,
     ShieldCheck,
     Smartphone,
 } from "lucide-react"
@@ -28,9 +29,11 @@ export function Footer({
 }: FooterProps) {
     const NewsLetterInput = () => {
         const [focused, setFocused] = useState(false)
+        const [loading, setLoading] = useState(false)
         const [email, setEmail] = useState("")
         const handleSubmit = async (e: React.FormEvent) => {
             e.preventDefault()
+            setLoading(true)
             try {
                 const response = await fetch("/subscribe", {
                     method: "POST",
@@ -38,10 +41,13 @@ export function Footer({
                     body: JSON.stringify({ email }),
                 })
 
-                const data = await response.json()
-                console.log(data)
-            } catch (error) {}
-            console.log("Submitted email", email)
+                await response.json()
+                setEmail("")
+                setLoading(false)
+            } catch (error) {
+                console.error(error)
+                setLoading(false)
+            }
         }
         return (
             <form
@@ -66,6 +72,7 @@ export function Footer({
                     id="email"
                     type="email"
                     value={email}
+                    disabled={loading}
                     onChange={(e) => setEmail(e.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
@@ -75,7 +82,11 @@ export function Footer({
                     type="submit"
                     className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700 flex-shrink-0"
                 >
-                    <ArrowRight />
+                    {loading ? (
+                        <Loader2 className="animate-spin" />
+                    ) : (
+                        <ArrowRight />
+                    )}
                 </button>
             </form>
         )
