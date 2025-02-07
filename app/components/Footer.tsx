@@ -32,7 +32,7 @@ export function Footer({
         return (
             <div
                 className={cn(
-                    "p-2 px-4 relative items-center flex rounded-full bg-neutral-700",
+                    "p-2 px-4 relative items-center flex w-full md:w-auto rounded-full bg-neutral-700",
                     focused && "ring-2 ring-yellow-400"
                 )}
             >
@@ -54,9 +54,9 @@ export function Footer({
                     onChange={(e) => setEmail(e.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
-                    className="p-1 focus:outline-none text-lg bg-neutral-700 w-96"
+                    className="p-1 focus:outline-none text-lg bg-neutral-700 w-full md:w-96"
                 />
-                <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700">
+                <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700 flex-shrink-0">
                     <ArrowRight />
                 </button>
             </div>
