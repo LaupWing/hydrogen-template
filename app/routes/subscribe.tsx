@@ -8,41 +8,67 @@ export async function action({ request }: ActionFunctionArgs) {
     }
 
     try {
-        const { email } = (await request.json()) as any
+        const { email, password } = (await request.json()) as {
+            email: string
+            password?: string
+        }
+
         if (!email) {
             return new Response(
                 JSON.stringify({ error: "Email is required" }),
-                { status: 400 }
+                {
+                    status: 400,
+                }
             )
         }
 
         console.log("Subscribing email:", email)
 
-        // Shopify Admin API URL
-        const ADMIN_API_URL = `https://${process.env.PUBLIC_STORE_DOMAIN}/admin/api/2023-01/customers.json`
+        // Shopify Storefront API URL (GraphQL)
+        const STOREFRONT_API_URL = `https://${process.env.PUBLIC_STORE_DOMAIN}/api/2023-01/graphql.json`
 
-        // Send request to Shopify API
-        const shopifyResponse = await fetch(ADMIN_API_URL, {
+        // GraphQL mutation for creating a customer
+        const shopifyGraphQLQuery = `
+            mutation customerCreate($input: CustomerCreateInput!) {
+                customerCreate(input: $input) {
+                    customer {
+                        id
+                        email
+                    }
+                    customerUserErrors {
+                        message
+                    }
+                }
+            }
+        `
+
+        // Send request to Shopify Storefront API
+        const shopifyResponse = await fetch(STOREFRONT_API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-Shopify-Access-Token":
-                    process.env.PRIVATE_STOREFRONT_API_TOKEN!,
+                "X-Shopify-Storefront-Access-Token":
+                    process.env.PUBLIC_STOREFRONT_API_TOKEN!,
             },
             body: JSON.stringify({
-                customer: {
-                    email: email,
-                    accepts_marketing: true, // Subscribing to marketing emails
+                query: shopifyGraphQLQuery,
+                variables: {
+                    input: {
+                        email,
+                        password: password || "defaultPassword123!", // Storefront API requires a password
+                    },
                 },
             }),
         })
 
-        const shopifyData: any = await shopifyResponse.json()
+        const shopifyData = (await shopifyResponse.json()) as any
 
-        if (!shopifyResponse.ok) {
+        if (!shopifyResponse.ok || shopifyData.errors) {
             return json(
                 {
-                    error: shopifyData.errors || "Shopify subscription failed",
+                    error:
+                        shopifyData.errors ||
+                        "Shopify Storefront API subscription failed",
                 },
                 { status: shopifyResponse.status }
             )
@@ -70,9 +96,7 @@ export async function action({ request }: ActionFunctionArgs) {
                 JSON.stringify({
                     error: beehiivData.error || "Beehiiv subscription failed",
                 }),
-                {
-                    status: beehiivResponse.status,
-                }
+                { status: beehiivResponse.status }
             )
         }
 

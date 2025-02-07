@@ -20,6 +20,7 @@ declare global {
             PUBLIC_STORE_DOMAIN: string
             PRIVATE_STOREFRONT_API_TOKEN: string
             BEEHIIV_API_KEY: string
+            PUBLIC_STOREFRONT_API_TOKEN: string
         }
     }
 
