@@ -56,7 +56,6 @@ export function Aside({
             }}
             open={expanded}
         >
-            {/* <SheetTrigger>Open</SheetTrigger> */}
             <SheetContent>
                 <SheetHeader>
                     <SheetTitle>Are you absolutely sure?</SheetTitle>
