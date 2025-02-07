@@ -353,7 +353,7 @@ function FeaturedBlogs({ blogs }: { blogs: ArticleItemFragment[] }) {
                             ))}
                         </Slider>
                     )}
-                    <div className="absolute z-20 px-10 md:pb-16 pb-8 bottom-0 left-0 right-0">
+                    <div className="absolute z-20 md:px-10 px-6 md:pb-16 pb-8 bottom-0 left-0 right-0">
                         <div className="flex flex-col">
                             <div className="flex md:flex-row flex-col justify-between pb-4 md:pb-8 border-b border-neutral-400 md:items-end">
                                 <div className="flex pointer-events-none gap-2 flex-col max-w-lg">
