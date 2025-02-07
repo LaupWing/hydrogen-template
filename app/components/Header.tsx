@@ -173,18 +173,7 @@ export function HeaderMenu({
     const { close } = useAside()
 
     return (
-        <nav className={className} role="navigation">
-            {viewport === "mobile" && (
-                <NavLink
-                    end
-                    onClick={close}
-                    prefetch="intent"
-                    style={activeLinkStyle}
-                    to="/"
-                >
-                    Home
-                </NavLink>
-            )}
+        <nav className="flex flex-col gap-4 mt-8" role="navigation">
             {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
                 if (!item.url) return null
 
