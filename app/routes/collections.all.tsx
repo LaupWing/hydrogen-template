@@ -52,8 +52,16 @@ export default function Collection() {
 
     return (
         <div className="bg-white pb-16">
-            <div className="relative rounded-t-3xl overflow-hidden">
-                <div className="absolute inset-0 z-10 bg-black/20"></div>
+            <div className="relative flex items-center justify-center flex-col rounded-t-3xl overflow-hidden">
+                <div className="absolute inset-0 z-10 bg-black/60 md:bg-black/40"></div>
+                <div className="absolute mt-20 grid w-full custom-container z-20">
+                    <p className="text-lg font-semibold tracking-wider uppercase text-yellow-400 md:text-yellow-200">
+                        Do what works and
+                    </p>
+                    <h2 className="text-white font-bold uppercase text-3xl md:text-5xl">
+                        Become the best version
+                    </h2>
+                </div>
                 <img
                     className="md:aspect-[16/7] object-[40%_75%] md:object-center aspect-[8/10] object-cover"
                     src="/banner.png"
