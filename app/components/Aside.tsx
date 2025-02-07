@@ -17,6 +17,7 @@ import {
     SheetHeader,
     SheetTitle,
 } from "./ui/sheet"
+import Logo from "./Logo"
 
 type AsideType = "search" | "cart" | "mobile" | "closed"
 type AsideContextValue = {
@@ -56,15 +57,16 @@ export function Aside({
             }}
             open={expanded}
         >
-            <SheetContent side={"left"}>
+            <SheetContent
+                onOpenAutoFocus={(e) => e.preventDefault()}
+                side={"left"}
+            >
                 <SheetHeader>
-                    <SheetTitle>Are you absolutely sure?</SheetTitle>
-                    <SheetDescription>
-                        This action cannot be undone. This will permanently
-                        delete your account and remove your data from our
-                        servers.
-                    </SheetDescription>
+                    <SheetTitle>
+                        <Logo className="w-24" />
+                    </SheetTitle>
                 </SheetHeader>
+                <main>{children}</main>
             </SheetContent>
         </Sheet>
     ) : (
