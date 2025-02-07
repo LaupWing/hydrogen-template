@@ -18,6 +18,7 @@ import {
     SheetTitle,
 } from "./ui/sheet"
 import Logo from "./Logo"
+import { SocialIcons } from "./SocialIcons"
 
 type AsideType = "search" | "cart" | "mobile" | "closed"
 type AsideContextValue = {
@@ -67,6 +68,7 @@ export function Aside({
                     </SheetTitle>
                 </SheetHeader>
                 <main>{children}</main>
+                <SocialIcons className="text-black" />
             </SheetContent>
         </Sheet>
     ) : (

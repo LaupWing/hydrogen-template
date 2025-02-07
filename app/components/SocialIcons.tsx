@@ -9,9 +9,9 @@ export const SocialIcons: FC<{
 }> = ({ className = "" }) => {
     return (
         <div className={cn("flex gap-4", className)}>
-            <Threads className="fill-current text-white w-6" />
-            <X className="fill-current text-white w-6" />
-            <Instagram className="fill-current text-white w-6" />
+            <Threads className="fill-current w-6" />
+            <X className="fill-current w-6" />
+            <Instagram className="fill-current w-6" />
         </div>
     )
 }

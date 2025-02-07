@@ -121,7 +121,7 @@ export function Footer({
                         <div className="custom-container items-start flex md:flex-row flex-col-reverse gap-10 justify-between">
                             <div className="grid gap-2">
                                 <Logo className="text-white w-40" />
-                                <SocialIcons className="mt-4" />
+                                <SocialIcons className="mt-4 text-white" />
                             </div>
                             <div className="flex flex-col items-start gap-3">
                                 <h2 className="text-xl font-bold">
