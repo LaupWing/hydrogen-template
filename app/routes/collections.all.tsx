@@ -101,8 +101,10 @@ function ProductItem({
                 />
             )}
             <div className="flex justify-between">
-                <h4 className="text-lg">{product.title}</h4>
-                <small>
+                <h4 className="text-lg font-semibold text-neutral-900">
+                    {product.title}
+                </h4>
+                <small className="text-base text-neutral-600">
                     <Money data={product.priceRange.minVariantPrice} />
                 </small>
             </div>
