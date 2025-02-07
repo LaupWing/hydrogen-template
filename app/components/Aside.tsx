@@ -49,7 +49,6 @@ export function Aside({
             }}
             open={expanded}
         >
-            {/* <DrawerTrigger>Open</DrawerTrigger> */}
             <DrawerContent className="max-w-2xl mx-auto grid">
                 <DrawerHeader className="flex items-center text-neutral-900 py-8 pt-4 px-6 border-b justify-between">
                     <DrawerTitle className="text-2xl md:text-3xl font-bold">
@@ -64,22 +63,6 @@ export function Aside({
                 <main>{children}</main>
             </DrawerContent>
         </Drawer>
-        // <div
-        //     aria-modal
-        //     className={`overlay ${expanded ? "expanded" : ""}`}
-        //     role="dialog"
-        // >
-        //     <button className="close-outside" onClick={close} />
-        //     <aside>
-        //         <header>
-        //             <h3>{heading}</h3>
-        //             <button className="close reset" onClick={close}>
-        //                 &times;
-        //             </button>
-        //         </header>
-        //         <main>{children}</main>
-        //     </aside>
-        // </div>
     )
 }
 
