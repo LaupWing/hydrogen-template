@@ -3,7 +3,7 @@
         "./**/*.d.ts",
         "./**/*.ts",
         "./**/*.tsx",
-        "app/routes/api/subscribe.js"
+        "app/routes/api/subscribe.ts"
     ],
     "compilerOptions": {
         "lib": ["DOM", "DOM.Iterable", "ES2022"],

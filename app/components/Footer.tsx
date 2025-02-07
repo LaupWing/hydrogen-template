@@ -29,9 +29,23 @@ export function Footer({
     const NewsLetterInput = () => {
         const [focused, setFocused] = useState(false)
         const [email, setEmail] = useState("")
+        const handleSubmit = async (e: React.FormEvent) => {
+            e.preventDefault()
+            try {
+                const response = await fetch("/api/subscribe", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email }),
+                })
 
+                const data = await response.json()
+                console.log(data)
+            } catch (error) {}
+            console.log("Submitted email", email)
+        }
         return (
-            <div
+            <form
+                onSubmit={handleSubmit}
                 className={cn(
                     "p-2 px-4 relative items-center flex w-full md:w-auto rounded-full bg-neutral-700",
                     focused && "ring-2 ring-yellow-400"
@@ -57,10 +71,13 @@ export function Footer({
                     onBlur={() => setFocused(false)}
                     className="p-1 focus:outline-none text-lg bg-neutral-700 w-full md:w-96"
                 />
-                <button className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700 flex-shrink-0">
+                <button
+                    type="submit"
+                    className="w-10 rounded-full flex items-center justify-center h-10 bg-yellow-400 text-neutral-700 flex-shrink-0"
+                >
                     <ArrowRight />
                 </button>
-            </div>
+            </form>
         )
     }
 
