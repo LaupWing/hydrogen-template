@@ -134,58 +134,57 @@ function ArticleItem({
 
 // NOTE: https://shopify.dev/docs/api/storefront/latest/objects/blog
 const BLOGS_QUERY = `#graphql
-  query Blog(
-    $language: LanguageCode
-    $blogHandle: String!
-    $first: Int
-    $last: Int
-    $startCursor: String
-    $endCursor: String
-  ) @inContext(language: $language) {
-    blog(handle: $blogHandle) {
-      title
-      seo {
+    query Blog(
+        $language: LanguageCode
+        $blogHandle: String!
+        $first: Int
+        $last: Int
+        $startCursor: String
+        $endCursor: String
+    ) @inContext(language: $language) {
+        blog(handle: $blogHandle) {
         title
-        description
-      }
-      articles(
-        first: $first,
-        last: $last,
-        before: $startCursor,
-        after: $endCursor
-      ) {
-        nodes {
-          ...ArticleItem
+        seo {
+            title
+            description
         }
-        pageInfo {
-          hasPreviousPage
-          hasNextPage
-          hasNextPage
-          endCursor
-          startCursor
+        articles(
+            first: $first,
+            last: $last,
+            before: $startCursor,
+            after: $endCursor
+        ) {
+            nodes {
+                ...ArticleItem
+                }
+                pageInfo {
+                    hasPreviousPage
+                    hasNextPage
+                    hasNextPage
+                    endCursor
+                    startCursor
+                }
+            }
         }
-
-      }
     }
-  }
-  fragment ArticleItem on Article {
-    author: authorV2 {
-      name
+    fragment ArticleItem on Article {
+        author: authorV2 {
+            name
+        }
+            contentHtml
+            handle
+            id
+            image {
+            id
+            altText
+            url
+            width
+            height
+        }
+        publishedAt
+        title
+        blog {
+            handle
+        }
     }
-    contentHtml
-    handle
-    id
-    image {
-      id
-      altText
-      url
-      width
-      height
-    }
-    publishedAt
-    title
-    blog {
-      handle
-    }
-  }
 ` as const
