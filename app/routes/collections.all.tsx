@@ -51,8 +51,8 @@ export default function Collection() {
     const { products } = useLoaderData<typeof loader>()
 
     return (
-        <div className="bg-white py-16">
-            <div className="custom-container">
+        <div className="bg-white pt-8 pb-16">
+            <div className="custom-container grid grid-cols-2 gap-4">
                 {/* @ts-ignore */}
                 {products.nodes.map((product) => (
                     <ProductItem key={product.id} product={product} />
