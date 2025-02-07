@@ -10,6 +10,13 @@ import {
     DrawerTrigger,
 } from "./ui/drawer"
 import { X } from "lucide-react"
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+} from "./ui/sheet"
 
 type AsideType = "search" | "cart" | "mobile" | "closed"
 type AsideContextValue = {
@@ -40,7 +47,21 @@ export function Aside({
     const { type: activeType, close } = useAside()
     const expanded = type === activeType
 
-    return (
+    return type === "mobile" ? (
+        <Sheet>
+            {/* <SheetTrigger>Open</SheetTrigger> */}
+            <SheetContent>
+                <SheetHeader>
+                    <SheetTitle>Are you absolutely sure?</SheetTitle>
+                    <SheetDescription>
+                        This action cannot be undone. This will permanently
+                        delete your account and remove your data from our
+                        servers.
+                    </SheetDescription>
+                </SheetHeader>
+            </SheetContent>
+        </Sheet>
+    ) : (
         <Drawer
             onOpenChange={(open) => {
                 if (!open) {
