@@ -169,5 +169,5 @@ const CATALOG_QUERY = `#graphql
             }
         }
     }
-  ${PRODUCT_ITEM_FRAGMENT}
+    ${PRODUCT_ITEM_FRAGMENT}
 ` as const
