@@ -153,7 +153,7 @@ export default function Product() {
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 pb-8">
-                <div className="col-span-4 gap-2 items-start flex">
+                <div className="col-span-1 md:col-span-4 gap-2 items-start flex">
                     <div className="grid w-20 flex-shrink-0 gap-2">
                         {product!.images.nodes.map(
                             (image: any, index: number) => (
@@ -210,7 +210,7 @@ export default function Product() {
                         </Swiper>
                     </div>
                 </div>
-                <div className="col-span-3 grid gap-4">
+                <div className="md:col-span-3 grid gap-4">
                     <div className="flex gap-2 items-center">
                         <div className="flex">
                             <Star
@@ -245,7 +245,7 @@ export default function Product() {
                         {/* <Money data={product!.price.amount} /> */}
                     </div>
                     <div
-                        className="text-neutral-700 text-base"
+                        className="text-neutral-700 text-sm md:text-base"
                         dangerouslySetInnerHTML={{
                             __html: product!.descriptionHtml,
                         }}
