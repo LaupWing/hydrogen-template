@@ -17,6 +17,7 @@ import appStyles from "~/styles/app.css?url"
 import { PageLayout } from "~/components/PageLayout"
 import tailwindCss from "./tailwind.css?url"
 import { FOOTER_QUERY, HEADER_QUERY } from "~/lib/fragments"
+import { Toaster } from "./components/ui/toaster"
 
 export type RootLoader = typeof loader
 
@@ -158,6 +159,7 @@ export function Layout({ children }: { children?: React.ReactNode }) {
                 )}
                 <ScrollRestoration nonce={nonce} />
                 <Scripts nonce={nonce} />
+                <Toaster />
             </body>
         </html>
     )
