@@ -32,8 +32,8 @@ export function Header({
 }: HeaderProps) {
     const { shop, menu } = header
     return (
-        <div className="flex flex-col sticky top-0 z-50">
-            <div className="py-4  bg-black z-50">
+        <>
+            <div className="flex items-center justify-center h-12 bg-black z-50">
                 <div className="custom-container items-center text-white grid grid-cols-1 md:grid-cols-4">
                     <div className="hidden md:flex items-center gap-4">
                         <Twitter />
@@ -61,7 +61,7 @@ export function Header({
                     </div>
                 </div>
             </div>
-            <header className="bg-white sticky top-0 rounded-t-3xl">
+            <header className="bg-white sticky z-50 top-0 rounded-t-3xl">
                 <div className="custom-container grid items-center py-8 grid-cols-4">
                     <Menu className="md:hidden" />
                     <NavLink
@@ -124,7 +124,7 @@ export function Header({
                 />
                 <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
             </header> */}
-        </div>
+        </>
     )
 }
 
