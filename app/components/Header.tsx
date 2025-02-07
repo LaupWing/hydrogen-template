@@ -64,9 +64,16 @@ export function Header({
             <header className="bg-white rounded-t-3xl">
                 <div className="custom-container grid items-center py-8 grid-cols-4">
                     <Menu className="md:hidden" />
-                    <h1 className="text-2xl col-span-2 md:col-span-1 flex items-center justify-center md:justify-start">
-                        <Logo className="w-24" />
-                    </h1>
+                    <NavLink
+                        className="text-2xl col-span-2 md:col-span-1 flex items-center justify-center md:justify-start"
+                        end
+                        prefetch="intent"
+                        to="/"
+                    >
+                        <h1>
+                            <Logo className="w-24" />
+                        </h1>
+                    </NavLink>
                     <nav className="col-span-2 hidden md:block">
                         <ul className="flex max-w-lg mx-auto justify-between uppercase">
                             {(menu || FALLBACK_HEADER_MENU).items.map(
