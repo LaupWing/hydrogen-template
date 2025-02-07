@@ -64,10 +64,12 @@ export default function Article() {
 
     return (
         <div className="bg-white items-center flex flex-col">
-            <small className="mt-8">
+            <small className="mt-4 text-neutral-500">
                 {publishedDate} &middot; {author?.name}
             </small>
-            <h1 className="mx-auto text-5xl font-bold pt-2 pb-6">{title}</h1>
+            <h1 className="mx-auto text-4xl md:text-5xl font-bold pt-2 pb-6">
+                {title}
+            </h1>
 
             {image && (
                 <Image
