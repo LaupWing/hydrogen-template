@@ -52,11 +52,14 @@ export default function Collection() {
 
     return (
         <div className="bg-white pb-16">
-            <img
-                className="aspect-[16/7] rounded-t-3xl object-cover"
-                src="/banner.jpeg"
-                alt=""
-            />
+            <div className="relative">
+                <div className="absolute inset-0 z-50 bg-black/20"></div>
+                <img
+                    className="aspect-[16/7] rounded-t-3xl object-cover"
+                    src="/banner.png"
+                    alt=""
+                />
+            </div>
             <div className="custom-container grid grid-cols-3 gap-4">
                 {/* @ts-ignore */}
                 {products.nodes.map((product) => (
