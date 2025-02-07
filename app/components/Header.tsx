@@ -1,4 +1,4 @@
-import { Suspense } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { Await, NavLink } from "@remix-run/react"
 import { type CartViewPayload, useAnalytics } from "@shopify/hydrogen"
 import type { HeaderQuery, CartApiQueryFragment } from "storefrontapi.generated"
@@ -14,6 +14,8 @@ import {
     Youtube,
 } from "lucide-react"
 import Logo from "./Logo"
+import { useScrollPosition } from "~/utils"
+import { cn } from "~/lib/utils"
 
 interface HeaderProps {
     header: HeaderQuery
@@ -31,6 +33,22 @@ export function Header({
     publicStoreDomain,
 }: HeaderProps) {
     const { shop, menu } = header
+
+    const scrollY = useScrollPosition()
+    const [scrolledPassed, setScrolledPassed] = useState(false)
+
+    useEffect(() => {
+        if (scrollY > 40) {
+            if (!scrolledPassed) {
+                setScrolledPassed(true)
+            }
+        } else if (scrollY < 10) {
+            if (scrolledPassed) {
+                setScrolledPassed(false)
+            }
+        }
+    }, [scrollY])
+
     return (
         <>
             <div className="flex items-center justify-center h-12 bg-black z-50">
@@ -61,8 +79,15 @@ export function Header({
                     </div>
                 </div>
             </div>
-            <header className="bg-white sticky z-50 top-0 rounded-t-3xl">
-                <div className="custom-container grid items-center py-8 grid-cols-4">
+            <header
+                className={cn(
+                    "bg-white duration-300 sticky z-50 top-0",
+                    scrolledPassed
+                        ? "shadow-md rounded-none py-6"
+                        : "shadow-none rounded-t-3xl py-8"
+                )}
+            >
+                <div className="custom-container grid items-center grid-cols-4">
                     <Menu className="md:hidden" />
                     <NavLink
                         className="text-2xl col-span-2 md:col-span-1 flex items-center justify-center md:justify-start"
