@@ -1,6 +1,6 @@
 import { json, type ActionFunctionArgs } from "@netlify/remix-runtime"
 
-export async function action({ request, context }: ActionFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
     if (request.method !== "POST") {
         return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
             status: 405,
@@ -40,13 +40,11 @@ export async function action({ request, context }: ActionFunctionArgs) {
         const shopifyData: any = await shopifyResponse.json()
 
         if (!shopifyResponse.ok) {
-            return new Response(
-                JSON.stringify({
-                    error: shopifyData.errors || "Shopify subscription failed",
-                }),
+            return json(
                 {
-                    status: shopifyResponse.status,
-                }
+                    error: shopifyData.errors || "Shopify subscription failed",
+                },
+                { status: shopifyResponse.status }
             )
         }
 
