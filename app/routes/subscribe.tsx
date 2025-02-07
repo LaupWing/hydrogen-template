@@ -26,7 +26,8 @@ export async function action({ request }: ActionFunctionArgs) {
 
         // Shopify Storefront API URL (GraphQL)
         const STOREFRONT_API_URL = `https://${process.env.PUBLIC_STORE_DOMAIN}/api/2023-01/graphql.json`
-
+        console.log("Storefront API URL:", STOREFRONT_API_URL)
+        console.log(process.env)
         // GraphQL mutation for creating a customer
         const shopifyGraphQLQuery = `
             mutation customerCreate($input: CustomerCreateInput!) {
