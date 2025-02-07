@@ -52,7 +52,7 @@ export default function Collection() {
 
     return (
         <div className="bg-white pt-8 pb-16">
-            <div className="custom-container grid grid-cols-2 gap-4">
+            <div className="custom-container grid grid-cols-3 gap-4">
                 {/* @ts-ignore */}
                 {products.nodes.map((product) => (
                     <ProductItem key={product.id} product={product} />
@@ -85,7 +85,7 @@ function ProductItem({
     const variantUrl = useVariantUrl(product.handle, variant.selectedOptions)
     return (
         <Link
-            className="product-item"
+            className="grid gap-2"
             key={product.id}
             prefetch="intent"
             to={variantUrl}
@@ -94,15 +94,18 @@ function ProductItem({
                 <Image
                     alt={product.featuredImage.altText || product.title}
                     aspectRatio="1/1"
+                    className="rounded-xl overflow-hidden"
                     data={product.featuredImage}
                     loading={loading}
                     sizes="(min-width: 45em) 400px, 100vw"
                 />
             )}
-            <h4>{product.title}</h4>
-            <small>
-                <Money data={product.priceRange.minVariantPrice} />
-            </small>
+            <div className="flex justify-between">
+                <h4 className="text-lg">{product.title}</h4>
+                <small>
+                    <Money data={product.priceRange.minVariantPrice} />
+                </small>
+            </div>
         </Link>
     )
 }
