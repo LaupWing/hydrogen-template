@@ -169,11 +169,10 @@ export function HeaderMenu({
     viewport: Viewport
     publicStoreDomain: HeaderProps["publicStoreDomain"]
 }) {
-    const className = `header-menu-${viewport}`
     const { close } = useAside()
 
     return (
-        <nav className="flex flex-col gap-4 mt-8" role="navigation">
+        <nav className="flex flex-col gap-6 mt-8" role="navigation">
             {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
                 if (!item.url) return null
 
@@ -186,7 +185,7 @@ export function HeaderMenu({
                         : item.url
                 return (
                     <NavLink
-                        className="header-menu-item"
+                        className="uppercase text-xl"
                         end
                         key={item.id}
                         onClick={close}
