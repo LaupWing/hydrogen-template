@@ -48,7 +48,14 @@ export function Aside({
     const expanded = type === activeType
 
     return type === "mobile" ? (
-        <Sheet>
+        <Sheet
+            onOpenChange={(open) => {
+                if (!open) {
+                    close()
+                }
+            }}
+            open={expanded}
+        >
             {/* <SheetTrigger>Open</SheetTrigger> */}
             <SheetContent>
                 <SheetHeader>

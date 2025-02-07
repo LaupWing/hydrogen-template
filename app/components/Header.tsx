@@ -33,7 +33,7 @@ export function Header({
     publicStoreDomain,
 }: HeaderProps) {
     const { shop, menu } = header
-
+    const { open } = useAside()
     const scrollY = useScrollPosition()
     const [scrolledPassed, setScrolledPassed] = useState(false)
 
@@ -88,7 +88,12 @@ export function Header({
                 )}
             >
                 <div className="custom-container grid items-center grid-cols-4">
-                    <Menu className="md:hidden" />
+                    <button
+                        className="md:hidden"
+                        onClick={() => open("mobile")}
+                    >
+                        <Menu />
+                    </button>
                     <NavLink
                         className="text-2xl col-span-2 md:col-span-1 flex items-center justify-center md:justify-start"
                         end
