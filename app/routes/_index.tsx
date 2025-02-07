@@ -193,13 +193,13 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
-                <div className="col-span-4 gap-2 items-start flex">
-                    <div className="grid w-20 flex-shrink-0 gap-2">
+                <div className="col-span-4 gap-2 items-start flex flex-col-reverse md:flex-row">
+                    <div className="md:grid flex flex-shrink-0 gap-2">
                         {product!.images.nodes.map((image, index) => (
                             <div
                                 key={image.id}
                                 className={cn(
-                                    "border-2 rounded-lg cursor-pointer",
+                                    "border-2 md:w-20 w-16 rounded-lg cursor-pointer",
                                     index === currentSlide
                                         ? "border-black"
                                         : "border-transparent hover:border-neutral-300"
