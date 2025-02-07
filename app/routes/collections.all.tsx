@@ -3,7 +3,7 @@ import { useLoaderData, Link, type MetaFunction } from "@remix-run/react"
 import { getPaginationVariables, Image, Money } from "@shopify/hydrogen"
 import type { ProductItemFragment } from "storefrontapi.generated"
 import { useVariantUrl } from "~/lib/variants"
-import { PaginatedResourceSection } from "~/components/PaginatedResourceSection"
+// import { PaginatedResourceSection } from "~/components/PaginatedResourceSection"
 
 export const meta: MetaFunction<typeof loader> = () => {
     return [{ title: `Hydrogen | Products` }]
