@@ -15,6 +15,7 @@ import Threads from "./logos/Threads"
 import X from "./logos/X"
 import Instagram from "./logos/Instagram"
 import { SocialIcons } from "./SocialIcons"
+import { useToast } from "~/hooks/use-toast"
 
 interface FooterProps {
     footer: Promise<FooterQuery | null>
@@ -30,6 +31,7 @@ export function Footer({
     const NewsLetterInput = () => {
         const [focused, setFocused] = useState(false)
         const [loading, setLoading] = useState(false)
+        const { toast } = useToast()
         const [email, setEmail] = useState("")
         const handleSubmit = async (e: React.FormEvent) => {
             e.preventDefault()
@@ -44,6 +46,11 @@ export function Footer({
                 await response.json()
                 setEmail("")
                 setLoading(false)
+                toast({
+                    title: "Subscribed!",
+                    description:
+                        "You have successfully subscribed to my newsletter",
+                })
             } catch (error) {
                 console.error(error)
                 setLoading(false)
