@@ -95,10 +95,11 @@ export async function action({ request, context }: ActionFunctionArgs) {
         const beehiivData = (await beehiivResponse.json()) as any
 
         if (!beehiivResponse.ok) {
-            return new Response(
-                JSON.stringify({
-                    error: beehiivData.error || "Beehiiv subscription failed",
-                }),
+            return json(
+                {
+                    error:
+                        beehiivData.errors || "Beehiiv API subscription failed",
+                },
                 { status: beehiivResponse.status }
             )
         }
