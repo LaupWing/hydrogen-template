@@ -145,51 +145,6 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
     const [isClient, setIsClient] = useState(false)
     useEffect(() => setIsClient(true), [])
 
-    const ProductForm = () => {
-        return (
-            <>
-                {/* <div className="flex items-center gap-4 bg-neutral-50/50 mr-auto border border-neutral-200 rounded-full p-2">
-                    <button className="p-1.5 px-2 text-neutral-400">
-                        <ChevronLeft />
-                    </button>
-                    <div className="text-lg">1</div>
-                    <button className="p-1.5 px-2 text-neutral-400">
-                        <ChevronRight />
-                    </button>
-                </div> */}
-                <div className="flex max-w-md mx-auto w-full flex-col gap-4">
-                    <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
-                        View Product
-                    </button>
-                    {/* <CartForm
-                        route="/cart"
-                        inputs={{
-                            lines: [
-                                {
-                                    // @ts-ignore
-                                    merchandiseId: product.variants.nodes[0].id,
-                                    quantity: 1,
-                                    // @ts-ignore
-                                    selectedVariant: product.variants.nodes[0],
-                                },
-                            ],
-                        }}
-                        action={CartForm.ACTIONS.LinesAdd}
-                    >
-                        {(fetcher: FetcherWithComponents<any>) => (
-                            <button
-                                type="submit"
-                                className=" text-center border-2 text-neutral-800 border-neutral-800 font-bold text-sm uppercase py-3 hover:bg-neutral-800 duration-200 hover:text-white rounded-full"
-                            >
-                                Add to Cart
-                            </button>
-                        )}
-                    </CartForm> */}
-                </div>
-            </>
-        )
-    }
-
     return (
         <div className="bg-white">
             <div className="custom-container grid items-start grid-cols-1 md:grid-cols-7 gap-14 py-8">
@@ -279,18 +234,20 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                         <Money data={product!.priceRange.minVariantPrice} />
                     </div>
                     <div
-                        className="text-neutral-700 text-base"
+                        className="text-neutral-700 md:text-base text-sm"
                         dangerouslySetInnerHTML={{
                             __html: product!.descriptionHtml,
                         }}
                     ></div>
-                    <div className="flex my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
+                    <div className="flex my-2 md:my-4 rounded-full bg-emerald-100 mr-auto py-2.5 px-3">
                         <div className="w-3.5 h-3.5 border-2 border-emerald-200 bg-emerald-400 rounded-full animate-pulse" />
                         <p className="text-xs text-emerald-600 font-semibold ml-2">
                             Your world changes if you change.
                         </p>
                     </div>
-                    <ProductForm />
+                    <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+                        View Product
+                    </button>
                 </div>
             </div>
         </div>
