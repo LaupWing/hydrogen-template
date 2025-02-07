@@ -68,7 +68,7 @@ export function Footer({
             <div className="flex flex-col bg-neutral-950">
                 <div className="flex flex-col bg-neutral-900 rounded-b-2xl overflow-hidden">
                     <div className="border-t rounded-b-3xl overflow-hidden bg-white">
-                        <div className="my-16 divide-x custom-container grid grid-cols-4">
+                        <div className="my-16 md:divide-x divide-y custom-container flex flex-col md:grid md:gap-0 gap-4 grid-cols-4">
                             <div className="flex gap-4 px-4">
                                 <BicepsFlexed className="flex-shrink-0" />
                                 <div className="flex flex-col gap-0.5">
@@ -167,12 +167,6 @@ export function Footer({
                                             />
                                         )}
                                 </div>
-                                {/* <div className="flex gap-2">
-                                    <img
-                                        src="https://cdn.shopify.com/s/files/1/0560/2903/8506/files/paypal.svg"
-                                        alt="PayPal"
-                                    />
-                                </div> */}
                             </div>
                         </footer>
                     )}
