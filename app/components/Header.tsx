@@ -136,7 +136,7 @@ export function Header({
                             )}
                         </ul>
                     </nav>
-                    <div className="flex gap-6 justify-end">
+                    <div className="flex gap-6 mr-1 md:mr-0 justify-end">
                         {/* <User className="hidden md:block" /> */}
                         <CartToggle cart={cart} />
                     </div>
