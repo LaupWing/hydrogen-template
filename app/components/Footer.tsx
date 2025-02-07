@@ -122,7 +122,7 @@ export function Footer({
                         </div>
                     </div>
                     <div className="bg-neutral-900 overflow-hidden text-white py-16 text-sm text-center">
-                        <div className="custom-container items-start flex justify-between">
+                        <div className="custom-container items-start flex md:flex-row flex-col-reverse gap-10 justify-between">
                             <div className="grid gap-2">
                                 <Logo className="text-white w-40" />
                                 <div className="flex gap-4 mt-4">
