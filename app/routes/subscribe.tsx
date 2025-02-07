@@ -1,6 +1,6 @@
 import { json, type ActionFunctionArgs } from "@netlify/remix-runtime"
 
-export async function action({ request }: ActionFunctionArgs, context: any) {
+export async function action({ request, context }: ActionFunctionArgs) {
     console.log(context.env)
     if (request.method !== "POST") {
         return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
@@ -26,9 +26,9 @@ export async function action({ request }: ActionFunctionArgs, context: any) {
         console.log("Subscribing email:", email)
 
         // Shopify Storefront API URL (GraphQL)
-        const STOREFRONT_API_URL = `https://${process.env.PUBLIC_STORE_DOMAIN}/api/2023-01/graphql.json`
+        const STOREFRONT_API_URL = `https://${context.env.PUBLIC_STORE_DOMAIN}/api/2023-01/graphql.json`
         console.log("Storefront API URL:", STOREFRONT_API_URL)
-        console.log(process.env)
+        console.log(context.env)
         // GraphQL mutation for creating a customer
         const shopifyGraphQLQuery = `
             mutation customerCreate($input: CustomerCreateInput!) {
@@ -50,7 +50,7 @@ export async function action({ request }: ActionFunctionArgs, context: any) {
             headers: {
                 "Content-Type": "application/json",
                 "X-Shopify-Storefront-Access-Token":
-                    process.env.PUBLIC_STOREFRONT_API_TOKEN!,
+                    context.env.PUBLIC_STOREFRONT_API_TOKEN!,
             },
             body: JSON.stringify({
                 query: shopifyGraphQLQuery,
@@ -84,7 +84,8 @@ export async function action({ request }: ActionFunctionArgs, context: any) {
             {
                 method: "POST",
                 headers: {
-                    Authorization: `Bearer ${process.env.BEEHIIV_API_KEY}`,
+                    // @ts-ignore
+                    Authorization: `Bearer ${context.env.BEEHIIV_API_KEY}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email }),
