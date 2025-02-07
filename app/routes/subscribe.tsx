@@ -1,6 +1,7 @@
 import { json, type ActionFunctionArgs } from "@netlify/remix-runtime"
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs, context: any) {
+    console.log(context.env)
     if (request.method !== "POST") {
         return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
             status: 405,
