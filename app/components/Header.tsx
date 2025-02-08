@@ -37,11 +37,6 @@ export function Header({
     const { open } = useAside()
     const scrollY = useScrollPosition()
     const [scrolledPassed, setScrolledPassed] = useState(false)
-    const [isClient, setIsClient] = useState(false)
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
 
     useEffect(() => {
         if (scrollY > 40) {
@@ -55,7 +50,7 @@ export function Header({
         }
     }, [scrollY])
 
-    return isClient ? (
+    return (
         <>
             <div className="flex items-center justify-center h-12 bg-black z-50">
                 <div className="custom-container items-center text-white grid grid-cols-1 md:grid-cols-4">
@@ -155,7 +150,7 @@ export function Header({
                 <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
             </header> */}
         </>
-    ) : null
+    )
 }
 
 const AnnouncementBar = () => {
