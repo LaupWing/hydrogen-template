@@ -93,7 +93,7 @@ export default function Homepage() {
 
     return (
         <div className="home">
-            <FeaturedBlogs blogs={data.blogs} />
+            {/* <FeaturedBlogs blogs={data.blogs} /> */}
             <div className="flex items-start bg-white">
                 <div className="custom-container flex flex-col md:flex-row items-start justify-between py-12">
                     <div className="md:grid md:mb-0 mb-4 flex gap-2 leading-8 text-3xl md:text-4xl uppercase font-bold tracking-tighter md:gap-1">
@@ -118,9 +118,9 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
-            <FeaturedProduct
+            {/* <FeaturedProduct
                 product={data.specificProduct as ProductDetailsFragment}
-            />
+            /> */}
             <RecommendedProducts products={data.recommendedProducts} />
         </div>
     )
