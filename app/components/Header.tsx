@@ -37,6 +37,12 @@ export function Header({
     const { open } = useAside()
     const scrollY = useScrollPosition()
     const [scrolledPassed, setScrolledPassed] = useState(false)
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+    if (!isClient) return null
 
     useEffect(() => {
         if (scrollY > 40) {
