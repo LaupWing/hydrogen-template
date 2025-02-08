@@ -59,9 +59,9 @@ export function ProductForm({
                     <ChevronRight />
                 </button>
             </div>
-            <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
+            {/* <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
                 Buy Now
-            </button>
+            </button> */}
             <AddToCartButton
                 disabled={!selectedVariant || !selectedVariant.availableForSale}
                 onClick={() => {
@@ -114,7 +114,7 @@ function AddToCartButton({
                         type="submit"
                         onClick={onClick}
                         disabled={disabled ?? fetcher.state !== "idle"}
-                        className=" text-center border-2 text-neutral-700 border-neutral-700 font-bold text-sm uppercase py-3 hover:bg-neutral-700 duration-200 hover:text-white rounded-full w-full"
+                        className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full w-full"
                     >
                         {children}
                     </button>
