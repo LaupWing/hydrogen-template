@@ -60,13 +60,7 @@ export function Header({
                         <Youtube />
                     </div>
                     <div className="col-span-2">
-                        <div className="flex items-center max-w-lg mx-auto justify-between gap-4 uppercase">
-                            <ArrowLeft size={18} />
-                            <p className="text-xs">
-                                Support me by buying products
-                            </p>
-                            <ArrowRight size={18} />
-                        </div>
+                        <AnnouncementBar />
                     </div>
                     <div className="hidden md:flex justify-end gap-4 text-xs">
                         <p>Chat With Me!</p>
@@ -156,6 +150,16 @@ export function Header({
                 <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
             </header> */}
         </>
+    )
+}
+
+const AnnouncementBar = () => {
+    return (
+        <div className="flex items-center max-w-lg mx-auto justify-between gap-4 uppercase">
+            <ArrowLeft size={18} />
+            <p className="text-xs">Support me by buying products</p>
+            <ArrowRight size={18} />
+        </div>
     )
 }
 
