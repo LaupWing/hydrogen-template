@@ -245,9 +245,14 @@ function FeaturedProduct({ product }: { product: ProductDetailsFragment }) {
                             Your world changes if you change.
                         </p>
                     </div>
-                    <button className=" text-center bg-yellow-300 font-bold text-sm uppercase py-3 rounded-full">
-                        View Product
-                    </button>
+                    <Link
+                        to={`/products/${product!.handle}`}
+                        className="text-center w-full flex"
+                    >
+                        <button className="text-center bg-yellow-300 font-bold text-sm uppercase py-3 w-full rounded-full">
+                            View Product
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
