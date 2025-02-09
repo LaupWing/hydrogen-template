@@ -48,7 +48,6 @@ export function Aside({
 }) {
     const { type: activeType, close } = useAside()
     const expanded = type === activeType
-    return <div className="hidden">{children}</div>
 
     return type === "mobile" ? (
         <Sheet
